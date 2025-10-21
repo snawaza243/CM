@@ -1,0 +1,56 @@
+﻿/* User Profile Dropdown Styles */
+.user-profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-profile:hover .user-dropdown {
+    display: block !important;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 200px;
+    z-index: 1000;
+    margin-top: 0px;
+}
+
+.user-info {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 15px;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.user-role {
+    font-size: 0.7rem;
+}
+
+.user-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    color: var(--dark-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+    .user-dropdown-item:hover {
+        background: rgba(248, 181, 0, 0.1);
+        color: var(--primary-color);
+    }
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--glass-border);
+    margin: 5px 0;
+}
+

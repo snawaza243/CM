@@ -1,0 +1,288 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Mobile.master.cs" Inherits="CMC.Site_Mobile" %>
+<%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/client-profile.css" rel="stylesheet">
+    <link href="/assets/css/client-project.css" rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+<body data-theme="default">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <!-- Header -->
+        <header class="header glass">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a href="/" class="logo">
+                        <i class="fa-solid fa-mountain-city"></i>
+                        FSBuild
+                    </a>
+                    <div class="theme-controls">
+                        <div class="theme-btn theme-default" data-theme="default"></div>
+                        <div class="theme-btn theme-dark" data-theme="dark"></div>
+                        <div class="theme-btn theme-blue" data-theme="blue"></div>
+                        <div class="theme-btn theme-green" data-theme="green"></div>
+                        <div class="theme-btn theme-purple" data-theme="purple"></div>
+                        <div class="user-profile">
+                            <i class="fas fa-user-circle"></i>
+                            <div class="user-dropdown glass">
+                                <!-- Login option (shown when not logged in) -->
+                                <a href="#" class="user-dropdown-item login-link">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Client Login
+                                </a>
+
+                                <!-- User info and options (shown when logged in) -->
+                                <div class="logged-in-options" style="display: none;">
+                                    <div class="user-info p-2">
+                                        <span class="d-block user-name">Client</span>
+                                        <small class="text-muted user-role">Customer</small>
+                                    </div>
+                                    <a href="#" class="user-dropdown-item profile-link">
+                                        <i class="fas fa-user me-2"></i>My Profile
+                                    </a>
+                                    <!-- Add this to your user dropdown in the frontend template -->
+                                    <a href="#" class="user-dropdown-item my-projects-link">
+                                        <i class="fas fa-project-diagram me-2"></i>My Projects
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" class="user-dropdown-item logout-btn">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Replace the existing user-profile section in frontend template -->
+
+
+
+
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <div class="sidebar glass">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="services">
+                        <i class="fas fa-tools"></i>
+                        <span>Services</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="tools">
+                        <i class="fas fa-wrench"></i>
+                        <span>Tools</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="contractors">
+                        <i class="fas fa-user"></i>
+                        <span>Contractors</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="projects">
+                        <i class="fas fa-building"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="testimonials">
+                        <i class="fas fa-comments"></i>
+                        <span>Testimonials</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="contact">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav glass">
+        <a href="#" class="bottom-nav-item active" data-section="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-section="services">
+            <i class="fas fa-tools"></i>
+            <span>Services</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-section="projects">
+            <i class="fas fa-building"></i>
+            <span>Projects</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-section="contact">
+            <i class="fas fa-phone-alt"></i>
+            <span>Contact</span>
+        </a>
+    </nav>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/client-project.js"></script>
+        <script src="/assets/js/client-profile.js"></script>
+        <script src="/assets/js/theme.js"></script>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <hr />
+
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="mb-4 text-center">Ready to Start Your Project?</h2>
+                <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                    <a href="tel:+918969813910" class="btn btn-primary btn-lg"><i class="fas fa-phone me-2"></i>Call Now</a>
+                    <a href="https://wa.me/918969813910" target="_blank" class="btn btn-success btn-lg"><i class="fab fa-whatsapp me-2"></i>WhatsApp</a>
+                    <a href="mailto:hellofathersonconstruction@gmail.com" class="btn btn-outline-primary btn-lg"><i class="fas fa-envelope me-2"></i>Email Us</a>
+                </div>
+            </div>
+        </section>
+        <hr />
+
+        <!-- Footer -->
+        <footer class="">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-about">
+                            <h3>FatherSonConstruction</h3>
+                            <p>Building quality homes in <strong>Sultapur Khurd</strong> and surrounding areas since 2015. Family-owned and operated with pride in craftsmanship.</p>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com/profile.php?id=61581762056885" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://whatsapp.com/channel/0029Vb6pEhqI7BeHXGQlYs25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                <a href="https://www.instagram.com/fathersonconstruction" target="_blank"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-links">
+                            <h3>Quick Links</h3>
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/Services">Services</a></li>
+                                <li><a href="/Portfolio">Portfolio</a></li>
+                                <li><a href="/About">About Us</a></li>
+                                <li><a href="/Contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-tools">
+                            <h3>Tools</h3>
+                            <ul>
+                                <li><a href="/Tools/Material_Calculator">Material Calculator</a></li>
+                                <li><a href="/Tools/Roof_Calculator">Roofing Calculator</a></li>
+                                <li><a href="/Tools/Floor_Planner">Floor Plan Creator</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-contact">
+                            <h3>Contact Us</h3>
+                            <p class="clickable-address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Sultanpur+Khurd,+Goreakothi,+Siwan,+Bihar+841413"
+                                    target="_blank"
+                                    style="color: inherit; text-decoration: none;">Sultanpur Khurd, Goreakothi, Siwan, Bihar - 841413
+                                </a>
+                            </p>
+                            <p class="clickable-phone">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+918969813910" style="color: inherit; text-decoration: none;">+91 89698 13910
+                                </a>
+                            </p>
+
+                            <p class="clickable-email">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:hellofathersonconstruction@gmail.com?subject=Inquiry&body=Hello, I would like to get more information about your services." style="color: inherit; text-decoration: none;">hellofathersonconstruction@gmail.com</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom py-3 text-center">
+                    <p class="mb-0">&copy; <%: DateTime.Now.Year %> - FatherSonConstruction. All Rights Reserved</p>
+
+
+                    <p>Designed with <i class="fas fa-heart text-danger"></i> for SultanpurKhurd</p>
+                </div>
+            </div>
+        </footer>
+
+
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>
