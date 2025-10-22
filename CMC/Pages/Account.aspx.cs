@@ -1,6 +1,7 @@
 ﻿using CMC.Controllers;
 using CMC.Helper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -19,38 +20,52 @@ namespace CMC.Pages
     [System.Web.Script.Services.ScriptService]
     public partial class Account : System.Web.UI.Page
     {
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // check session clientID
             string clientId = Session["clientID"]?.ToString();
             if (string.IsNullOrEmpty(clientId))
             {
-                GetClientProfile(clientId);
+                //GetClientProfile(clientId);
             }
 
         }
 
 
         [WebMethod]
-        public static object SaveProfile(string firstName,string lastName,string email,string phone,string address,string passwordHash,string isNew,string clientId = null )
+        public static object SaveProfile(string firstName, string lastName, string email, string phone, string address, string passwordHash, string isNew, string clientId = null)
         {
             try
             {
 
                 // haissing pass
                 if (isNew == "new")
-                    {
+                {
                     if (string.IsNullOrEmpty(passwordHash))
                     {
-                        return "Error: Password is required for new profiles.";
+                        string msg= "Error: Password is required for new profiles.";
+                        return new
+                        {
+                            success = false,
+                            message = msg,
+                            data = (object)null,
+                            totalCount = 0
+                        };
                     }
                 }
                 else if (isNew == "view")
+                {
+                    if (string.IsNullOrEmpty(clientId)) // || !int.TryParse(clientId, out _)
                     {
-                    if (string.IsNullOrEmpty(clientId) || !int.TryParse(clientId, out _))
-                    {
-                        return "Error: Valid Client ID is required for updating profiles.";
+                        string msg =  "Error: Client details are invalid.";
+                        return new
+                        {
+                            success = false,
+                            message = msg,
+                            data = (object)null,
+                            totalCount = 0
+                        };
                     }
                 }
 
@@ -63,6 +78,10 @@ namespace CMC.Pages
 
                 if (isNew == "new")
                 {
+
+                     
+
+
                     parameters.Add(new OracleParameter("p_FirstName", firstName));
                     parameters.Add(new OracleParameter("p_LastName", lastName));
                     parameters.Add(new OracleParameter("p_Email", email));
@@ -75,7 +94,7 @@ namespace CMC.Pages
                     parameters.Add(new OracleParameter("p_Success", OracleDbType.Int32) { Direction = ParameterDirection.Output });
                     parameters.Add(new OracleParameter("p_Message", OracleDbType.Varchar2, 500) { Direction = ParameterDirection.Output });
 
-                    var result = new OracleHelper().ExecuteProcedure("proc_Insert_Temp_Client", parameters);
+                    var result = new OracleHelper().ExecuteProcedure("PROC_TC_INSERT", parameters);
 
 
                     // Access output values
@@ -83,7 +102,7 @@ namespace CMC.Pages
                     var successFlag = result["p_Success"];
                     var message = result["p_Message"];
 
-                   
+
 
                     return new
                     {
@@ -95,13 +114,29 @@ namespace CMC.Pages
                 }
                 else if (isNew == "view")
                 {
-                    parameters.Add(new OracleParameter("p_ClientID", Convert.ToInt32(clientId)));
+
+                    var (success, message, newPassword) = CheckOldPasswordAndExtractNew(email, passwordHash);
+
+                    if (!success)
+                        return new { success = false, message };
+
+                    string newHash = "";
+                    if(success && !string.IsNullOrEmpty(newPassword))
+                    {
+                        newHash = PasswordHelper.HashPassword(newPassword); // assuming you already have HashPassword()
+
+                    }
+                    // Now hash the new password and update DB using your stored procedure
+
+
+
+                    parameters.Add(new OracleParameter("P_CLIENTCODE", clientId)); // Convert.ToInt32(clientId)
                     parameters.Add(new OracleParameter("p_FirstName", firstName));
                     parameters.Add(new OracleParameter("p_LastName", lastName));
                     parameters.Add(new OracleParameter("p_Email", email));
                     parameters.Add(new OracleParameter("p_Phone", phone ?? (object)DBNull.Value));
                     parameters.Add(new OracleParameter("p_Address", address ?? (object)DBNull.Value));
-                    parameters.Add(new OracleParameter("p_PasswordHash", hashPadd ?? (object)DBNull.Value));
+                    parameters.Add(new OracleParameter("p_PasswordHash", newHash ?? (object)DBNull.Value));
                     parameters.Add(new OracleParameter("p_ModifiedBy", "WebUser"));
 
                     parameters.Add(new OracleParameter("p_Success", OracleDbType.Int32) { Direction = ParameterDirection.Output });
@@ -109,14 +144,20 @@ namespace CMC.Pages
 
 
                     // it is return dict type 
-                    var result = new OracleHelper().ExecuteProcedure("proc_Update_Temp_Client", parameters);
+                    var result = new OracleHelper().ExecuteProcedure("PROC_TC_UPDATE", parameters);
+
+                    // Access output values
+                    var up_clientCode = clientId; // result["p_ClientCode"];
+                    var up_successFlag = result["p_Success"];
+                    var up_message = result["p_Message"];
+
+
 
                     return new
                     {
-                        success = true,
-                        message = "Records found",
-                        data = result,
-                        totalCount = result.Count
+                        success = (up_successFlag?.ToString() == "1"),
+                        message = up_message?.ToString(),
+                        clientCode = up_clientCode?.ToString()
                     };
 
                 }
@@ -130,8 +171,8 @@ namespace CMC.Pages
                 };
             }
             catch (Exception ex)
-            { 
-                return new 
+            {
+                return new
                 {
                     success = true,
                     message = "Error: " + ex.Message,
@@ -140,9 +181,6 @@ namespace CMC.Pages
                 };
             }
         }
-
-
-
 
         [WebMethod]
         public static object ClientLogin(string identifier, string inputPassword)
@@ -204,7 +242,6 @@ namespace CMC.Pages
         }
 
 
-
         [WebMethod]
         public static object GetClientProfile(string clientCode)
         {
@@ -241,6 +278,47 @@ namespace CMC.Pages
             }
         }
 
+        private const string Separator = "@#$PASS@#$";
+        public static (bool success, string message, string newPassword) CheckOldPasswordAndExtractNew(string identifier, string passwordHash)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(identifier))
+                    return (false, "Identifier is required.", null);
+
+                if (string.IsNullOrEmpty(passwordHash))
+                    return (false, "Password data is missing.", null);
+
+                var parts = passwordHash.Split(new[] { Separator }, StringSplitOptions.None);
+                if (parts.Length != 2)
+                    return (false, $"Invalid format. Expected: newPass{Separator}oldPass", null);
+
+                string newPass = parts[0];
+                string oldPass = parts[1];
+
+                if (string.IsNullOrEmpty(oldPass))
+                {
+                    return (true, "User is not changing password.", newPass);
+
+                }
+
+                // Call your existing ClientLogin web method directly
+                var loginResult = ClientLogin(identifier, oldPass);
+
+                // Convert anonymous result into JObject to read properties
+                var resultObj = JObject.FromObject(loginResult);
+                bool oldPassValid = resultObj["success"]?.ToObject<bool>() ?? false;
+
+                if (!oldPassValid)
+                    return (false, "Old password verification failed.", null);
+
+                return (true, "Old password verified successfully.", newPass);
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error verifying old password: " + ex.Message, null);
+            }
+        }
 
 
 

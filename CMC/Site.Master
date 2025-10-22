@@ -430,7 +430,7 @@
             }
             
             function updateUserInterface() {
-                const clientCode = localStorage.getItem('clientID');
+                const clientCode = getClientSession();
                 if (!clientCode) {
                     $('.login-link').show();
                     $('.logged-in-options').hide();
@@ -470,6 +470,32 @@
                 });
             }
 
+            // Store session data for 10 minutes (600,000 ms)
+            function setClientSession(clientID) {
+                const expiryTime = Date.now() + (10 * 60 * 1000); // 10 minutes in ms
+                const sessionData = {
+                    value: clientID,
+                    expiry: expiryTime
+                };
+                sessionStorage.setItem("clientID", JSON.stringify(sessionData));
+            }
+
+            // Retrieve client session (auto-clear if expired)
+            function getClientSession() {
+                const data = sessionStorage.getItem("clientID");
+                if (!data) return null;
+
+                const session = JSON.parse(data);
+                if (Date.now() > session.expiry) {
+                    showAlert('Session expire, kindly login!');
+                    sessionStorage.removeItem("clientID");
+                    window.href('/');
+                    return null;
+                }
+
+                return session.value;
+            }
+
             function performLoginAjax() {
                 const identifier = $('#loginEmail').val().trim();
                 const password = $('#loginPassword').val().trim();
@@ -491,7 +517,10 @@
                         const data = response.d || response; // depending on ASP.NET serialization
 
                         if (data.success) {
-                            localStorage.setItem("clientID", data.clientCode);
+                            //localStorage.setItem("clientID", data.clientCode);
+
+                            setClientSession(data.clientCode);
+
                             updateUserInterface(true);
                             $('#loginModal').modal('hide');
                             showAlert(`✅ Welcome!`, 'success');
@@ -511,6 +540,8 @@
                 });
             }
 
+
+
             function wantToLogin() {
                 $('#loginModal').modal('show');
                 $('#loginModal').on('shown.bs.modal', function () {
@@ -520,8 +551,7 @@
 
             $(document).on('click', '.logout-btn', function (e) {
                 e.preventDefault();
-                localStorage.removeItem("clientID");
-
+                sessionStorage.removeItem("clientID");
                 updateUserInterface(false);
                 showAlert('You have been logged out', 'info');
                 window.location.replace('/');
@@ -531,7 +561,7 @@
             $(document).on('click', '.profile-link', function (e) {
                 e.preventDefault();
 
-                const userType = localStorage.getItem('clientID');
+                const userType = getClientSession();
                 if (!userType) {
                     showAlert('Please log in to view your profile', 'error');
                     return;
@@ -541,6 +571,16 @@
             });
 
             $(document).ready(function () {
+
+                // Optional: check every minute and auto-remove if expired
+                setInterval(() => {
+                    if (!getClientSession()) {
+                        
+                        sessionStorage.removeItem("clientID");
+                    }
+                }, 60000); // 1 minute check
+
+
                 updateUserInterface(); // loggedStatus
 
                 // Event handlers

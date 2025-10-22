@@ -139,31 +139,7 @@
             setTimeout(() => alertBox.alert('close'), 3000);
         }
 
-        function loadProfileData() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            const userType = localStorage.getItem('userType');
-
-            if (!isLoggedIn || !userType) return; // not logged in, skip
-
-            const userName = localStorage.getItem('userName') || '';
-            const userEmail = localStorage.getItem('userEmail') || '';
-            const userRole = localStorage.getItem('userRole') || 'Customer';
-            const userPhone = localStorage.getItem('userPhone') || '';
-            const userAddress = localStorage.getItem('userAddress') || '';
-            const userPhoto = localStorage.getItem('userPhoto') || 'https://randomuser.me/api/portraits/men/1.jpg';
-
-            $('#profileName').text(userName);
-            $('#profileRole').text(userRole);
-            $('#profileEmail').val(userEmail);
-            $('#profilePhone').val(userPhone);
-            $('#profileAddress').val(userAddress);
-            $('#profileImage').attr('src', userPhoto);
-
-            const nameParts = userName.split(' ');
-            $('#profileFirstName').val(nameParts[0] || '');
-            $('#profileLastName').val(nameParts[1] || '');
-        }
-
+      
         function resetProfileForm() {
             $('#profileFirstName, #profileLastName, #profileEmail, #profilePhone, #profileAddress').val('');
             $('#profileName').text('New Client');
@@ -198,7 +174,6 @@
             }
 
             const invalidMessage = `⚠️ Invalid 'action' value '${action}'. Redirecting to home...`;
-            //console.warn(invalidMessage);
             //alert(invalidMessage);
             window.location.href = "/";
             return { success: false, action: action, message: invalidMessage };
@@ -240,7 +215,7 @@
                 }
             }
 
-            return true; // ✅ passwords are valid or not entered
+            return true; 
         }
 
 
@@ -257,9 +232,8 @@
             const confirmPass = $("#confirmPassword").val().trim();
 
             var checkNew = isNewClient();
-            const isNew = checkNew.action; // "new" or "view"
+            const isNew = checkNew.action; 
 
-            // Password validation function
             const passwordsValid = validatePasswords(isNew, oldPass, newPass, confirmPass);
             if (!passwordsValid) return;
 
@@ -277,8 +251,8 @@
                 phone: phone,
                 address: address,
                 isNew: isNew,
-                passwordHash: newPass || null, // send new password only if changing
-                clientId: isNew === "view" ? $('#clientId').val() : null
+                passwordHash: newPass + '@#$PASS@#$'+ oldPass || null, // send new password only if changing
+                clientId: isNew === "view" ? getClientSession() : null
             };
 
 
@@ -290,21 +264,38 @@
                 dataType: "json",
                 success: function (response) {
                     console.log(response);
+                    // Assuming `response` is the AJAX success result
                     let res;
-                    try {
-                        res = JSON.parse(response.d);
 
-                        console.log('PARSED');
-                        console.log(response);
-                    } catch {
-                        res = { p_Success: 1, p_Message: response.d || "Profile saved successfully!" };
+                    try {
+                        // If response.d is already an object (not a string), no need to parse again
+                        res = typeof response.d === "string" ? JSON.parse(response.d) : response.d;
+
+                        console.log("Parsed Response:", res);
+
+                        // ✅ Set session only if success and clientCode exist
+                        if (res.success && res.clientCode) {
+                            setClientSession(res.clientCode);
+                        }
+
+                        // ✅ Prepare alert message
+                        const msg = res.success
+                            ? (isNew === 'new'
+                                ? " Profile created successfully!"
+                                : " Profile updated successfully!")
+                            : " " + (res.message || "Operation failed.");
+
+                        const type = res.success ? 'success' : 'error';
+                        const icon = res.success ? "✅" : "❌";
+
+                        showAlert(`${icon} ${msg}`, type);
+
+                    } catch (err) {
+                        console.error("Response parse error:", err, response);
+                        showAlert("⚠️ Unexpected response format.", "error");
                     }
-                    showAlert(
-                        res.p_Success == 1
-                            ? (isNew === 'new' ? "✅ Profile created!" : "✅ Profile updated!")
-                            : "❌ " + res.p_Message,
-                        res.p_Success == 1 ? 'success' : 'error'
-                    );
+
+
                 },
                 error: function (xhr, status, error) {
                     let errorMessage = xhr.responseText || error || "Unknown error occurred.";
@@ -349,7 +340,7 @@
             if (action !== 'view') return;
 
             // Check for clientID in localStorage (or session)
-            const clientCode = localStorage.getItem('clientID');
+            const clientCode = getClientSession();
             if (!clientCode) {
                 showAlert('Client not logged in. Redirecting to login...', 'info');
                 //wantToLogin();
