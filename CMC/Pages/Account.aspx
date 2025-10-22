@@ -16,16 +16,49 @@
                             <div class="card-body">
                                 <div class="row">
                                     <!-- Left Profile Info -->
-                                    <div class="col-md-4 text-center border-end">
-                                        <div class="mb-3">
-                                            <img id="profileImage" src="https://randomuser.me/api/portraits/men/1.jpg" alt="Profile" class="rounded-circle shadow" width="140" height="140">
-                                        </div>
-                                        <h5 id="profileName" class="fw-bold">Client Name</h5>
-                                        <p class="text-muted" id="profileRole">Customer</p>
-                                        <button class="btn btn-outline-primary mt-2" id="changePhotoBtn">
-                                            <i class="fas fa-camera me-1"></i>Change Photo
-                                        </button>
-                                    </div>
+                                   <!-- Profile Section -->
+<div class="col-md-4 text-center border-end">
+    <div class="mb-3">
+        <img id="profileImage" src="https://randomuser.me/api/portraits/men/1.jpg" 
+             alt="Profile" class="rounded-circle shadow" width="140" height="140">
+    </div>
+    <h5 id="profileName" class="fw-bold">Client Name</h5>
+    <p class="text-muted" id="profileRole">Customer</p>
+
+    <button class="btn btn-outline-primary mt-2" id="changePhotoBtn">
+        <i class="fas fa-camera me-1"></i> Change Photo
+    </button>
+
+    <input type="file" id="fileInput" accept="image/*" style="display:none;" />
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        // When the "Change Photo" button is clicked
+        $('#changePhotoBtn').on('click', function () {
+            $('#fileInput').click(); // trigger hidden file input
+        });
+
+        // When an image file is selected
+        $('#fileInput').on('change', function (event) {
+            const file = event.target.files[0];
+
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#profileImage').attr('src', e.target.result); // preview new image
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a valid image file.');
+            }
+        });
+    });
+</script>
+
 
                                     <!-- Right Profile Form -->
                                     <div class="col-md-8">
@@ -230,6 +263,8 @@
             const oldPass = $("#oldPassword").val().trim();
             const newPass = $("#newPassword").val().trim();
             const confirmPass = $("#confirmPassword").val().trim();
+            const imageData = $('#profileImage').attr('src');
+
 
             var checkNew = isNewClient();
             const isNew = checkNew.action; 
@@ -252,7 +287,8 @@
                 address: address,
                 isNew: isNew,
                 passwordHash: newPass + '@#$PASS@#$'+ oldPass || null, // send new password only if changing
-                clientId: isNew === "view" ? getClientSession() : null
+                clientId: isNew === "view" ? getClientSession() : null,
+                avatar: imageData
             };
 
 
@@ -369,6 +405,8 @@
                         $('#profileAddress').val(profile.ADDRESS || '');
                         $('#profileName').text(`${profile.FIRSTNAME || ''} ${profile.LASTNAME || ''}`.trim());
                         $('#profileRole').text(profile.ROLE || 'Customer');
+                        $('#profileImage').attr('src', profile.PROFILE_IMAGE );
+
 
                         if (profile.IMAGEURL) {
                             $('#profileImage').attr('src', profile.IMAGEURL);

@@ -34,10 +34,11 @@ namespace CMC.Pages
 
 
         [WebMethod]
-        public static object SaveProfile(string firstName, string lastName, string email, string phone, string address, string passwordHash, string isNew, string clientId = null)
+        public static object SaveProfile(string firstName, string lastName, string email, string phone, string address, string passwordHash, string isNew, string clientId = null, string avatar = null)
         {
             try
             {
+                 
 
                 // haissing pass
                 if (isNew == "new")
@@ -79,7 +80,8 @@ namespace CMC.Pages
                 if (isNew == "new")
                 {
 
-                     
+                    byte[] imageBytes = CommonHelper.GetImageBytes(avatar);
+
 
 
                     parameters.Add(new OracleParameter("p_FirstName", firstName));
@@ -89,6 +91,7 @@ namespace CMC.Pages
                     parameters.Add(new OracleParameter("p_Address", address ?? (object)DBNull.Value));
                     parameters.Add(new OracleParameter("p_PasswordHash", hashPadd ?? (object)DBNull.Value));
                     parameters.Add(new OracleParameter("p_CreatedBy", "WebUser"));
+                    
 
                     parameters.Add(new OracleParameter("p_ClientCode", OracleDbType.Varchar2, 20) { Direction = ParameterDirection.Output });
                     parameters.Add(new OracleParameter("p_Success", OracleDbType.Int32) { Direction = ParameterDirection.Output });
@@ -138,6 +141,15 @@ namespace CMC.Pages
                     parameters.Add(new OracleParameter("p_Address", address ?? (object)DBNull.Value));
                     parameters.Add(new OracleParameter("p_PasswordHash", newHash ?? (object)DBNull.Value));
                     parameters.Add(new OracleParameter("p_ModifiedBy", "WebUser"));
+
+                    //byte[] imageBytes = ;
+
+                    parameters.Add(new OracleParameter("p_ProfileImage", OracleDbType.Blob)
+                    {
+                        Value = (object)CommonHelper.GetImageBytes(avatar, "p", resize: true) ?? DBNull.Value
+                    });
+
+
 
                     parameters.Add(new OracleParameter("p_Success", OracleDbType.Int32) { Direction = ParameterDirection.Output });
                     parameters.Add(new OracleParameter("p_Message", OracleDbType.Varchar2, 500) { Direction = ParameterDirection.Output });
@@ -255,9 +267,31 @@ namespace CMC.Pages
 
                 DataTable clientData = new OracleHelper().ExecuteProcedureWithCursor("proc_tc_get_by_cc", clientParams);
 
+                //Dictionary<string, object> rowData = null;
+                //if (clientData.Rows.Count > 0)
+                //    rowData = CommonHelper.ConvertDataRowToDictionary(clientData.Rows[0]);
+
+
                 Dictionary<string, object> rowData = null;
                 if (clientData.Rows.Count > 0)
+                {
                     rowData = CommonHelper.ConvertDataRowToDictionary(clientData.Rows[0]);
+
+                    // ✅ Convert byte[] image to Base64
+                    if (clientData.Rows[0]["PROFILE_IMAGE"] != DBNull.Value)
+                    {
+                        byte[] imgBytes = (byte[])clientData.Rows[0]["PROFILE_IMAGE"];
+                        string base64 = "data:image/png;base64," + Convert.ToBase64String(imgBytes);
+                        rowData["PROFILE_IMAGE"] = base64;
+                    }
+                    else
+                    {
+                        rowData["PROFILE_IMAGE"] = null;
+                    }
+                }
+
+
+
 
                 return new
                 {
