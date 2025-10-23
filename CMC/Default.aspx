@@ -585,6 +585,61 @@
                 </div>
             </div>
         </div>
+   
+        <script>
+            function loadDropdown(forType, by, x, role, logId, ddlId) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Default.aspx/GetCMListServices", 
+                    data: JSON.stringify({
+                        forType: forType,
+                        by: by,
+                        x: x,
+                        role: role,
+                        logId: logId
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var data = response.d || response; // fallback if d is missing
+                        var ddl = $("#" + ddlId);
+                        ddl.empty();
+
+                        if (data.success) {
+                            ddl.append('<option value="" selected disabled>Select...</option>');
+                            $.each(data.data, function (index, item) {
+                                ddl.append('<option value="' + item.CODE + '">' + item.NAME + '</option>');
+                            });
+                        } else {
+                            ddl.append('<option value="" selected disabled>' + (data.message || "No data") + '</option>');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        var ddl = $("#" + ddlId);
+                        ddl.empty().append('<option value="" selected disabled>Error loading data</option>');
+
+                        console.group("AJAX Error Details");
+                        console.log("Status:", status);             // e.g., "error", "timeout"
+                        console.log("Error Message:", error);      // textual error info
+                        console.log("HTTP Status Code:", xhr.status); // e.g., 500, 404
+                        console.log("Response Text:", xhr.responseText); // full server response
+                        console.log("Request URL:", this.url);     // URL that was requested
+                        console.groupEnd();
+                    }
+                });
+            }
+
+
+        
+            $(document).ready(function () {
+
+                // Example: load services dropdown
+                loadDropdown('DDL_CM_SERVICES', '', '', '', '', 'projectType');
+
+
+            });
+        </script>
+
     </div>
 
 

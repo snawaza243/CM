@@ -33,6 +33,26 @@ namespace CMC.Helper
             return dict;
         }
 
+        public static List<Dictionary<string, object>> ConvertDataTableToDictionary(DataTable table)
+        {
+            var dataList = new List<Dictionary<string, object>>();
+
+            if (table != null && table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    var dict = new Dictionary<string, object>();
+                    foreach (DataColumn col in table.Columns)
+                    {
+                        dict[col.ColumnName] = row[col] ?? "";
+                    }
+                    dataList.Add(dict);
+                }
+            }
+
+            return dataList;
+        }
+
         public static byte[] GetImageBytes(string imageSource, string imgType = "p", bool resize = true)
         {
             if (string.IsNullOrEmpty(imageSource))

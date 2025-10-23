@@ -1,11 +1,12 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 
-namespace CMC.Controllers
+namespace CMC.Helper
 {
     public class OracleHelper
     {
@@ -158,6 +159,66 @@ namespace CMC.Controllers
             return dt;
         }
 
+
+        /// <summary>
+        /// Executes a stored procedure with parameters, returns output params, REF CURSOR, success flag, and message.
+        /// </summary>
+        public static (bool Success, string Message, Dictionary<string, object> OutputParams, DataTable CursorData)
+            ExecuteProcedureWithCursorSafe(string procedureName, List<OracleParameter> parameters)
+        {
+            var outputParams = new Dictionary<string, object>();
+            DataTable cursorTable = null;
+            bool success = false;
+            string message = "";
+
+            try
+            {
+                using (var conn = new OracleConnection(connectionString))
+                using (var cmd = new OracleCommand(procedureName, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddRange(parameters.ToArray());
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    foreach (OracleParameter param in cmd.Parameters)
+                    {
+                        if (param.Direction == ParameterDirection.Output || param.Direction == ParameterDirection.InputOutput)
+                        {
+                            if (param.OracleDbType == OracleDbType.RefCursor)
+                            {
+                                cursorTable = new DataTable();
+                                using (var reader = ((OracleRefCursor)param.Value).GetDataReader())
+                                {
+                                    cursorTable.Load(reader);
+                                }
+                            }
+                            else
+                            {
+                                outputParams[param.ParameterName] = param.Value;
+                            }
+                        }
+                    }
+
+                    // Optional: Check for common output parameters "P_SUCCESS" and "P_MESSAGE"
+                    if (outputParams.ContainsKey("P_STATUS"))
+                        success = outputParams["P_STATUS"]?.ToString() == "1";
+
+                    if (outputParams.ContainsKey("P_MESSAGE"))
+                        message = outputParams["P_MESSAGE"]?.ToString();
+                    else
+                        message = "Procedure executed successfully.";
+                }
+            }
+            catch (Exception ex)
+            {
+                success = false;
+                message = $"Error executing procedure: {ex.Message}";
+            }
+
+            return (success, message, outputParams, cursorTable);
+        }
 
     }
 }

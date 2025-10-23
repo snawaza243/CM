@@ -1,0 +1,567 @@
+
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('User', 'fa fa-user', 'FontAwesome', 'User', '<i class="fa fa-user"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('User', 'fa fa-user', 'FontAwesome', 'User', '<i class="fa fa-user"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Users', 'fa fa-users', 'FontAwesome', 'User', '<i class="fa fa-users"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Settings', 'fa fa-cog', 'FontAwesome', 'System', '<i class="fa fa-cog"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Search', 'fa fa-search', 'FontAwesome', 'Utility', '<i class="fa fa-search"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Edit', 'fa fa-edit', 'FontAwesome', 'Action', '<i class="fa fa-edit"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Save', 'fa fa-save', 'FontAwesome', 'Action', '<i class="fa fa-save"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Trash', 'fa fa-trash', 'FontAwesome', 'Action', '<i class="fa fa-trash"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Plus', 'fa fa-plus', 'FontAwesome', 'Action', '<i class="fa fa-plus"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Minus', 'fa fa-minus', 'FontAwesome', 'Action', '<i class="fa fa-minus"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Download', 'fa fa-download', 'FontAwesome', 'Action', '<i class="fa fa-download"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Upload', 'fa fa-upload', 'FontAwesome', 'Action', '<i class="fa fa-upload"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Envelope', 'fa fa-envelope', 'FontAwesome', 'Communication', '<i class="fa fa-envelope"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Phone', 'fa fa-phone', 'FontAwesome', 'Communication', '<i class="fa fa-phone"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Bell', 'fa fa-bell', 'FontAwesome', 'Notification', '<i class="fa fa-bell"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Calendar', 'fa fa-calendar', 'FontAwesome', 'Date & Time', '<i class="fa fa-calendar"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Clock', 'fa fa-clock-o', 'FontAwesome', 'Date & Time', '<i class="fa fa-clock-o"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Heart', 'fa fa-heart', 'FontAwesome', 'Social', '<i class="fa fa-heart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Star', 'fa fa-star', 'FontAwesome', 'Rating', '<i class="fa fa-star"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Camera', 'fa fa-camera', 'FontAwesome', 'Media', '<i class="fa fa-camera"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Image', 'fa fa-image', 'FontAwesome', 'Media', '<i class="fa fa-image"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Video', 'fa fa-video-camera', 'FontAwesome', 'Media', '<i class="fa fa-video-camera"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Music', 'fa fa-music', 'FontAwesome', 'Media', '<i class="fa fa-music"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('File', 'fa fa-file', 'FontAwesome', 'Document', '<i class="fa fa-file"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Folder', 'fa fa-folder', 'FontAwesome', 'Document', '<i class="fa fa-folder"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Print', 'fa fa-print', 'FontAwesome', 'Action', '<i class="fa fa-print"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Share', 'fa fa-share', 'FontAwesome', 'Action', '<i class="fa fa-share"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Lock', 'fa fa-lock', 'FontAwesome', 'Security', '<i class="fa fa-lock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Unlock', 'fa fa-unlock', 'FontAwesome', 'Security', '<i class="fa fa-unlock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye', 'fa fa-eye', 'FontAwesome', 'Visibility', '<i class="fa fa-eye"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye Slash', 'fa fa-eye-slash', 'FontAwesome', 'Visibility', '<i class="fa fa-eye-slash"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chart Bar', 'fa fa-bar-chart', 'FontAwesome', 'Analytics', '<i class="fa fa-bar-chart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chart Line', 'fa fa-line-chart', 'FontAwesome', 'Analytics', '<i class="fa fa-line-chart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Shopping Cart', 'fa fa-shopping-cart', 'FontAwesome', 'E-commerce', '<i class="fa fa-shopping-cart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Credit Card', 'fa fa-credit-card', 'FontAwesome', 'E-commerce', '<i class="fa fa-credit-card"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Tag', 'fa fa-tag', 'FontAwesome', 'E-commerce', '<i class="fa fa-tag"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Gift', 'fa fa-gift', 'FontAwesome', 'E-commerce', '<i class="fa fa-gift"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Globe', 'fa fa-globe', 'FontAwesome', 'Location', '<i class="fa fa-globe"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Map Marker', 'fa fa-map-marker', 'FontAwesome', 'Location', '<i class="fa fa-map-marker"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Left', 'fa fa-arrow-left', 'FontAwesome', 'Navigation', '<i class="fa fa-arrow-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Right', 'fa fa-arrow-right', 'FontAwesome', 'Navigation', '<i class="fa fa-arrow-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Up', 'fa fa-arrow-up', 'FontAwesome', 'Navigation', '<i class="fa fa-arrow-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Down', 'fa fa-arrow-down', 'FontAwesome', 'Navigation', '<i class="fa fa-arrow-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Left', 'fa fa-chevron-left', 'FontAwesome', 'Navigation', '<i class="fa fa-chevron-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Right', 'fa fa-chevron-right', 'FontAwesome', 'Navigation', '<i class="fa fa-chevron-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Up', 'fa fa-chevron-up', 'FontAwesome', 'Navigation', '<i class="fa fa-chevron-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Down', 'fa fa-chevron-down', 'FontAwesome', 'Navigation', '<i class="fa fa-chevron-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Info', 'fa fa-info-circle', 'FontAwesome', 'Alert', '<i class="fa fa-info-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Warning', 'fa fa-exclamation-triangle', 'FontAwesome', 'Alert', '<i class="fa fa-exclamation-triangle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Error', 'fa fa-times-circle', 'FontAwesome', 'Alert', '<i class="fa fa-times-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Success', 'fa fa-check-circle', 'FontAwesome', 'Alert', '<i class="fa fa-check-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Question', 'fa fa-question-circle', 'FontAwesome', 'Help', '<i class="fa fa-question-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Filter', 'fa fa-filter', 'FontAwesome', 'Utility', '<i class="fa fa-filter"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Sort', 'fa fa-sort', 'FontAwesome', 'Utility', '<i class="fa fa-sort"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Refresh', 'fa fa-refresh', 'FontAwesome', 'Action', '<i class="fa fa-refresh"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Rotate Left', 'fa fa-rotate-left', 'FontAwesome', 'Action', '<i class="fa fa-rotate-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Rotate Right', 'fa fa-rotate-right', 'FontAwesome', 'Action', '<i class="fa fa-rotate-right"></i>');
+
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Home', 'bi bi-house', 'Bootstrap', 'Navigation', '<i class="bi bi-house"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Person', 'bi bi-person', 'Bootstrap', 'User', '<i class="bi bi-person"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('People', 'bi bi-people', 'Bootstrap', 'User', '<i class="bi bi-people"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Gear', 'bi bi-gear', 'Bootstrap', 'System', '<i class="bi bi-gear"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Search', 'bi bi-search', 'Bootstrap', 'Utility', '<i class="bi bi-search"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Pencil', 'bi bi-pencil', 'Bootstrap', 'Action', '<i class="bi bi-pencil"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Save', 'bi bi-save', 'Bootstrap', 'Action', '<i class="bi bi-save"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Trash', 'bi bi-trash', 'Bootstrap', 'Action', '<i class="bi bi-trash"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Plus', 'bi bi-plus', 'Bootstrap', 'Action', '<i class="bi bi-plus"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Dash', 'bi bi-dash', 'Bootstrap', 'Action', '<i class="bi bi-dash"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Download', 'bi bi-download', 'Bootstrap', 'Action', '<i class="bi bi-download"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Upload', 'bi bi-upload', 'Bootstrap', 'Action', '<i class="bi bi-upload"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Envelope', 'bi bi-envelope', 'Bootstrap', 'Communication', '<i class="bi bi-envelope"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Telephone', 'bi bi-telephone', 'Bootstrap', 'Communication', '<i class="bi bi-telephone"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Bell', 'bi bi-bell', 'Bootstrap', 'Notification', '<i class="bi bi-bell"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Calendar', 'bi bi-calendar', 'Bootstrap', 'Date & Time', '<i class="bi bi-calendar"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Clock', 'bi bi-clock', 'Bootstrap', 'Date & Time', '<i class="bi bi-clock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Heart', 'bi bi-heart', 'Bootstrap', 'Social', '<i class="bi bi-heart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Star', 'bi bi-star', 'Bootstrap', 'Rating', '<i class="bi bi-star"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Camera', 'bi bi-camera', 'Bootstrap', 'Media', '<i class="bi bi-camera"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Image', 'bi bi-image', 'Bootstrap', 'Media', '<i class="bi bi-image"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Film', 'bi bi-film', 'Bootstrap', 'Media', '<i class="bi bi-film"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Music Note', 'bi bi-music-note', 'Bootstrap', 'Media', '<i class="bi bi-music-note"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('File', 'bi bi-file', 'Bootstrap', 'Document', '<i class="bi bi-file"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Folder', 'bi bi-folder', 'Bootstrap', 'Document', '<i class="bi bi-folder"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Printer', 'bi bi-printer', 'Bootstrap', 'Action', '<i class="bi bi-printer"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Share', 'bi bi-share', 'Bootstrap', 'Action', '<i class="bi bi-share"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Lock', 'bi bi-lock', 'Bootstrap', 'Security', '<i class="bi bi-lock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Unlock', 'bi bi-unlock', 'Bootstrap', 'Security', '<i class="bi bi-unlock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye', 'bi bi-eye', 'Bootstrap', 'Visibility', '<i class="bi bi-eye"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye Slash', 'bi bi-eye-slash', 'Bootstrap', 'Visibility', '<i class="bi bi-eye-slash"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Graph Up', 'bi bi-graph-up', 'Bootstrap', 'Analytics', '<i class="bi bi-graph-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Bar Chart', 'bi bi-bar-chart', 'Bootstrap', 'Analytics', '<i class="bi bi-bar-chart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Cart', 'bi bi-cart', 'Bootstrap', 'E-commerce', '<i class="bi bi-cart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Credit Card', 'bi bi-credit-card', 'Bootstrap', 'E-commerce', '<i class="bi bi-credit-card"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Tag', 'bi bi-tag', 'Bootstrap', 'E-commerce', '<i class="bi bi-tag"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Gift', 'bi bi-gift', 'Bootstrap', 'E-commerce', '<i class="bi bi-gift"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Globe', 'bi bi-globe', 'Bootstrap', 'Location', '<i class="bi bi-globe"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Geo Alt', 'bi bi-geo-alt', 'Bootstrap', 'Location', '<i class="bi bi-geo-alt"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Left', 'bi bi-arrow-left', 'Bootstrap', 'Navigation', '<i class="bi bi-arrow-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Right', 'bi bi-arrow-right', 'Bootstrap', 'Navigation', '<i class="bi bi-arrow-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Up', 'bi bi-arrow-up', 'Bootstrap', 'Navigation', '<i class="bi bi-arrow-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Down', 'bi bi-arrow-down', 'Bootstrap', 'Navigation', '<i class="bi bi-arrow-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Left', 'bi bi-chevron-left', 'Bootstrap', 'Navigation', '<i class="bi bi-chevron-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Right', 'bi bi-chevron-right', 'Bootstrap', 'Navigation', '<i class="bi bi-chevron-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Up', 'bi bi-chevron-up', 'Bootstrap', 'Navigation', '<i class="bi bi-chevron-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Down', 'bi bi-chevron-down', 'Bootstrap', 'Navigation', '<i class="bi bi-chevron-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Info Circle', 'bi bi-info-circle', 'Bootstrap', 'Alert', '<i class="bi bi-info-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Exclamation Triangle', 'bi bi-exclamation-triangle', 'Bootstrap', 'Alert', '<i class="bi bi-exclamation-triangle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('X Circle', 'bi bi-x-circle', 'Bootstrap', 'Alert', '<i class="bi bi-x-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Check Circle', 'bi bi-check-circle', 'Bootstrap', 'Alert', '<i class="bi bi-check-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Question Circle', 'bi bi-question-circle', 'Bootstrap', 'Help', '<i class="bi bi-question-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Filter', 'bi bi-filter', 'Bootstrap', 'Utility', '<i class="bi bi-filter"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Sort Down', 'bi bi-sort-down', 'Bootstrap', 'Utility', '<i class="bi bi-sort-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Clockwise', 'bi bi-arrow-clockwise', 'Bootstrap', 'Action', '<i class="bi bi-arrow-clockwise"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Counterclockwise', 'bi bi-arrow-counterclockwise', 'Bootstrap', 'Action', '<i class="bi bi-arrow-counterclockwise"></i>');
+
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Home', 'material-icons home', 'Material', 'Navigation', '<i class="material-icons">home</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Account', 'material-icons account_circle', 'Material', 'User', '<i class="material-icons">account_circle</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Group', 'material-icons group', 'Material', 'User', '<i class="material-icons">group</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Settings', 'material-icons settings', 'Material', 'System', '<i class="material-icons">settings</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Search', 'material-icons search', 'Material', 'Utility', '<i class="material-icons">search</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Edit', 'material-icons edit', 'Material', 'Action', '<i class="material-icons">edit</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Save', 'material-icons save', 'Material', 'Action', '<i class="material-icons">save</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Delete', 'material-icons delete', 'Material', 'Action', '<i class="material-icons">delete</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Add', 'material-icons add', 'Material', 'Action', '<i class="material-icons">add</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Remove', 'material-icons remove', 'Material', 'Action', '<i class="material-icons">remove</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Download', 'material-icons download', 'Material', 'Action', '<i class="material-icons">download</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Upload', 'material-icons upload', 'Material', 'Action', '<i class="material-icons">upload</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Email', 'material-icons email', 'Material', 'Communication', '<i class="material-icons">email</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Call', 'material-icons call', 'Material', 'Communication', '<i class="material-icons">call</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Notifications', 'material-icons notifications', 'Material', 'Notification', '<i class="material-icons">notifications</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Event', 'material-icons event', 'Material', 'Date & Time', '<i class="material-icons">event</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Schedule', 'material-icons schedule', 'Material', 'Date & Time', '<i class="material-icons">schedule</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Favorite', 'material-icons favorite', 'Material', 'Social', '<i class="material-icons">favorite</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Star', 'material-icons star', 'Material', 'Rating', '<i class="material-icons">star</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Photo Camera', 'material-icons photo_camera', 'Material', 'Media', '<i class="material-icons">photo_camera</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Image', 'material-icons image', 'Material', 'Media', '<i class="material-icons">image</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Video Library', 'material-icons video_library', 'Material', 'Media', '<i class="material-icons">video_library</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Music Note', 'material-icons music_note', 'Material', 'Media', '<i class="material-icons">music_note</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Description', 'material-icons description', 'Material', 'Document', '<i class="material-icons">description</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Folder', 'material-icons folder', 'Material', 'Document', '<i class="material-icons">folder</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Print', 'material-icons print', 'Material', 'Action', '<i class="material-icons">print</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Share', 'material-icons share', 'Material', 'Action', '<i class="material-icons">share</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Lock', 'material-icons lock', 'Material', 'Security', '<i class="material-icons">lock</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Lock Open', 'material-icons lock_open', 'Material', 'Security', '<i class="material-icons">lock_open</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Visibility', 'material-icons visibility', 'Material', 'Visibility', '<i class="material-icons">visibility</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Visibility Off', 'material-icons visibility_off', 'Material', 'Visibility', '<i class="material-icons">visibility_off</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Bar Chart', 'material-icons bar_chart', 'Material', 'Analytics', '<i class="material-icons">bar_chart</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Show Chart', 'material-icons show_chart', 'Material', 'Analytics', '<i class="material-icons">show_chart</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Shopping Cart', 'material-icons shopping_cart', 'Material', 'E-commerce', '<i class="material-icons">shopping_cart</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Credit Card', 'material-icons credit_card', 'Material', 'E-commerce', '<i class="material-icons">credit_card</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Local Offer', 'material-icons local_offer', 'Material', 'E-commerce', '<i class="material-icons">local_offer</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Card Gift', 'material-icons card_giftcard', 'Material', 'E-commerce', '<i class="material-icons">card_giftcard</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Public', 'material-icons public', 'Material', 'Location', '<i class="material-icons">public</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Place', 'material-icons place', 'Material', 'Location', '<i class="material-icons">place</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Back', 'material-icons arrow_back', 'Material', 'Navigation', '<i class="material-icons">arrow_back</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Forward', 'material-icons arrow_forward', 'Material', 'Navigation', '<i class="material-icons">arrow_forward</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Upward', 'material-icons arrow_upward', 'Material', 'Navigation', '<i class="material-icons">arrow_upward</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Downward', 'material-icons arrow_downward', 'Material', 'Navigation', '<i class="material-icons">arrow_downward</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Left', 'material-icons chevron_left', 'Material', 'Navigation', '<i class="material-icons">chevron_left</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Right', 'material-icons chevron_right', 'Material', 'Navigation', '<i class="material-icons">chevron_right</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Expand Less', 'material-icons expand_less', 'Material', 'Navigation', '<i class="material-icons">expand_less</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Expand More', 'material-icons expand_more', 'Material', 'Navigation', '<i class="material-icons">expand_more</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Info', 'material-icons info', 'Material', 'Alert', '<i class="material-icons">info</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Warning', 'material-icons warning', 'Material', 'Alert', '<i class="material-icons">warning</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Error', 'material-icons error', 'Material', 'Alert', '<i class="material-icons">error</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Check Circle', 'material-icons check_circle', 'Material', 'Alert', '<i class="material-icons">check_circle</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Help', 'material-icons help', 'Material', 'Help', '<i class="material-icons">help</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Filter List', 'material-icons filter_list', 'Material', 'Utility', '<i class="material-icons">filter_list</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Sort', 'material-icons sort', 'Material', 'Utility', '<i class="material-icons">sort</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Refresh', 'material-icons refresh', 'Material', 'Action', '<i class="material-icons">refresh</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Rotate Left', 'material-icons rotate_left', 'Material', 'Action', '<i class="material-icons">rotate_left</i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Rotate Right', 'material-icons rotate_right', 'Material', 'Action', '<i class="material-icons">rotate_right</i>');
+
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Home', 'feather home', 'Feather', 'Navigation', '<i class="feather home"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('User', 'feather user', 'Feather', 'User', '<i class="feather user"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Users', 'feather users', 'Feather', 'User', '<i class="feather users"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Settings', 'feather settings', 'Feather', 'System', '<i class="feather settings"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Search', 'feather search', 'Feather', 'Utility', '<i class="feather search"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Edit', 'feather edit', 'Feather', 'Action', '<i class="feather edit"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Save', 'feather save', 'Feather', 'Action', '<i class="feather save"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Trash', 'feather trash', 'Feather', 'Action', '<i class="feather trash"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Plus', 'feather plus', 'Feather', 'Action', '<i class="feather plus"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Minus', 'feather minus', 'Feather', 'Action', '<i class="feather minus"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Download', 'feather download', 'Feather', 'Action', '<i class="feather download"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Upload', 'feather upload', 'Feather', 'Action', '<i class="feather upload"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Mail', 'feather mail', 'Feather', 'Communication', '<i class="feather mail"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Phone', 'feather phone', 'Feather', 'Communication', '<i class="feather phone"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Bell', 'feather bell', 'Feather', 'Notification', '<i class="feather bell"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Calendar', 'feather calendar', 'Feather', 'Date & Time', '<i class="feather calendar"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Clock', 'feather clock', 'Feather', 'Date & Time', '<i class="feather clock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Heart', 'feather heart', 'Feather', 'Social', '<i class="feather heart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Star', 'feather star', 'Feather', 'Rating', '<i class="feather star"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Camera', 'feather camera', 'Feather', 'Media', '<i class="feather camera"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Image', 'feather image', 'Feather', 'Media', '<i class="feather image"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Video', 'feather video', 'Feather', 'Media', '<i class="feather video"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Music', 'feather music', 'Feather', 'Media', '<i class="feather music"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('File', 'feather file', 'Feather', 'Document', '<i class="feather file"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Folder', 'feather folder', 'Feather', 'Document', '<i class="feather folder"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Printer', 'feather printer', 'Feather', 'Action', '<i class="feather printer"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Share', 'feather share', 'Feather', 'Action', '<i class="feather share"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Lock', 'feather lock', 'Feather', 'Security', '<i class="feather lock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Unlock', 'feather unlock', 'Feather', 'Security', '<i class="feather unlock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye', 'feather eye', 'Feather', 'Visibility', '<i class="feather eye"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye Off', 'feather eye-off', 'Feather', 'Visibility', '<i class="feather eye-off"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Bar Chart', 'feather bar-chart', 'Feather', 'Analytics', '<i class="feather bar-chart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Trending Up', 'feather trending-up', 'Feather', 'Analytics', '<i class="feather trending-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Shopping Cart', 'feather shopping-cart', 'Feather', 'E-commerce', '<i class="feather shopping-cart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Credit Card', 'feather credit-card', 'Feather', 'E-commerce', '<i class="feather credit-card"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Tag', 'feather tag', 'Feather', 'E-commerce', '<i class="feather tag"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Gift', 'feather gift', 'Feather', 'E-commerce', '<i class="feather gift"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Globe', 'feather globe', 'Feather', 'Location', '<i class="feather globe"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Map Pin', 'feather map-pin', 'Feather', 'Location', '<i class="feather map-pin"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Left', 'feather arrow-left', 'Feather', 'Navigation', '<i class="feather arrow-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Right', 'feather arrow-right', 'Feather', 'Navigation', '<i class="feather arrow-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Up', 'feather arrow-up', 'Feather', 'Navigation', '<i class="feather arrow-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Down', 'feather arrow-down', 'Feather', 'Navigation', '<i class="feather arrow-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Left', 'feather chevron-left', 'Feather', 'Navigation', '<i class="feather chevron-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Right', 'feather chevron-right', 'Feather', 'Navigation', '<i class="feather chevron-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Up', 'feather chevron-up', 'Feather', 'Navigation', '<i class="feather chevron-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Chevron Down', 'feather chevron-down', 'Feather', 'Navigation', '<i class="feather chevron-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Info', 'feather info', 'Feather', 'Alert', '<i class="feather info"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Alert Triangle', 'feather alert-triangle', 'Feather', 'Alert', '<i class="feather alert-triangle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('X Circle', 'feather x-circle', 'Feather', 'Alert', '<i class="feather x-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Check Circle', 'feather check-circle', 'Feather', 'Alert', '<i class="feather check-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Help Circle', 'feather help-circle', 'Feather', 'Help', '<i class="feather help-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Filter', 'feather filter', 'Feather', 'Utility', '<i class="feather filter"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Refresh CW', 'feather refresh-cw', 'Feather', 'Action', '<i class="feather refresh-cw"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Rotate CCW', 'feather rotate-ccw', 'Feather', 'Action', '<i class="feather rotate-ccw"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Rotate CW', 'feather rotate-cw', 'Feather', 'Action', '<i class="feather rotate-cw"></i>');
+
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Home', 'anticon anticon-home', 'Ant Design', 'Navigation', '<i class="anticon anticon-home"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('User', 'anticon anticon-user', 'Ant Design', 'User', '<i class="anticon anticon-user"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Team', 'anticon anticon-team', 'Ant Design', 'User', '<i class="anticon anticon-team"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Setting', 'anticon anticon-setting', 'Ant Design', 'System', '<i class="anticon anticon-setting"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Search', 'anticon anticon-search', 'Ant Design', 'Utility', '<i class="anticon anticon-search"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Edit', 'anticon anticon-edit', 'Ant Design', 'Action', '<i class="anticon anticon-edit"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Save', 'anticon anticon-save', 'Ant Design', 'Action', '<i class="anticon anticon-save"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Delete', 'anticon anticon-delete', 'Ant Design', 'Action', '<i class="anticon anticon-delete"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Plus', 'anticon anticon-plus', 'Ant Design', 'Action', '<i class="anticon anticon-plus"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Minus', 'anticon anticon-minus', 'Ant Design', 'Action', '<i class="anticon anticon-minus"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Download', 'anticon anticon-download', 'Ant Design', 'Action', '<i class="anticon anticon-download"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Upload', 'anticon anticon-upload', 'Ant Design', 'Action', '<i class="anticon anticon-upload"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Mail', 'anticon anticon-mail', 'Ant Design', 'Communication', '<i class="anticon anticon-mail"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Phone', 'anticon anticon-phone', 'Ant Design', 'Communication', '<i class="anticon anticon-phone"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Notification', 'anticon anticon-notification', 'Ant Design', 'Notification', '<i class="anticon anticon-notification"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Calendar', 'anticon anticon-calendar', 'Ant Design', 'Date & Time', '<i class="anticon anticon-calendar"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Clock Circle', 'anticon anticon-clock-circle', 'Ant Design', 'Date & Time', '<i class="anticon anticon-clock-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Heart', 'anticon anticon-heart', 'Ant Design', 'Social', '<i class="anticon anticon-heart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Star', 'anticon anticon-star', 'Ant Design', 'Rating', '<i class="anticon anticon-star"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Camera', 'anticon anticon-camera', 'Ant Design', 'Media', '<i class="anticon anticon-camera"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Picture', 'anticon anticon-picture', 'Ant Design', 'Media', '<i class="anticon anticon-picture"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Video Camera', 'anticon anticon-video-camera', 'Ant Design', 'Media', '<i class="anticon anticon-video-camera"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Customer Service', 'anticon anticon-customer-service', 'Ant Design', 'Media', '<i class="anticon anticon-customer-service"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('File', 'anticon anticon-file', 'Ant Design', 'Document', '<i class="anticon anticon-file"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Folder', 'anticon anticon-folder', 'Ant Design', 'Document', '<i class="anticon anticon-folder"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Printer', 'anticon anticon-printer', 'Ant Design', 'Action', '<i class="anticon anticon-printer"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Share Alt', 'anticon anticon-share-alt', 'Ant Design', 'Action', '<i class="anticon anticon-share-alt"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Lock', 'anticon anticon-lock', 'Ant Design', 'Security', '<i class="anticon anticon-lock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Unlock', 'anticon anticon-unlock', 'Ant Design', 'Security', '<i class="anticon anticon-unlock"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye', 'anticon anticon-eye', 'Ant Design', 'Visibility', '<i class="anticon anticon-eye"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Eye Invisible', 'anticon anticon-eye-invisible', 'Ant Design', 'Visibility', '<i class="anticon anticon-eye-invisible"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Bar Chart', 'anticon anticon-bar-chart', 'Ant Design', 'Analytics', '<i class="anticon anticon-bar-chart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Line Chart', 'anticon anticon-line-chart', 'Ant Design', 'Analytics', '<i class="anticon anticon-line-chart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Shopping Cart', 'anticon anticon-shopping-cart', 'Ant Design', 'E-commerce', '<i class="anticon anticon-shopping-cart"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Credit Card', 'anticon anticon-credit-card', 'Ant Design', 'E-commerce', '<i class="anticon anticon-credit-card"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Tags', 'anticon anticon-tags', 'Ant Design', 'E-commerce', '<i class="anticon anticon-tags"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Gift', 'anticon anticon-gift', 'Ant Design', 'E-commerce', '<i class="anticon anticon-gift"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Global', 'anticon anticon-global', 'Ant Design', 'Location', '<i class="anticon anticon-global"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Environment', 'anticon anticon-environment', 'Ant Design', 'Location', '<i class="anticon anticon-environment"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Left', 'anticon anticon-arrow-left', 'Ant Design', 'Navigation', '<i class="anticon anticon-arrow-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Right', 'anticon anticon-arrow-right', 'Ant Design', 'Navigation', '<i class="anticon anticon-arrow-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Up', 'anticon anticon-arrow-up', 'Ant Design', 'Navigation', '<i class="anticon anticon-arrow-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Arrow Down', 'anticon anticon-arrow-down', 'Ant Design', 'Navigation', '<i class="anticon anticon-arrow-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Left', 'anticon anticon-left', 'Ant Design', 'Navigation', '<i class="anticon anticon-left"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Right', 'anticon anticon-right', 'Ant Design', 'Navigation', '<i class="anticon anticon-right"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Up', 'anticon anticon-up', 'Ant Design', 'Navigation', '<i class="anticon anticon-up"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Down', 'anticon anticon-down', 'Ant Design', 'Navigation', '<i class="anticon anticon-down"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Info Circle', 'anticon anticon-info-circle', 'Ant Design', 'Alert', '<i class="anticon anticon-info-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Exclamation Circle', 'anticon anticon-exclamation-circle', 'Ant Design', 'Alert', '<i class="anticon anticon-exclamation-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Close Circle', 'anticon anticon-close-circle', 'Ant Design', 'Alert', '<i class="anticon anticon-close-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Check Circle', 'anticon anticon-check-circle', 'Ant Design', 'Alert', '<i class="anticon anticon-check-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Question Circle', 'anticon anticon-question-circle', 'Ant Design', 'Help', '<i class="anticon anticon-question-circle"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Filter', 'anticon anticon-filter', 'Ant Design', 'Utility', '<i class="anticon anticon-filter"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Sync', 'anticon anticon-sync', 'Ant Design', 'Action', '<i class="anticon anticon-sync"></i>');
+INSERT INTO ICON_MASTER (ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML) VALUES
+('Reload', 'anticon anticon-reload', 'Ant Design', 'Action', '<i class="anticon anticon-reload"></i>');
