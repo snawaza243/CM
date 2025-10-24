@@ -1,11 +1,8 @@
-﻿<%@ Page Language="C#" Title="Account" AutoEventWireup="true" MasterPageFile="~/Site.Master" 
+﻿<%@ Page Language="C#" Title="Account" AutoEventWireup="true" MasterPageFile="~/Site.Master"
     CodeBehind="Account.aspx.cs" Inherits="CMC.Pages.Account"
-    EnableSessionState="true"
-    
-    %>
+    EnableSessionState="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- User Profile Section -->
     <main class="content">
         <section id="profile" class="section d-block ">
             <div class="container">
@@ -16,49 +13,22 @@
                             <div class="card-body">
                                 <div class="row">
                                     <!-- Left Profile Info -->
-                                   <!-- Profile Section -->
-<div class="col-md-4 text-center border-end">
-    <div class="mb-3">
-        <img id="profileImage" src="https://randomuser.me/api/portraits/men/1.jpg" 
-             alt="Profile" class="rounded-circle shadow" width="140" height="140">
-    </div>
-    <h5 id="profileName" class="fw-bold">Client Name</h5>
-    <p class="text-muted" id="profileRole">Customer</p>
 
-    <button class="btn btn-outline-primary mt-2" id="changePhotoBtn">
-        <i class="fas fa-camera me-1"></i> Change Photo
-    </button>
+                                    <!-- Profile Section -->
+                                    <div class="col-md-4 text-center border-end">
+                                        <div class="mb-3">
+                                            <img id="profileImage" src="https://randomuser.me/api/portraits/men/1.jpg"
+                                                alt="Profile" class="rounded-circle shadow" width="140" height="140">
+                                        </div>
+                                        <h5 id="profileName" class="fw-bold">Client Name</h5>
+                                        <p class="text-muted" id="profileRole">Customer</p>
 
-    <input type="file" id="fileInput" accept="image/*" style="display:none;" />
-</div>
+                                        <button class="btn btn-outline-primary mt-2" id="changePhotoBtn">
+                                            <i class="fas fa-camera me-1"></i>Change Photo
+                                        </button>
 
-
-<script>
-    $(document).ready(function () {
-        // When the "Change Photo" button is clicked
-        $('#changePhotoBtn').on('click', function () {
-            $('#fileInput').click(); // trigger hidden file input
-        });
-
-        // When an image file is selected
-        $('#fileInput').on('change', function (event) {
-            const file = event.target.files[0];
-
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#profileImage').attr('src', e.target.result); // preview new image
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                alert('Please select a valid image file.');
-            }
-        });
-    });
-</script>
-
+                                        <input type="file" id="fileInput" accept="image/*" style="display: none;" />
+                                    </div>
 
                                     <!-- Right Profile Form -->
                                     <div class="col-md-8">
@@ -102,48 +72,35 @@
                                                 <div class="col-md-6 ctmHide">
                                                     <div class="mb-3">
                                                         <label for="oldPassword" class="form-label">Old Password</label>
-                                                        <input type="password" id="oldPassword" class="form-control" >
+                                                        <input type="password" id="oldPassword" class="form-control">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="newPassword" class="form-label">New Password</label>
-                                                        <input type="password" id="newPassword" class="form-control" >
+                                                        <input type="password" id="newPassword" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                                                        <input type="password" id="confirmPassword" class="form-control" >
+                                                        <input type="password" id="confirmPassword" class="form-control">
                                                     </div>
                                                 </div>
-
-
-
-
-
-
-
                                                 <div class="col-md-6">
                                                     <div class="d-flex justify-content-start mt-4">
                                                         <button type="button" class="btn btn-secondary me-2">Cancel</button>
                                                         <button type="button" class="btn btn-secondary me-2" id="resetProfile">Reset</button>
-
-
                                                         <button type="submit" class="btn btn-primary" id="saveProfile">Save</button>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                                <!-- row end -->
                             </div>
-                            <!-- card-body end -->
                         </div>
-                        <!-- card end -->
                     </div>
                     <!-- col end -->
                 </div>
@@ -151,14 +108,198 @@
             </div>
             <!-- container end -->
         </section>
+
+   <section id="profile-projects" class="section d-block">
+    <div class="container">
+        <h2 class="mb-4 text-center">My Projects</h2>
+
+        <!-- Action Buttons -->
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-end mb-3">
+                <div class="btn-group" role="group" aria-label="Project Actions">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#quoteModal">
+                        <i class="fas fa-folder-open me-1"></i>New Project Requests
+                    </button>
+
+
+                    <button type="button" class="btn btn-secondary" id="btn-ac-project-report">
+                        <i class="fas fa-chart-bar me-1"></i>Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Table -->
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card glass">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Project Name</th>
+                                            <th scope="col">Technology</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Last Updated</th>
+                                            <th scope="col" class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Demo Project Row -->
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Residential Complex A</td>
+                                            <td>Construction, Project Management</td>
+                                            <td>High-rise residential building with 50 units. Includes interior finishing, landscaping, and amenities.</td>
+                                            <td><span class="badge bg-success">In Progress</span></td>
+                                            <td>Oct 20, 2025</td>
+                                            <td class="text-center">
+                                                <!-- View Details Button -->
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#projectDetailsModal1">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <!-- Add Query/Remark Button -->
+                                                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#projectQueryModal1">
+                                                    <i class="fas fa-comment-dots"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Office Block B</td>
+                                            <td>Construction, Electrical</td>
+                                            <td>Commercial office space project with smart lighting and HVAC system.</td>
+                                            <td><span class="badge bg-warning text-dark">Pending Approval</span></td>
+                                            <td>Oct 18, 2025</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#projectDetailsModal2">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#projectQueryModal2">
+                                                    <i class="fas fa-comment-dots"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <!-- Footer Buttons -->
+                            <div class="text-center mt-4">
+                                <button class="btn btn-outline-primary me-2">
+                                    <i class="fas fa-sync-alt me-1"></i>Refresh List
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-file-export me-1"></i>Export Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for Project Details -->
+    <!-- Modal Example 1 -->
+    <div class="modal fade" id="projectDetailsModal1" tabindex="-1" aria-labelledby="projectDetailsLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectDetailsLabel1">Residential Complex A - Project Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Status:</strong> In Progress</p>
+                    <p><strong>Progress:</strong></p>
+                    <ul>
+                        <li>Foundation completed ✅</li>
+                        <li>Structure framed 🏗️</li>
+                        <li>Electrical rough-in ongoing ⚡</li>
+                        <li>Interior finishing scheduled</li>
+                    </ul>
+                    <p><strong>Remarks/Queries:</strong></p>
+                    <ul>
+                        <li>No delays reported</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Example 2: Add Query/Remark -->
+    <div class="modal fade" id="projectQueryModal1" tabindex="-1" aria-labelledby="projectQueryLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectQueryLabel1">Submit Query / Remark</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="queryText1" class="form-label">Your Query / Remark</label>
+                            <textarea class="form-control" id="queryText1" rows="4" placeholder="Enter your query or remark"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
     </main>
 
     <style>
         .hide {
-    display: none !important;
-}
-
+            display: none !important;
+        }
     </style>
+
+
+    <%-- Profile iamge choose and set --%>
+    <script>
+        $(document).ready(function () {
+            // When the "Change Photo" button is clicked
+            $('#changePhotoBtn').on('click', function () {
+                $('#fileInput').click(); // trigger hidden file input
+            });
+
+            // When an image file is selected
+            $('#fileInput').on('change', function (event) {
+                const file = event.target.files[0];
+
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#profileImage').attr('src', e.target.result); // preview new image
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please select a valid image file.');
+                }
+            });
+        });
+    </script>
+
+
+
+
     <script>
         function showAlert(message, type = 'info') {
             const alertClass = type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info';
@@ -172,7 +313,7 @@
             setTimeout(() => alertBox.alert('close'), 3000);
         }
 
-      
+
         function resetProfileForm() {
             $('#profileFirstName, #profileLastName, #profileEmail, #profilePhone, #profileAddress').val('');
             $('#profileName').text('New Client');
@@ -248,7 +389,7 @@
                 }
             }
 
-            return true; 
+            return true;
         }
 
 
@@ -267,7 +408,7 @@
 
 
             var checkNew = isNewClient();
-            const isNew = checkNew.action; 
+            const isNew = checkNew.action;
 
             const passwordsValid = validatePasswords(isNew, oldPass, newPass, confirmPass);
             if (!passwordsValid) return;
@@ -286,7 +427,7 @@
                 phone: phone,
                 address: address,
                 isNew: isNew,
-                passwordHash: newPass + '@#$PASS@#$'+ oldPass || null, // send new password only if changing
+                passwordHash: newPass + '@#$PASS@#$' + oldPass || null, // send new password only if changing
                 clientId: isNew === "view" ? getClientSession() : null,
                 avatar: imageData
             };
@@ -405,7 +546,7 @@
                         $('#profileAddress').val(profile.ADDRESS || '');
                         $('#profileName').text(`${profile.FIRSTNAME || ''} ${profile.LASTNAME || ''}`.trim());
                         $('#profileRole').text(profile.ROLE || 'Customer');
-                        $('#profileImage').attr('src', profile.PROFILE_IMAGE );
+                        $('#profileImage').attr('src', profile.PROFILE_IMAGE);
 
 
                         if (profile.IMAGEURL) {
@@ -422,7 +563,7 @@
             });
         }
 
-    
+
 
 
         $(document).ready(function () {

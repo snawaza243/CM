@@ -202,8 +202,8 @@ namespace CMC.Helper
                     }
 
                     // Optional: Check for common output parameters "P_SUCCESS" and "P_MESSAGE"
-                    if (outputParams.ContainsKey("P_STATUS"))
-                        success = outputParams["P_STATUS"]?.ToString() == "1";
+                    if (outputParams.ContainsKey("P_SUCCESS"))
+                        success = outputParams["P_SUCCESS"]?.ToString() == "1";
 
                     if (outputParams.ContainsKey("P_MESSAGE"))
                         message = outputParams["P_MESSAGE"]?.ToString();

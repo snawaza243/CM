@@ -531,116 +531,7 @@
         </a>
     </nav>
 
-    <!-- Quote Modal -->
-    <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content glass">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="quoteModalLabel">Request a Quote</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="quoteForm">
-                        <div class="mb-3">
-                            <label for="quoteName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="quoteName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="quoteEmail" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="quoteEmail" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="quotePhone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="quotePhone" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="projectType" class="form-label">Project Type</label>
-                            <select class="form-select" id="projectType" required>
-                                <option value="" selected disabled>Select project type</option>
-                                <option value="residential">Residential</option>
-                                <option value="commercial">Commercial</option>
-                                <option value="industrial">Industrial</option>
-                                <option value="renovation">Renovation</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="projectDetails" class="form-label">Project Details</label>
-                            <textarea class="form-control" id="projectDetails" rows="4" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="timeline" class="form-label">Desired Timeline</label>
-                            <select class="form-select" id="timeline" required>
-                                <option value="" selected disabled>Select timeline</option>
-                                <option value="asap">As soon as possible</option>
-                                <option value="1-3">1-3 months</option>
-                                <option value="3-6">3-6 months</option>
-                                <option value="6plus">6+ months</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submitQuote">Submit Request</button>
-                </div>
-            </div>
-        </div>
    
-        <script>
-            function loadDropdown(forType, by, x, role, logId, ddlId) {
-                $.ajax({
-                    type: "POST",
-                    url: "/Default.aspx/GetCMListServices", 
-                    data: JSON.stringify({
-                        forType: forType,
-                        by: by,
-                        x: x,
-                        role: role,
-                        logId: logId
-                    }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        var data = response.d || response; // fallback if d is missing
-                        var ddl = $("#" + ddlId);
-                        ddl.empty();
-
-                        if (data.success) {
-                            ddl.append('<option value="" selected disabled>Select...</option>');
-                            $.each(data.data, function (index, item) {
-                                ddl.append('<option value="' + item.CODE + '">' + item.NAME + '</option>');
-                            });
-                        } else {
-                            ddl.append('<option value="" selected disabled>' + (data.message || "No data") + '</option>');
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        var ddl = $("#" + ddlId);
-                        ddl.empty().append('<option value="" selected disabled>Error loading data</option>');
-
-                        console.group("AJAX Error Details");
-                        console.log("Status:", status);             // e.g., "error", "timeout"
-                        console.log("Error Message:", error);      // textual error info
-                        console.log("HTTP Status Code:", xhr.status); // e.g., 500, 404
-                        console.log("Response Text:", xhr.responseText); // full server response
-                        console.log("Request URL:", this.url);     // URL that was requested
-                        console.groupEnd();
-                    }
-                });
-            }
-
-
-        
-            $(document).ready(function () {
-
-                // Example: load services dropdown
-                loadDropdown('DDL_CM_SERVICES', '', '', '', '', 'projectType');
-
-
-            });
-        </script>
-
-    </div>
 
 
 
@@ -942,6 +833,7 @@
             </div>
         </div>
     </div>
+
 
 
 

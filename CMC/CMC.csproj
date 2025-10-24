@@ -140,13 +140,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="assets\css\account.css" />
     <Content Include="assets\css\client-profile.css" />
     <Content Include="assets\css\client-project.css" />
     <Content Include="assets\css\theme.css" />
     <Content Include="assets\img\favicon.SVG" />
     <Content Include="assets\img\user.png" />
+    <Content Include="assets\js\account.js" />
     <Content Include="assets\js\client-profile.js" />
     <Content Include="assets\js\client-project.js" />
+    <Content Include="assets\js\helper-function.js" />
     <Content Include="assets\js\theme.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
