@@ -1,7 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" 
-    CodeBehind="Site.master.cs" Inherits="CMC.SiteMaster"
-    
-    %>
+﻿<%@ Master Language="C#" AutoEventWireup="true"
+    CodeBehind="Site.master.cs" Inherits="CMC.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -20,7 +18,7 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/theme.css?v=20251025_4" rel="stylesheet" >
     <link href="/assets/css/client-profile.css" rel="stylesheet">
     <link href="/assets/css/client-project.css" rel="stylesheet">
 
@@ -331,8 +329,8 @@
         </div>
 
 
-     
-         <!-- Quote Modal -->
+
+        <!-- Quote Modal -->
         <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content glass">
@@ -345,19 +343,19 @@
                             <div class="row">
 
                                 <!-- Personal Information -->
-                                 <!-- Client Information -->
+                                <!-- Client Information -->
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="projectClient" class="form-label">Select Client *</label>
                                         <select class="form-select form-control" id="projectClient" required>
                                             <option value="">Select Client</option>
-                                           
+
                                             <option value="new">+ Add New Client</option>
                                         </select>
                                     </div>
                                 </div>
 
-                               
+
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="quoteName" class="form-label">Full Name</label>
@@ -379,10 +377,10 @@
                                     </div>
                                 </div>
 
-                                 <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="otherContacts" class="form-label">Other Contacts</label>
-                                        <input type="text" class="form-control" id="otherContacts">
+                                        <input type="text" class="form-control" id="otherContacts" value="NONE">
                                     </div>
                                 </div>
 
@@ -411,7 +409,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="projectDetails" class="form-label">Description</label>
-                                        <textarea class="form-control" id="projectDetails" rows="4"></textarea>
+                                        <textarea class="form-control" id="projectDetails" rows="4" >NEW</textarea>
                                     </div>
                                 </div>
 
@@ -426,8 +424,8 @@
                                     </div>
                                 </div>
 
-                 
- 
+
+
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -454,10 +452,23 @@
                                     <div class="mb-3">
                                         <label for="projectDeadline" class="form-label">Expected Deadline *</label>
                                         <input type="date" class="form-control" id="projectDeadline" required>
+                                        <small id="deadlineHint" class="text-muted"></small>
                                     </div>
                                 </div>
 
-                               
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mdAddprj-txtHouseName" class="form-label">House Name</label>
+                                        <input type="text" class="form-control" id="mdAddprj-txtHouseName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mdAddprj-txtReferenceName" class="form-label">Reference Name</label>
+                                        <input type="text" class="form-control" id="mdAddprj-txtReferenceName" value="NONE">
+                                    </div>
+                                </div>
+
 
                             </div>
 
@@ -472,6 +483,7 @@
 
 
             <script>
+
                 $("#projectClient").on("change", function () {
                     var selectedOption = $(this).find("option:selected");
                     var selectedValue = $(this).val();
@@ -488,67 +500,122 @@
                         fullNameInput.focus();                     // focus on input
                     }
                 });
-            </script>
-         
 
-        </div>
 
-        <!-- jQuery + Bootstrap -->
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                // 🔹 Calculate minimum or maximum deadline based on timeline
+                function calculateDeadline(startDate, timeline, mode = "max") {
+                    const date = new Date(startDate);
+                    if (isNaN(date)) return null;
 
-        <script src="/assets/js/account.js?v=20251021_2"></script>   
-        <script src="/assets/js/helper-function.js?v=20251024_1"></script>
-        <script src="/assets/js/theme.js"></script>
-        <%--<script src="/assets/js/client-project.js?v=2025102_1"></script>--%>
+                    switch (timeline) {
+                        case "1-3":
+                            date.setMonth(date.getMonth() + (mode === "min" ? 1 : 3));
+                            break;
+                        case "3-6":
+                            date.setMonth(date.getMonth() + (mode === "min" ? 3 : 6));
+                            break;
+                        case "6plus":
+                            date.setMonth(date.getMonth() + (mode === "min" ? 6 : 9)); // assume +9 months as range upper bound
+                            break;
+                        case "asap":
+                            date.setDate(date.getDate() + 7); // ASAP = 1 week default
+                            break;
+                        default:
+                            return null;
+                    }
 
-     
-
- 
-
-            <%-- Load DDL data --%>
-            <script>
-                function loadDropdown(forType, by, x, role, logId, ddlId) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Default.aspx/GetCMListServices",
-                        data: JSON.stringify({
-                            forType: forType,
-                            by: by,
-                            x: x,
-                            role: role,
-                            logId: logId
-                        }),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            var data = response.d || response; // fallback if d is missing
-                            var ddl = $("#" + ddlId);
-                            ddl.empty();
-
-                            if (data.success) {
-                                ddl.append('<option value="" selected disabled>Select...</option>');
-                                $.each(data.data, function (index, item) {
-                                    ddl.append('<option value="' + item.CODE + '">' + item.NAME + '</option>');
-                                });
-                            } else {
-                                ddl.append('<option value="" selected disabled>' + (data.message || "No data") + '</option>');
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            var ddl = $("#" + ddlId);
-                            ddl.empty().append('<option value="" selected disabled>Error loading data</option>');
-
-                            console.group("AJAX Error Details");
-                            console.log("Status:", status);             // e.g., "error", "timeout"
-                            console.log("Error Message:", error);      // textual error info
-                            console.log("HTTP Status Code:", xhr.status); // e.g., 500, 404
-                            console.log("Response Text:", xhr.responseText); // full server response
-                            console.log("Request URL:", this.url);     // URL that was requested
-                            console.groupEnd();
-                        }
-                    });
+                    return date;
                 }
+
+                // 🔹 Format JS date for <input type="date">
+                function formatDateForInput(date) {
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, "0");
+                    const dd = String(date.getDate()).padStart(2, "0");
+                    return `${yyyy}-${mm}-${dd}`;
+                }
+
+                // 🔹 Get today's date formatted for input
+                function getTodayFormatted() {
+                    return formatDateForInput(new Date());
+                }
+
+                // 🔹 Validate and update dates
+                function updateDates(autoAdjust = false) {
+                    const timeline = $("#timeline").val();
+                    let startDateStr = $("#projectStartDate").val();
+                    const deadlineStr = $("#projectDeadline").val();
+
+                    // Set start date to today if empty or on timeline change
+                    if (!startDateStr || autoAdjust) {
+                        const today = getTodayFormatted();
+                        $("#projectStartDate").val(today);
+                        startDateStr = today;
+                    }
+
+                    const startDate = new Date(startDateStr);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    // 🛑 Prevent past start dates
+                    if (startDate < today) {
+                        alert("Expected Start Date cannot be in the past. Resetting to today.");
+                        $("#projectStartDate").val(getTodayFormatted());
+                        return;
+                    }
+
+                    // If no timeline selected, skip
+                    if (!timeline) return;
+
+                    // Auto-calculate and set expected end date
+                    const maxDeadline = calculateDeadline(startDate, timeline, "max");
+                    if (maxDeadline) {
+                        $("#projectDeadline").val(formatDateForInput(maxDeadline));
+                        $("#deadlineHint").text("Suggested Deadline: " + formatDateDisplay(maxDeadline));
+                    }
+                }
+
+                // 🔹 Format for human display (dd/mm/yyyy)
+                function formatDateDisplay(date) {
+                    const dd = String(date.getDate()).padStart(2, "0");
+                    const mm = String(date.getMonth() + 1).padStart(2, "0");
+                    const yyyy = date.getFullYear();
+                    return `${dd}/${mm}/${yyyy}`;
+                }
+
+                // 🔹 Ensure start and end consistency
+                function validateDeadline() {
+                    const startDate = new Date($("#projectStartDate").val());
+                    const endDate = new Date($("#projectDeadline").val());
+
+                    if (endDate <= startDate) {
+                        alert("Expected Deadline must be after the Expected Start Date.");
+                        const timeline = $("#timeline").val();
+                        const newDeadline = calculateDeadline(startDate, timeline, "max");
+                        if (newDeadline) {
+                            $("#projectDeadline").val(formatDateForInput(newDeadline));
+                        }
+                    }
+                }
+
+                // 🔹 Event Listeners
+                $(document).ready(function () {
+                    // When timeline changes → set today as start and calculate end date
+                    $("#timeline").on("change", function () {
+                        updateDates(true);
+                    });
+
+                    // When start date changes → validate and update end date
+                    $("#projectStartDate").on("change", function () {
+                        updateDates(false);
+                    });
+
+                    // When end date manually changed → ensure valid order
+                    $("#projectDeadline").on("change", function () {
+                        validateDeadline();
+                    });
+                });
+
 
                 function saveProject(projectData, callback) {
                     /*
@@ -577,11 +644,13 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "/Default.aspx/SaveCMProject",
+                        url: "/Pages/Account.aspx/SaveCMProject",
                         data: JSON.stringify(projectData),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
+                            showAlert("FROM AJAX SUCCESS", 'INFO');
+
                             var data = response.d || response; // fallback if d is missing
 
                             if (data.success) {
@@ -608,6 +677,7 @@
                 }
 
                 function getQuoteModalData() {
+
                     return {
                         projectId: null, // new project
                         clientCode: $("#projectClient").val(),
@@ -622,37 +692,206 @@
                         timeline: $("#timeline").val(),
                         expectedStartDate: $("#projectStartDate").val(),
                         expectedDeadline: $("#projectDeadline").val(),
-                        approvedStatus: "Pending",
-                        approvedBy: "",
-                        currentStatus: "Initiated",
-                        createdBy: "Admin",   // replace with logged-in user
-                        updatedBy: ""
+                        projectName: $("#mdAddprj-txtHouseName").val(),
+                        referenceName: $("#mdAddprj-txtReferenceName").val(),
                     };
                 }
 
 
+                // Map service IDs to names
+                const serviceMap = {
+                    "SRV_001": "Architectural Design",
+                    "SRV_002": "Project Planning",
+                    "SRV_003": "New Home Construction",
+                    "SRV_004": "Construction Management",
+                    "SRV_005": "Site Preparation",
+                    "SRV_006": "Renovation",
+                    "SRV_007": "Room Extensions",
+                    "SRV_008": "Roofing Solutions",
+                    "SRV_009": "Structural Repairs"
+                };
+
+                // Function to generate project name
+                function generateProjectName() {
+                    const serviceId = $("#projectType").val();
+                    const serviceName = serviceMap[serviceId] || "Construction";
+                    const client = $("#projectClient").val() || "GEN";
+                    const address = $("#projectAddress").val() || "LOC";
+
+                    // Take initials of service name
+                    const serviceShort = serviceName
+                        .split(' ')
+                        .map(word => word[0])
+                        .join('')
+                        .toUpperCase();
+
+                    const clientShort = client.substring(0, 3).toUpperCase();
+                    const locShort = address.substring(0, 3).toUpperCase();
+
+                    // Simple random number for uniqueness
+                    const randomNum = Math.floor(Math.random() * 900 + 100); // 100-999
+
+                    const projectName = `${serviceShort}_${clientShort}_${locShort}_${randomNum}`;
+
+                    $("#mdAddprj-txtHouseName").val(projectName);
+                }
+
+                // Trigger auto-generation on change
+                $("#projectType, #projectClient, #projectAddress").on("input change", generateProjectName);
+
+                // Optional: generate immediately if fields already filled
+                $(document).ready(generateProjectName);
+
 
                 $(document).ready(function () {
 
-                    // Example: load services dropdown
-                    loadDropdown('DDL_CM_SERVICES', '', '', '', '', 'projectType');
-
                     $("#submitQuote").on("click", function () {
-                        var projectData = getQuoteModalData();
 
-                        saveProject(projectData, function (response) {
-                            if (response.success) {
-                                showAlert("Project saved successfully! ID: " + response.projectId);
-                                $("#quoteModal").modal("hide");
+                        let valid = true;
+                        $('#quoteForm input, #quoteForm select, #quoteForm textarea').each(function () {
+                            if (!$(this).val()) {
+                                valid = false;
+                                $(this).addClass('is-invalid');
                             } else {
-                                alert("Error saving project: " + response.message);
+                                $(this).removeClass('is-invalid');
                             }
                         });
+
+                        if (valid) {
+                            var projectData = getQuoteModalData();
+                            saveProject(projectData, function (response) {
+
+                                if (response.success) {
+                                    // response.projectId
+                                    showAlert("Project reqruest submitted successfully!");
+                                    window.location.reload();
+                                } else {
+                                    alert("Error saving project: " + response.message);
+                                }
+                            });
+                        }
+                       
                     });
-
-
                 });
             </script>
+        </div>
+
+        <!-- jQuery + Bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="/assets/js/account.js?v=20251021_10"></script>
+        <script src="/assets/js/helper-function.js?v=202510251_5"></script>
+        <script src="/assets/js/theme.js?v=20251025_1"></script>
+        <%--<script src="/assets/js/client-project.js?v=2025102_1"></script>--%>
+
+        <%-- Load DDL data --%>
+        <script>
+
+            function loadDropdown(forType, by, x, role, logId, ddlId) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Default.aspx/GetCMListServices",
+                    data: JSON.stringify({
+                        forType: forType,
+                        by: by,
+                        x: x,
+                        role: role,
+                        logId: logId
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var data = response.d || response; // fallback if d is missing
+                        var ddl = $("#" + ddlId);
+                        ddl.empty();
+
+                        if (data.success) {
+                            ddl.append('<option value="" selected disabled>Select...</option>');
+                            $.each(data.data, function (index, item) {
+                                ddl.append('<option value="' + item.CODE + '">' + item.NAME + '</option>');
+                            });
+                        } else {
+                            ddl.append('<option value="" selected disabled>' + (data.message || "No data") + '</option>');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        var ddl = $("#" + ddlId);
+                        ddl.empty().append('<option value="" selected disabled>Error loading data</option>');
+
+                        console.group("AJAX Error Details");
+                        console.log("Status:", status);             // e.g., "error", "timeout"
+                        console.log("Error Message:", error);      // textual error info
+                        console.log("HTTP Status Code:", xhr.status); // e.g., 500, 404
+                        console.log("Response Text:", xhr.responseText); // full server response
+                        console.log("Request URL:", this.url);     // URL that was requested
+                        console.groupEnd();
+                    }
+                });
+            }
+
+            function loadProjects(clientCode) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Pages/Account.aspx/GetProjectsByClient",
+                    data: JSON.stringify({ clientCode: clientCode }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        const tableBody = $("#projectListBody");
+                        tableBody.empty();
+                        const data = response.d || response; 
+                        
+                        if (data.success && data.data.length > 0) {
+                            data.data.forEach(function (proj, index) {
+                                //const statusBadge = getStatusBadge(proj.Status);
+                                const row = `<tr>
+                        <th scope="row" style="width: 50px;">${index + 1}</th>
+                        <td style="display:none;">${proj.ProjectCode}</td>
+                        <td>${proj.ProjectName}</td> 
+                        <td>${proj.ClientName}</td>
+                        <td>${proj.Email}</td>
+                        <td>${proj.Phone}</td>
+                        <td>${proj.ProjectType}</td>
+                        <td>${proj.ProjectAddress}</td>
+                        <td>₹${proj.Budget ? parseFloat(proj.Budget).toLocaleString() : ''}</td>
+                        <td>${proj.Timeline}</td>
+                        <td>${formatDotNetDate(proj.StartDate)}</td>
+                        <td>${formatDotNetDate(proj.Deadline)}</td>
+                        <td>${getStatusBadge(proj.ApprovedStatus)} </td>
+                        <td>${getStatusBadge(proj.Status)}</td>
+                        <td>${formatDotNetDate(proj.LastUpdated)}</td>
+                         <td class="text-center">
+            <button class="btn btn-sm btn-outline-primary me-1" data-id="${proj.ProjectId}" data-bs-toggle="modal" data-bs-target="#projectDetailsModal1">
+                <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-success" data-id="${proj.ProjectId}" data-bs-toggle="modal" data-bs-target="#projectQueryModal1">
+                <i class="fas fa-comment-dots"></i>
+            </button>
+        </td>
+                    </tr>`;
+                                tableBody.append(row);
+                            });
+                        } else {
+                            tableBody.append('<tr><td colspan="17" class="text-center">No projects found for this client.</td></tr>');
+                        }
+                    },
+                    error: function (err) {
+                        console.error(err);
+                        alert("Error fetching projects.");
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+
+
+                loadDropdown('DDL_CM_SERVICES', '', '', '', '', 'projectType');
+
+                //psmJs_DynamicTableMakeResizable('#projectListTable',)
+                psmJs_DynamicTableMakeResizable('projectListTable', 'auto');
+            });
+        </script>
 
     </form>
     <asp:PlaceHolder runat="server">

@@ -273,10 +273,124 @@ body {
 
 
     .btn-primary:hover {
-        background: var(--accent-color);
+        /*background: var(--accent-color);*/
         transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background: var(--primary-color);
+        color:var(--light-color);
     }
+
+
+
+
+
+/* === COMMON BASE STYLE FOR ALL OUTLINE BUTTONS === */
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-success,
+.btn-outline-danger,
+.btn-outline-warning,
+.btn-outline-info {
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 10px 28px;
+    transition: var(--transition);
+}
+
+/* === PRIMARY OUTLINE === */
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+    .btn-outline-primary:hover {
+        background: var(--primary-color);
+        color: var(--light-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+    }
+
+/* === SECONDARY OUTLINE === */
+.btn-outline-secondary {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+    .btn-outline-secondary:hover {
+        background: var(--secondary-color);
+        color: var(--light-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+    }
+
+/* === SUCCESS OUTLINE === */
+.btn-outline-success {
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+    .btn-outline-success:hover {
+        background: var(--success-color);
+        color: var(--light-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+    }
+
+/* === DANGER OUTLINE === */
+.btn-outline-danger {
+    color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+    .btn-outline-danger:hover {
+        background: var(--danger-color);
+        color: var(--light-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+    }
+
+/* === WARNING OUTLINE === */
+.btn-outline-warning {
+    color: var(--warning-color);
+    border-color: var(--warning-color);
+}
+
+    .btn-outline-warning:hover {
+        background: var(--warning-color);
+        color: var(--light-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+    }
+
+/* === INFO OUTLINE === */
+.btn-outline-info {
+    color: var(--info-color);
+    border-color: var(--info-color);
+}
+
+    .btn-outline-info:hover {
+        background: var(--info-color);
+        color: var(--light-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+    }
+
+
+
+
+
+
+
+
+
 
 .card {
     border: none;

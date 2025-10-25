@@ -12,6 +12,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -267,11 +268,7 @@ namespace CMC.Pages
 
                 DataTable clientData = new OracleHelper().ExecuteProcedureWithCursor("proc_tc_get_by_cc", clientParams);
 
-                //Dictionary<string, object> rowData = null;
-                //if (clientData.Rows.Count > 0)
-                //    rowData = CommonHelper.ConvertDataRowToDictionary(clientData.Rows[0]);
-
-
+        
                 Dictionary<string, object> rowData = null;
                 if (clientData.Rows.Count > 0)
                 {
@@ -355,6 +352,176 @@ namespace CMC.Pages
         }
 
 
+        #region ADD NEW PROJECT
+        [WebMethod]
+        public static object SaveCMProject(
+            int? projectId,
+            string clientCode,
+            string clientName,
+            string email,
+            string phone,
+            string otherContacts,
+            string projectType,
+            string projectAddress,
+            string projectDescription,
+            decimal? estimatedBudget,
+            string timeline,
+            DateTime? expectedStartDate,
+            DateTime? expectedDeadline,
+            string projectName,
+            string referenceName
 
+        )
+        {
+            try
+            {
+
+                string approvedStatus = "";
+                string approvedBy = "";
+                string currentStatus = "";
+                string createdBy = "";
+                string updatedBy = "";
+
+
+
+
+
+
+                var parameters = new List<OracleParameter>();
+
+                // Input parameters
+                parameters.Add(new OracleParameter("P_PROJECT_ID", projectId ?? (object)DBNull.Value) { Direction = ParameterDirection.InputOutput });
+                parameters.Add(new OracleParameter("P_CLIENT_CODE", clientCode ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_CLIENT_NAME", clientName ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_EMAIL", email ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_PHONE", phone ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_OTHER_CONTACTS", otherContacts ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_PROJECT_TYPE", projectType ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_PROJECT_ADDRESS", projectAddress ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_PROJECT_DESCRIPTION", projectDescription ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_ESTIMATED_BUDGET", estimatedBudget ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_TIMELINE", timeline ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_EXPECTED_START_DATE", expectedStartDate ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_EXPECTED_DEADLINE", expectedDeadline ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_APPROVED_STATUS", approvedStatus ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_APPROVED_BY", approvedBy ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_CURRENT_STATUS", currentStatus ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_CREATED_BY", createdBy ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_UPDATED_BY", updatedBy ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_PROJECT_NAME", projectName ?? (object)DBNull.Value));
+                parameters.Add(new OracleParameter("P_REFERENCE_NAME", referenceName?? (object)DBNull.Value));
+
+                // Output parameters
+                parameters.Add(new OracleParameter("P_SUCCESS", OracleDbType.Int32) { Direction = ParameterDirection.Output });
+                parameters.Add(new OracleParameter("P_MESSAGE", OracleDbType.Varchar2, 500) { Direction = ParameterDirection.Output });
+
+                // Create an instance of OracleHelper to call the non-static method
+                var result = OracleHelper.ExecuteProcedureWithCursorSafe("PROC_CM_TPM_SAVE", parameters);
+
+                // Get output values
+
+                bool success = result.Success;
+                string message = result.Message;
+                int? newProjectId = projectId; // projectId is InputOutput
+
+                return new
+                {
+                    success = result.Success,
+                    message = result.Message,
+                    data = (int?)null
+                };
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    success = false,
+                    message = "Error: " + ex.Message,
+                    projectId = (int?)null
+                };
+            }
+        }
+        #endregion
+
+
+        #region GET PROJECT LIST BY CLIENT CODE
+    
+        [WebMethod]
+        public static object GetProjectsByClient(string clientCode)
+        {
+            try
+            {
+                var parameters = new List<OracleParameter>();
+
+                // Input
+                parameters.Add(new OracleParameter("P_CLIENT_CODE", clientCode ?? (object)DBNull.Value));
+
+                // Output parameters
+                var pSuccessParam = new OracleParameter("P_SUCCESS", OracleDbType.Varchar2, 10) { Direction = ParameterDirection.Output };
+                var pMessageParam = new OracleParameter("P_MESSAGE", OracleDbType.Varchar2, 500) { Direction = ParameterDirection.Output };
+                var pCursorParam = new OracleParameter("P_CURSOR", OracleDbType.RefCursor) { Direction = ParameterDirection.Output };
+
+                parameters.Add(pSuccessParam);
+                parameters.Add(pMessageParam);
+                parameters.Add(pCursorParam);
+
+                // Execute procedure
+                var result = OracleHelper.ExecuteProcedureWithCursorSafe("PROC_CMTPM_GET_PROJECT_LIST", parameters);
+                if (!result.Success)
+                    return new { success = false, message = result.Message, data = new object[0] };
+
+
+                //var dataList = CommonHelper.ConvertDataTableToDictionary(result.CursorData);
+
+                DataTable cursorData = result.CursorData;
+
+                var dataList = new List<object>();
+
+                if (cursorData != null && cursorData.Rows.Count > 0)
+                {
+                    foreach (DataRow row in cursorData.Rows)
+                    {
+                        dataList.Add(new
+                        {
+                            ProjectId = row["PROJECT_ID"],
+                            ProjectCode = row["PROJECT_CODE"],
+                            ProjectName = row["PROJECT_NAME"],
+                            ReferenceName = row["REFERENCE_NAME"],
+                            ClientName = row["CLIENT_NAME"],
+                            Email = row["EMAIL"],
+                            Phone = row["PHONE"],
+                            ProjectType = row["PROJECT_TYPE"],
+                            ProjectAddress = row["PROJECT_ADDRESS"],
+                            Budget = row["ESTIMATED_BUDGET"],
+                            Timeline = row["TIMELINE"],
+                            StartDate = row["EXPECTED_START_DATE"],
+                            Deadline = row["EXPECTED_DEADLINE"],
+                            Status = row["CURRENT_STATUS"], 
+                            ApprovedStatus = row["APPROVED_STATUS"],
+                            ApprovedBy = row["APPROVED_BY"],
+                            LastUpdated = row["UPDATED_AT"]
+                        });
+                    }
+                }
+
+                    return new { success = true, message = result.Message, data = dataList };
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    success = false,
+                    message = "Error: " + ex.Message,
+                    data = new object[0]
+                };
+            }
+        }
+
+
+        #endregion
     }
 }

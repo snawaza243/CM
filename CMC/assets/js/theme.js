@@ -1,4 +1,18 @@
-﻿$(document).ready(function () {
+﻿
+function showAlert(message, type = 'info') {
+    const alertClass = type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info';
+    const alertBox = $(`
+            <div class="alert alert-${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" style="z-index:1055;">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `);
+    $('body').append(alertBox);
+    setTimeout(() => alertBox.alert('close'), 3000);
+}
+
+
+$(document).ready(function () {
     // Sidebar toggle
     $('.sidebar-toggle').click(function (e) {
         e.preventDefault();
@@ -59,27 +73,7 @@
         }
     });
 
-    // Quote form submission
-    $('#submitQuote').click(function () {
-        // Simple form validation
-        let valid = true;
-        $('#quoteForm input, #quoteForm select, #quoteForm textarea').each(function () {
-            if (!$(this).val()) {
-                valid = false;
-                $(this).addClass('is-invalid');
-            } else {
-                $(this).removeClass('is-invalid');
-            }
-        });
-
-        if (valid) {
-            alert('Thank you for your quote request! We will contact you soon.');
-            $('#quoteModal').modal('hide');
-            $('#quoteForm')[0].reset();
-        window.location.reload();
-        }
-    });
-
+   
     // Contact form submission
     $('#contactForm').submit(function (e) {
         e.preventDefault();

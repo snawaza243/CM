@@ -1,8 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Mobile.master.cs" Inherits="CMC.Site_Mobile" %>
 <%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 
-<!DOCTYPE html>
-
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
@@ -67,12 +65,6 @@
                     <button class="sidebar-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <%--<a href="/" class="logo">
-                        <i class="fa-solid fa-mountain-city"></i>
-                        FSBuilds
-                    </a>--%>
-
-
 
                     <a href="/" class="logo" style="display: flex; align-items: center; text-decoration: none; align-items: center;">
                         <div style="height: 28px; width: 28px; margin-right: 8px; background-color: var(--primary-color); -webkit-mask: url('<%= ResolveUrl("~/assets/img/favicon.svg") %>') no-repeat center;
@@ -88,7 +80,7 @@
                         <div class="theme-btn theme-green" data-theme="green"></div>
                         <div class="theme-btn theme-purple" data-theme="purple"></div>
                         <div class="user-profile">
-                            <i class="fa fa-user-circle"></i>
+                            <i class="fa fa-user-circle fa-2x"></i>
                             <div class="user-dropdown glass">
                                 <!-- Login option (shown when not logged in) -->
                                 <a href="#" class="user-dropdown-item login-link">
@@ -212,6 +204,7 @@
                 </div>
             </div>
         </section>
+
         <hr />
 
         <!-- Footer -->
@@ -234,11 +227,11 @@
                             <h3>Quick Links</h3>
                             <ul>
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/Pages/Services">Services</a></li>
-                                <li><a href="/Pages/Projects">Projects</a></li>
-                                <li><a href="/Pages/Tools">Tools</a></li>
-                                <li><a href="/Pages/About">About</a></li>
-                                <li><a href="/Pages/Contact">Contact</a></li>
+                                <li><a href="/Pages/Services.aspx">Services</a></li>
+                                <li><a href="/Pages/Projects.aspx">Projects</a></li>
+                                <li><a href="/Pages/Tools.aspx">Tools</a></li>
+                                <li><a href="/Pages/About.aspx">About</a></li>
+                                <li><a href="/Pages/Contact.aspx">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -246,11 +239,11 @@
                         <div class="footer-tools">
                             <h3>Tools</h3>
                             <ul>
-                                <li><a href="/Pages/Tool/Unit_Convertor">Unit Convertor</a></li>
-                                <li><a href="/Pages/Tool/Cost_Estimator">Cost Estimator</a></li>
-                                <li><a href="/Pages/Tool/Floor_Planner">Floor Plan Creator</a></li>
-                                <li><a href="/Pages/Tool/Roof_Calculator">Roofing Calculator</a></li>
-                                <li><a href="/Pages/Tool/Material_Calculator">Material Calculator</a></li>
+                                <li><a href="/Pages/Tool/Unit_Convertor.aspx">Unit Convertor</a></li>
+                                <li><a href="/Pages/Tool/Cost_Estimator.aspx">Cost Estimator</a></li>
+                                <li><a href="/Pages/Tool/Floor_Planner.aspx">Floor Plan Creator</a></li>
+                                <li><a href="/Pages/Tool/Roof_Calculator.aspx">Roofing Calculator</a></li>
+                                <li><a href="/Pages/Tool/Material_Calculator.aspx">Material Calculator</a></li>
 
 
                             </ul>
@@ -314,8 +307,8 @@
 
                                 <%-- row col 12 --%>
                                 <div class="col-12 mb-3 form-check ms-3">
-                                    <input type="checkbox" class="form-check-input" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                    <input type="checkbox" class="form-check-input" id="md-login-rememberMe">
+                                    <label class="form-check-label" for="md-login-rememberMe">Remember me</label>
                                 </div>
 
                                 <%-- row col 12 --%>
@@ -334,272 +327,522 @@
         </div>
 
 
-        <!-- User Profile Modal for Frontend -->
-        <div class="modal fade" id="userProfileModal" tabindex="-1" aria-labelledby="userProfileModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+
+        <!-- Quote Modal -->
+        <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content glass">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="userProfileModalLabel">My Profile</h5>
+                        <h5 class="modal-title" id="quoteModalLabel">Request a Quote</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <div class="mb-3">
-                                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Profile"
-                                        class="rounded-circle" width="120" height="120">
+                        <div id="quoteForm">
+                            <div class="row">
+
+                                <!-- Personal Information -->
+                                <!-- Client Information -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="projectClient" class="form-label">Select Client *</label>
+                                        <select class="form-select form-control" id="projectClient" required>
+                                            <option value="">Select Client</option>
+
+                                            <option value="new">+ Add New Client</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <h5 id="profileName">Client Name</h5>
-                                <p class="text-muted" id="profileRole">Customer</p>
-                            </div>
-                            <div class="col-md-8">
-                                <form id="profileForm">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="profileFirstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="profileFirstName" value="John">
-                                            </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="quoteName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="quoteName" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="quoteEmail" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="quoteEmail" maxlength="50">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="quotePhone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="quotePhone" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="otherContacts" class="form-label">Other Contacts</label>
+                                        <input type="text" class="form-control" id="otherContacts" value="NONE">
+                                    </div>
+                                </div>
+
+
+                                <!-- Project Details -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="projectType" class="form-label">Project Type</label>
+                                        <select class="form-select form-control" id="projectType" required>
+                                            <option value="" selected disabled>Select project type</option>
+                                            <option value="residential">Residential</option>
+                                            <option value="commercial">Commercial</option>
+                                            <option value="industrial">Industrial</option>
+                                            <option value="renovation">Renovation</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="projectAddress" class="form-label">Address</label>
+                                        <textarea class="form-control" id="projectAddress" rows="4" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="projectDetails" class="form-label">Description</label>
+                                        <textarea class="form-control" id="projectDetails" rows="4" >NEW</textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Budget & Timeline -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="projectBudget" class="form-label">Estimated Budget *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">₹</span>
+                                            <input type="text" class="form-control" id="projectBudget">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="profileLastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="profileLastName" value="Doe">
-                                            </div>
-                                        </div>
                                     </div>
+                                </div>
+
+
+
+
+                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="profileEmail" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" id="profileEmail"
-                                            value="client@example.com">
+                                        <label for="timeline" class="form-label">Desired Timeline</label>
+                                        <select class="form-select form-control" id="timeline" required>
+                                            <option value="" selected disabled>Select timeline</option>
+                                            <option value="asap">As soon as possible</option>
+                                            <option value="1-3">1-3 months</option>
+                                            <option value="3-6">3-6 months</option>
+                                            <option value="6plus">6+ months</option>
+                                        </select>
                                     </div>
+                                </div>
+
+
+                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="profilePhone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="profilePhone" value="(555) 123-4567">
+                                        <label for="projectStartDate" class="form-label">Expected Start Date *</label>
+                                        <input type="date" class="form-control" id="projectStartDate" required>
                                     </div>
+                                </div>
+
+                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="profileAddress" class="form-label">Address</label>
-                                        <textarea class="form-control" id="profileAddress"
-                                            rows="2">123 Main St, City, State</textarea>
+                                        <label for="projectDeadline" class="form-label">Expected Deadline *</label>
+                                        <input type="date" class="form-control" id="projectDeadline" required>
+                                        <small id="deadlineHint" class="text-muted"></small>
                                     </div>
-                                </form>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mdAddprj-txtHouseName" class="form-label">House Name</label>
+                                        <input type="text" class="form-control" id="mdAddprj-txtHouseName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mdAddprj-txtReferenceName" class="form-label">Reference Name</label>
+                                        <input type="text" class="form-control" id="mdAddprj-txtReferenceName" value="NONE">
+                                    </div>
+                                </div>
+
+
                             </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" id="saveProfile">Save Changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="submitQuote">Submit Request</button>
                     </div>
                 </div>
             </div>
-        </div>
 
+
+            <script>
+
+                $("#projectClient").on("change", function () {
+                    var selectedOption = $(this).find("option:selected");
+                    var selectedValue = $(this).val();
+                    var fullNameInput = $("#quoteName");
+
+                    if (selectedValue && selectedValue !== "new") {
+                        // Valid client selected
+                        fullNameInput.val(selectedOption.text()); // autofill name
+                        //fullNameInput.prop("disabled", true);     // prevent editing
+                    } else {
+                        // "Other" or "Add New Client" selected
+                        fullNameInput.val("");                     // clear input
+                        fullNameInput.prop("disabled", false);    // enable editing
+                        fullNameInput.focus();                     // focus on input
+                    }
+                });
+
+
+                // 🔹 Calculate minimum or maximum deadline based on timeline
+                function calculateDeadline(startDate, timeline, mode = "max") {
+                    const date = new Date(startDate);
+                    if (isNaN(date)) return null;
+
+                    switch (timeline) {
+                        case "1-3":
+                            date.setMonth(date.getMonth() + (mode === "min" ? 1 : 3));
+                            break;
+                        case "3-6":
+                            date.setMonth(date.getMonth() + (mode === "min" ? 3 : 6));
+                            break;
+                        case "6plus":
+                            date.setMonth(date.getMonth() + (mode === "min" ? 6 : 9)); // assume +9 months as range upper bound
+                            break;
+                        case "asap":
+                            date.setDate(date.getDate() + 7); // ASAP = 1 week default
+                            break;
+                        default:
+                            return null;
+                    }
+
+                    return date;
+                }
+
+                // 🔹 Format JS date for <input type="date">
+                function formatDateForInput(date) {
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, "0");
+                    const dd = String(date.getDate()).padStart(2, "0");
+                    return `${yyyy}-${mm}-${dd}`;
+                }
+
+                // 🔹 Get today's date formatted for input
+                function getTodayFormatted() {
+                    return formatDateForInput(new Date());
+                }
+
+                // 🔹 Validate and update dates
+                function updateDates(autoAdjust = false) {
+                    const timeline = $("#timeline").val();
+                    let startDateStr = $("#projectStartDate").val();
+                    const deadlineStr = $("#projectDeadline").val();
+
+                    // Set start date to today if empty or on timeline change
+                    if (!startDateStr || autoAdjust) {
+                        const today = getTodayFormatted();
+                        $("#projectStartDate").val(today);
+                        startDateStr = today;
+                    }
+
+                    const startDate = new Date(startDateStr);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    // 🛑 Prevent past start dates
+                    if (startDate < today) {
+                        alert("Expected Start Date cannot be in the past. Resetting to today.");
+                        $("#projectStartDate").val(getTodayFormatted());
+                        return;
+                    }
+
+                    // If no timeline selected, skip
+                    if (!timeline) return;
+
+                    // Auto-calculate and set expected end date
+                    const maxDeadline = calculateDeadline(startDate, timeline, "max");
+                    if (maxDeadline) {
+                        $("#projectDeadline").val(formatDateForInput(maxDeadline));
+                        $("#deadlineHint").text("Suggested Deadline: " + formatDateDisplay(maxDeadline));
+                    }
+                }
+
+                // 🔹 Format for human display (dd/mm/yyyy)
+                function formatDateDisplay(date) {
+                    const dd = String(date.getDate()).padStart(2, "0");
+                    const mm = String(date.getMonth() + 1).padStart(2, "0");
+                    const yyyy = date.getFullYear();
+                    return `${dd}/${mm}/${yyyy}`;
+                }
+
+                // 🔹 Ensure start and end consistency
+                function validateDeadline() {
+                    const startDate = new Date($("#projectStartDate").val());
+                    const endDate = new Date($("#projectDeadline").val());
+
+                    if (endDate <= startDate) {
+                        alert("Expected Deadline must be after the Expected Start Date.");
+                        const timeline = $("#timeline").val();
+                        const newDeadline = calculateDeadline(startDate, timeline, "max");
+                        if (newDeadline) {
+                            $("#projectDeadline").val(formatDateForInput(newDeadline));
+                        }
+                    }
+                }
+
+                // 🔹 Event Listeners
+                $(document).ready(function () {
+                    // When timeline changes → set today as start and calculate end date
+                    $("#timeline").on("change", function () {
+                        updateDates(true);
+                    });
+
+                    // When start date changes → validate and update end date
+                    $("#projectStartDate").on("change", function () {
+                        updateDates(false);
+                    });
+
+                    // When end date manually changed → ensure valid order
+                    $("#projectDeadline").on("change", function () {
+                        validateDeadline();
+                    });
+                });
+
+
+                function saveProject(projectData, callback) {
+                    /*
+                    projectData = {
+                        projectId: null or number,
+                        clientCode: "CL_001",
+                        clientName: "John Doe",
+                        email: "john@example.com",
+                        phone: "9876543210",
+                        otherContacts: "",
+                        projectType: "Residential",
+                        projectAddress: "Patna, Bihar",
+                        projectDescription: "New construction",
+                        estimatedBudget: 250000,
+                        timeline: "1-3 months",
+                        expectedStartDate: "2025-11-01",
+                        expectedDeadline: "2026-02-01",
+                        approvedStatus: "Pending",
+                        approvedBy: "",
+                        currentStatus: "Initiated",
+                        createdBy: "Admin",
+                        updatedBy: ""
+                    }
+                    callback = function(response) { ... }
+                    */
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Pages/Account.aspx/SaveCMProject",
+                        data: JSON.stringify(projectData),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            showAlert("FROM AJAX SUCCESS", 'INFO');
+
+                            var data = response.d || response; // fallback if d is missing
+
+                            if (data.success) {
+                                // Project saved successfully
+                                console.log("Project saved:", data.projectId);
+                            } else {
+                                // Failed to save
+                                console.warn("Save failed:", data.message);
+                            }
+
+                            // Call optional callback
+                            if (callback && typeof callback === "function") {
+                                callback(data);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("AJAX Error Details:");
+                            console.log("Status:", status);
+                            console.log("Error Message:", error);
+                            console.log("HTTP Status Code:", xhr.status);
+                            console.log("Response Text:", xhr.responseText);
+                        }
+                    });
+                }
+
+                function getQuoteModalData() {
+
+                    return {
+                        projectId: null, // new project
+                        clientCode: $("#projectClient").val(),
+                        clientName: $("#quoteName").val(),
+                        email: $("#quoteEmail").val(),
+                        phone: $("#quotePhone").val(),
+                        otherContacts: $("#otherContacts").val(),
+                        projectType: $("#projectType").val(),
+                        projectAddress: $("#projectAddress").val(),
+                        projectDescription: $("#projectDetails").val(),
+                        estimatedBudget: parseFloat($("#projectBudget").val()) || 0,
+                        timeline: $("#timeline").val(),
+                        expectedStartDate: $("#projectStartDate").val(),
+                        expectedDeadline: $("#projectDeadline").val(),
+                        projectName: $("#mdAddprj-txtHouseName").val(),
+                        referenceName: $("#mdAddprj-txtReferenceName").val(),
+                    };
+                }
+
+
+                // Map service IDs to names
+                const serviceMap = {
+                    "SRV_001": "Architectural Design",
+                    "SRV_002": "Project Planning",
+                    "SRV_003": "New Home Construction",
+                    "SRV_004": "Construction Management",
+                    "SRV_005": "Site Preparation",
+                    "SRV_006": "Renovation",
+                    "SRV_007": "Room Extensions",
+                    "SRV_008": "Roofing Solutions",
+                    "SRV_009": "Structural Repairs"
+                };
+
+                // Function to generate project name
+                function generateProjectName() {
+                    const serviceId = $("#projectType").val();
+                    const serviceName = serviceMap[serviceId] || "Construction";
+                    const client = $("#projectClient").val() || "GEN";
+                    const address = $("#projectAddress").val() || "LOC";
+
+                    // Take initials of service name
+                    const serviceShort = serviceName
+                        .split(' ')
+                        .map(word => word[0])
+                        .join('')
+                        .toUpperCase();
+
+                    const clientShort = client.substring(0, 3).toUpperCase();
+                    const locShort = address.substring(0, 3).toUpperCase();
+
+                    // Simple random number for uniqueness
+                    const randomNum = Math.floor(Math.random() * 900 + 100); // 100-999
+
+                    const projectName = `${serviceShort}_${clientShort}_${locShort}_${randomNum}`;
+
+                    $("#mdAddprj-txtHouseName").val(projectName);
+                }
+
+                // Trigger auto-generation on change
+                $("#projectType, #projectClient, #projectAddress").on("input change", generateProjectName);
+
+                // Optional: generate immediately if fields already filled
+                $(document).ready(generateProjectName);
+
+
+                $(document).ready(function () {
+
+                    $("#submitQuote").on("click", function () {
+
+                        let valid = true;
+                        $('#quoteForm input, #quoteForm select, #quoteForm textarea').each(function () {
+                            if (!$(this).val()) {
+                                valid = false;
+                                $(this).addClass('is-invalid');
+                            } else {
+                                $(this).removeClass('is-invalid');
+                            }
+                        });
+
+                        if (valid) {
+                            var projectData = getQuoteModalData();
+                            showAlert("CALLING SAVE METHOD OF WEB METHOD", 'INFO');
+
+                            saveProject(projectData, function (response) {
+                                showAlert("AFTER SAVE METHDO BY CALLBACK", 'INFO');
+
+                                if (response.success) {
+                                    showAlert("Project saved successfully! ID: " + response.projectId);
+                                    //$("#quoteModal").modal("hide");
+                                    //alert('Thank you for your quote request! We will contact you soon.');
+                                    //$('#quoteModal').modal('hide');
+                                    //$('#quoteForm')[0].reset();
+                                    //window.location.reload();
+                                } else {
+                                    alert("Error saving project: " + response.message);
+                                }
+                            });
+
+
+                          
+                        }
+
+
+                       
+                    });
+
+
+                });
+            </script>
+        </div>
 
         <!-- jQuery + Bootstrap -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        <%--<script src="/assets/js/client-profile.js?v=20251021_1"></script>--%>
+        <script src="/assets/js/account.js?v=20251021_6"></script>
+        <script src="/assets/js/helper-function.js?v=20251024_1"></script>
+        <script src="/assets/js/theme.js?v=20251025_1"></script>
         <%--<script src="/assets/js/client-project.js?v=2025102_1"></script>--%>
-        <script src="/assets/js/theme.js"></script>
 
+        <%-- Load DDL data --%>
         <script>
-            function showAlert(message, type = 'info') {
-                const alertClass = {
-                    'success': 'alert-success',
-                    'error': 'alert-danger',
-                    'warning': 'alert-warning',
-                    'info': 'alert-info'
-                }[type] || 'alert-info';
 
-                const alertHtml = `
-            <div class="alert ${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" style="z-index: 1060;">
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        `;
-
-                $('body').append(alertHtml);
-
-                setTimeout(() => {
-                    $('.alert').alert('close');
-                }, 5000);
-            }
-            
-            function updateUserInterface() {
-                const clientCode = getClientSession();
-                if (!clientCode) {
-                    $('.login-link').show();
-                    $('.logged-in-options').hide();
-                    return;
-                }
-
+            function loadDropdown(forType, by, x, role, logId, ddlId) {
                 $.ajax({
                     type: "POST",
-                    url: "/Pages/Account.aspx/GetClientProfile",
-                    data: JSON.stringify({ clientCode: clientCode }),
+                    url: "/Default.aspx/GetCMListServices",
+                    data: JSON.stringify({
+                        forType: forType,
+                        by: by,
+                        x: x,
+                        role: role,
+                        logId: logId
+                    }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        const data = response.d || response; // Handle JSON serialization
-
-                        if (data.success && data.data) {
-                            const profile = data.data;
-                                               
-                            const userName = profile.FIRSTNAME || '' + profile.LASTNAME || '';
-                            const userRole = profile.USERROLE || '';
-
-                            // Hide login link, show user options
-                            $('.login-link').hide();
-                            $('.logged-in-options').show();
-
-                            // Update user info
-                            $('.user-name').text(userName);
-                            $('.user-role').text(userRole.charAt(0).toUpperCase() + userRole.slice(1));
-                        } else {
-                            showAlert('❌ Could not load profile data', 'error');
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        //console.error('Error fetching client profile:', status, error, xhr.responseText);
-                        showAlert('❌ Error loading profile. Please try again.', 'error');
-                    }
-                });
-            }
-
-            // Store session data for 10 minutes (600,000 ms)
-            function setClientSession(clientID) {
-                const expiryTime = Date.now() + (10 * 60 * 1000); // 10 minutes in ms
-                const sessionData = {
-                    value: clientID,
-                    expiry: expiryTime
-                };
-                sessionStorage.setItem("clientID", JSON.stringify(sessionData));
-            }
-
-            // Retrieve client session (auto-clear if expired)
-            function getClientSession() {
-                const data = sessionStorage.getItem("clientID");
-                if (!data) return null;
-
-                const session = JSON.parse(data);
-                if (Date.now() > session.expiry) {
-                    showAlert('Session expire, kindly login!');
-                    sessionStorage.removeItem("clientID");
-                    window.href('/');
-                    return null;
-                }
-
-                return session.value;
-            }
-
-            function performLoginAjax() {
-                const identifier = $('#loginEmail').val().trim();
-                const password = $('#loginPassword').val().trim();
-
-                if (!identifier || !password) {
-                    showAlert('Please fill in all fields', 'error');
-                    return;
-                }
-
-                $('#btn-login').prop('disabled', true).text('Logging in...');
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Pages/Account.aspx/ClientLogin",
-                    data: JSON.stringify({ identifier: identifier, inputPassword: password }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        const data = response.d || response; // depending on ASP.NET serialization
+                        var data = response.d || response; // fallback if d is missing
+                        var ddl = $("#" + ddlId);
+                        ddl.empty();
 
                         if (data.success) {
-                            //localStorage.setItem("clientID", data.clientCode);
-
-                            setClientSession(data.clientCode);
-
-                            updateUserInterface(true);
-                            $('#loginModal').modal('hide');
-                            showAlert(`✅ Welcome!`, 'success');
-                            window.location.replace('/Pages/Account.aspx?action=view');
+                            ddl.append('<option value="" selected disabled>Select...</option>');
+                            $.each(data.data, function (index, item) {
+                                ddl.append('<option value="' + item.CODE + '">' + item.NAME + '</option>');
+                            });
                         } else {
-                            showAlert('❌ ' + (data.message || 'Login failed'), 'error');
-                            $('#loginPassword').val('').focus();
+                            ddl.append('<option value="" selected disabled>' + (data.message || "No data") + '</option>');
                         }
                     },
                     error: function (xhr, status, error) {
-                        console.error('AJAX Error:', status, error, xhr.responseText);
-                        showAlert('❌ Login error. Please try again.', 'error');
-                    },
-                    complete: function () {
-                        $('#btn-login').prop('disabled', false).text('Login');
+                        var ddl = $("#" + ddlId);
+                        ddl.empty().append('<option value="" selected disabled>Error loading data</option>');
+
+                        console.group("AJAX Error Details");
+                        console.log("Status:", status);             // e.g., "error", "timeout"
+                        console.log("Error Message:", error);      // textual error info
+                        console.log("HTTP Status Code:", xhr.status); // e.g., 500, 404
+                        console.log("Response Text:", xhr.responseText); // full server response
+                        console.log("Request URL:", this.url);     // URL that was requested
+                        console.groupEnd();
                     }
                 });
             }
-
-
-
-            function wantToLogin() {
-                $('#loginModal').modal('show');
-                $('#loginModal').on('shown.bs.modal', function () {
-                    $('#loginEmail').focus();
-                });
-            }
-
-            $(document).on('click', '.logout-btn', function (e) {
-                e.preventDefault();
-                sessionStorage.removeItem("clientID");
-                updateUserInterface(false);
-                showAlert('You have been logged out', 'info');
-                window.location.replace('/');
-            });
-
-            // Open profile
-            $(document).on('click', '.profile-link', function (e) {
-                e.preventDefault();
-
-                const userType = getClientSession();
-                if (!userType) {
-                    showAlert('Please log in to view your profile', 'error');
-                    return;
-                }
-
-                window.location.href = `/Pages/Account.aspx?action=view`;
-            });
 
             $(document).ready(function () {
-
-                // Optional: check every minute and auto-remove if expired
-                setInterval(() => {
-                    if (!getClientSession()) {
-                        
-                        sessionStorage.removeItem("clientID");
-                    }
-                }, 60000); // 1 minute check
-
-
-                updateUserInterface(); // loggedStatus
-
-                // Event handlers
-                $('.login-link').click(function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    wantToLogin();
-                });
-
-                $('#btn-login').click(function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    performLoginAjax();
-                });
-
-                // Handle Enter key in login form
-                $('#loginEmail, #loginPassword').on('keypress', function (e) {
-                    if (e.which === 13) {
-                        performLoginAjax();
-                    }
-                });
+                loadDropdown('DDL_CM_SERVICES', '', '', '', '', 'projectType');
             });
         </script>
 
