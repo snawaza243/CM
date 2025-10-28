@@ -155,6 +155,7 @@ function getClientSession() {
 
     const session = JSON.parse(data);
     if (Date.now() > session.expiry) {
+        updateProfileImage();
         showAlert('Session expire, kindly login!');
         sessionStorage.removeItem("clientID");
         window.location.href = '/';
@@ -274,12 +275,68 @@ function checkPageForProjectLoad() {
         const user = getClientSession();
         if (user) {
             loadProjects(user);
+            psmJs_DynamicTableMakeResizable('projectListTable', 'auto');
         }
 
 
     }
 
 }
+
+
+function loadProjects(clientCode) {
+    $.ajax({
+        type: "POST",
+        url: "/Pages/Account.aspx/GetProjectsByClient",
+        data: JSON.stringify({ clientCode: clientCode }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            const tableBody = $("#projectListBody");
+            tableBody.empty();
+            const data = response.d || response;
+
+            if (data.success && data.data.length > 0) {
+                data.data.forEach(function (proj, index) {
+                    //const statusBadge = getStatusBadge(proj.Status);
+                    const row = `<tr>
+                        <th scope="row" style="width: 50px;">${index + 1}</th>
+                        <td style="display:none;">${proj.ProjectCode}</td>
+                        <td>${proj.ProjectName}</td> 
+                        <td>${proj.ClientName}</td>
+                        <td>${proj.Email}</td>
+                        <td>${proj.Phone}</td>
+                        <td>${proj.ProjectType}</td>
+                        <td>${proj.ProjectAddress}</td>
+                        <td>₹${proj.Budget ? parseFloat(proj.Budget).toLocaleString() : ''}</td>
+                        <td>${proj.Timeline}</td>
+                        <td>${formatDotNetDate(proj.StartDate)}</td>
+                        <td>${formatDotNetDate(proj.Deadline)}</td>
+                        <td>${getStatusBadge(proj.ApprovedStatus)} </td>
+                        <td>${getStatusBadge(proj.Status)}</td>
+                        <td>${formatDotNetDate(proj.LastUpdated)}</td>
+                         <td class="text-center">
+            <button class="btn btn-sm btn-outline-primary me-1" data-id="${proj.ProjectId}" data-bs-toggle="modal" data-bs-target="#projectDetailsModal1">
+                <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-success" data-id="${proj.ProjectId}" data-bs-toggle="modal" data-bs-target="#projectQueryModal1">
+                <i class="fas fa-comment-dots"></i>
+            </button>
+        </td>
+                    </tr>`;
+                    tableBody.append(row);
+                });
+            } else {
+                tableBody.append('<tr><td colspan="17" class="text-center">No projects found for this client.</td></tr>');
+            }
+        },
+        error: function (err) {
+            console.error(err);
+            alert("Error fetching projects.");
+        }
+    });
+}
+
 
 
 function handleProfImgChagneClick() {
@@ -563,6 +620,29 @@ function clientLogin() {
 }
 
 
+function setProfileImage(imagePath) {
+    if (imagePath && imagePath.trim() !== "") {
+        sessionStorage.setItem("profileImage", imagePath);
+        updateProfileImage();
+    } else {
+        // Clear if no valid image
+        sessionStorage.removeItem("profileImage");
+        updateProfileImage();
+    }
+}
+
+function updateProfileImage() {
+    const storedImage = sessionStorage.getItem("profileImage");
+
+    if (storedImage) {
+        $('#profileImageContainer').html(`<img src="${storedImage}" alt="Profile" class="rounded-circle" width="35">`);
+
+    } else {
+        $('#profileImageContainer').html('<i class="fa fa-user-circle fa-2x text-secondary"></i>');
+
+    }
+}
+
 function loadClientProfile() {
     // Only run if the page is in 'view' mode
     const urlParams = new URLSearchParams(window.location.search);
@@ -599,7 +679,17 @@ function loadClientProfile() {
                 $('#profileAddress').val(profile.ADDRESS || '');
                 $('#profileName').text(`${profile.FIRSTNAME || ''} ${profile.LASTNAME || ''}`.trim());
                 $('#profileRole').text(profile.ROLE || 'Customer');
-                $('#profileImage').attr('src', profile.PROFILE_IMAGE);
+
+                if (profile.PROFILE_IMAGE) {
+
+                    $('#profileImage').attr('src', profile.PROFILE_IMAGE);
+
+                } else {
+                }
+
+                setProfileImage(profile.PROFILE_IMAGE);
+
+
 
 
                 if (profile.IMAGEURL) {
@@ -677,6 +767,8 @@ $(document).ready(function () {
     handleProfReset();
 
     loadClientProfile();
+
+    updateProfileImage();
 
     handleAddUpdateClient();
 

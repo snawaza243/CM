@@ -15,10 +15,10 @@
         <section class="py-5 filter-row-button-section ">
             <div class="container">
                 <div class="tool-nav mb-3 d-flex gap-3">
-                    <a href="/Pages/Tool/Material_Calculator" class=" btn btn-outline-secondary"><i class="fas fa-calculator"></i>Material Calculator</a>
-                    <a href="/Pages/Tool/Roof_Calculator" class="btn btn-outline-secondary"><i class="fas fa-home"></i>Roof Calculator</a>
-                    <a href="/Pages/Tool/Floor_Planner" class="btn btn-outline-secondary"><i class="fas fa-ruler-combined"></i>Floor Planner</a>
-                    <a href="/Pages/Tool/Unit_Convertor" class="btn btn-outline-primary active"><i class="fas fa-exchange-alt"></i>Unit Converter</a>
+                    <a href="/Pages/Tool/Material_Calculator.aspx" class=" btn btn-outline-secondary"><i class="fas fa-calculator"></i>Material Calculator</a>
+                    <a href="/Pages/Tool/Roof_Calculator.aspx" class="btn btn-outline-secondary"><i class="fas fa-home"></i>Roof Calculator</a>
+                    <a href="/Pages/Tool/Floor_Planner.aspx" class="btn btn-outline-secondary"><i class="fas fa-ruler-combined"></i>Floor Planner</a>
+                    <a href="/Pages/Tool/Unit_Convertor.aspx" class="btn btn-outline-primary active"><i class="fas fa-exchange-alt"></i>Unit Converter</a>
                 </div>
             </div>
 
@@ -409,8 +409,16 @@
             // Tab Functionality
             $('.tab-btn').on('click', function () {
                 var tabId = $(this).data('tab');
-                $('.tab-btn').removeClass('btn-primary active').addClass('btn-outline-primary');
-                $(this).removeClass('btn-outline-primary').addClass('btn-primary active');
+                //$('.tab-btn').removeClass('btn-primary active').addClass('btn-outline-primary');
+                //$(this).removeClass('btn-outline-primary').addClass('btn-primary active');
+
+                // Remove active class from all nav items
+                $('.tab-btn').removeClass('active'); 
+
+                // Add active class to clicked nav item
+                $(this).addClass('active');
+
+
 
                 $('.tab-pane').removeClass('active').addClass('d-none');
                 $('#' + tabId).removeClass('d-none').addClass('active');

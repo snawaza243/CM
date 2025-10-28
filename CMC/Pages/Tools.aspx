@@ -4,7 +4,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main class="content">
 
-          <section id="tools0" class="section d-block">
+        <section id="tools0" class="section d-block">
             <div class="container">
                 <h2 class="mb-5 text-center">Our Tools & Equipment</h2>
                 <div class="row">
@@ -43,8 +43,8 @@
                         </div>
                     </div>
                 </div>
-               
-                
+
+
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card glass">
@@ -74,13 +74,11 @@
             </div>
         </section>
 
-        <!-- Tools & Resources Section -->
-        <section id="tools" class="section d-block" >
+        <section id="tools" class="section d-block">
             <div class="container">
                 <h2 class="mb-5 text-center">Construction Tools & Resources</h2>
                 <div class="row g-4">
 
-                    <!-- Tool 1: Material Calculator -->
                     <div class="col-md-6">
                         <div class="card glass">
                             <div class="card-body service-card">
@@ -92,13 +90,12 @@
                                 </div>
                                 <p>Quickly calculate cement, sand, bricks, and other materials for your construction project.</p>
                                 <ul>
-                                    <li><a href="/Pages/Tool/Material_Calculator" class="btn btn-outline-primary btn-sm">Open Calculator</a></li>
+                                    <li><a href="/Pages/Tool/Material_Calculator.aspx" class="btn btn-outline-primary btn-sm">Open Calculator</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tool 2: Cost Estimator -->
                     <div class="col-md-6">
                         <div class="card glass">
                             <div class="card-body service-card">
@@ -110,13 +107,12 @@
                                 </div>
                                 <p>Estimate the budget for residential, commercial, or renovation projects.</p>
                                 <ul>
-                                    <li><a href="/Pages/Tool/Cost_Estimator" class="btn btn-outline-success btn-sm">Estimate Now</a></li>
+                                    <li><a href="/Pages/Tool/Cost_Estimator.aspx" class="btn btn-outline-success btn-sm">Estimate Now</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tool 3: Floor Planner -->
                     <div class="col-md-6">
                         <div class="card glass">
                             <div class="card-body service-card">
@@ -128,13 +124,12 @@
                                 </div>
                                 <p>Design and visualize floor layouts with accurate room dimensions and furniture placement.</p>
                                 <ul>
-                                    <li><a href="/Pages/Tool/Floor_Planner" class="btn btn-outline-dark btn-sm">Start Planning</a></li>
+                                    <li><a href="/Pages/Tool/Floor_Planner.aspx" class="btn btn-outline-dark btn-sm">Start Planning</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tool 4: Project Timeline Planner -->
                     <div class="col-md-6">
                         <div class="card glass">
                             <div class="card-body service-card">
@@ -146,13 +141,12 @@
                                 </div>
                                 <p>Plan milestones and deadlines to keep your construction project on track.</p>
                                 <ul>
-                                    <li><a href="/Pages/Tool/Project_Timeline_Planner" class="btn btn-outline-warning btn-sm">Plan Project</a></li>
+                                    <li><a href="/Pages/Tool/Project_Timeline_Planner.aspx" class="btn btn-outline-warning btn-sm">Plan Project</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tool 5: Safety Checklist -->
                     <div class="col-md-6">
                         <div class="card glass">
                             <div class="card-body service-card">
@@ -164,13 +158,12 @@
                                 </div>
                                 <p>Ensure compliance with safety standards and keep your site accident-free.</p>
                                 <ul>
-                                    <li><a href="/Pages/Tool/Safety_Checklist" class="btn btn-outline-danger btn-sm">View Checklist</a></li>
+                                    <li><a href="/Pages/Tool/Safety_Checklist.aspx" class="btn btn-outline-danger btn-sm">View Checklist</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tool 6: Design Inspiration -->
                     <div class="col-md-6">
                         <div class="card glass">
                             <div class="card-body service-card">
@@ -182,13 +175,12 @@
                                 </div>
                                 <p>Browse home, office, and interior design concepts for your next project.</p>
                                 <ul>
-                                    <li><a href="/Pages/Tool/Design_Inspiration" class="btn btn-outline-info btn-sm">Explore Designs</a></li>
+                                    <li><a href="/Pages/Tool/Design_Inspiration.aspx" class="btn btn-outline-info btn-sm">Explore Designs</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tool 7: Equipment Rental Guide -->
                     <div class="col-md-6">
                         <div class="card glass">
                             <div class="card-body service-card">
@@ -200,12 +192,44 @@
                                 </div>
                                 <p>Find and compare construction equipment rental options near you.</p>
                                 <ul>
-                                    <li><a href="/Pages/Tool/Equipment_Rental_Guide" class="btn btn-outline-secondary btn-sm">Check Rentals</a></li>
+                                    <li><a href="/Pages/Tool/Equipment_Rental_Guide.aspx" class="btn btn-outline-secondary btn-sm">Check Rentals</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-md-6">
+                        <div class="card glass">
+                            <div class="card-body service-card">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="card-icon me-3">
+                                        <i class="fas fa-home fa-2x text-secondary"></i>
+                                    </div>
+                                    <h5>Roof Calculator</h5>
+                                </div>
+                                <p>Calculate roofing materials, costs, and measurements for your project.</p>
+                                <ul>
+                                    <li><a href="/Pages/Tool/Roof_Calculator.aspx" class="btn btn-outline-secondary btn-sm">Calculate Roof</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card glass">
+                            <div class="card-body service-card">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="card-icon me-3">
+                                        <i class="fas fa-exchange-alt fa-2x text-secondary"></i>
+                                    </div>
+                                    <h5>Roof Calculator</h5>
+                                </div>
+                                <p>Calculate roofing materials, costs, and measurements for your project.</p>
+                                <ul>
+                                    <li><a href="/Pages/Tool/Unit_Convertor.aspx" class="btn btn-outline-secondary btn-sm">Unit Convertor</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- row end -->
             </div>

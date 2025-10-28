@@ -285,52 +285,7 @@
     </div>
 </section>
 
-
- <style>
-     /* Note Section Styles */
-.note-box {
-    /*background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);*/
-  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color)  100%);
-
-    border-left: 4px solid var(--primary-color);
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.note-icon {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-top: 2px;
-}
-
-.note-content h5 {
-    color: var(--primary-color);
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.note-content p {
-    color: white; /*var(--light-color);*/
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .note-box {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .note-icon {
-        align-self: center;
-    }
-}
- </style>
+ 
 
 
     </main>
