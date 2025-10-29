@@ -27,31 +27,108 @@ $(document).ready(function () {
     });
 
     // Navigation
+
+
     $('.nav-link, .bottom-nav-item').click(function (e) {
         e.preventDefault();
 
-        // Remove active class from all nav items
         $('.nav-link').removeClass('active');
         $('.bottom-nav-item').removeClass('active');
 
-        // Add active class to clicked nav item
         $(this).addClass('active');
 
-        // Get section to show
-        const section = $(this).data('section');
+        const clickedText = $(this).text().trim().toLowerCase();
 
-        // Hide all sections
-        $('.section').removeClass('active');
+        
+        const redirectMap = {
+            services: '/Pages/Services.aspx',
+            projects: '/Pages/Projects.aspx',
+            tools: '/Pages/Tools.aspx',
+            about: '/Pages/About.aspx',
+            contact: '/Pages/Contact.aspx',
+        };
 
-        // Show selected section
-        $(`#${section}`).addClass('active');
+        // If the text matches any key in the map, redirect
+        if (redirectMap[clickedText]) {
+            window.location.href = redirectMap[clickedText];
+        } else {
+            showAlert('Not page exist!', 'error');
+            window.location.href = '/';
+            console.log('No redirect mapping found for:', clickedText);
+        }
 
-        // Close sidebar on mobile after selection
+
         if ($(window).width() < 768) {
             $('.sidebar').removeClass('active');
             $('.sidebar-overlay').removeClass('active');
         }
     });
+
+    function highlightActiveNav() {
+        const currentUrl = window.location.pathname.toLowerCase();
+
+        // Remove all active states first
+        $('.nav-link, .bottom-nav-item').removeClass('active');
+
+        // Loop through each nav link
+        $('.nav-link, .bottom-nav-item').each(function () {
+            const linkText = $(this).text().trim().toLowerCase();
+
+            // Define same mapping used in click event
+            const redirectMap = {
+                services: '/Pages/Services.aspx',
+                projects: '/Pages/Projects.aspx',
+                tools: '/Pages/Tools.aspx',
+                about: '/Pages/About.aspx',
+                contact: '/Pages/Contact.aspx',
+            };
+
+            // If current URL contains the mapped page, highlight it
+            if (redirectMap[linkText] && currentUrl.includes(redirectMap[linkText].toLowerCase())) {
+                $(this).addClass('active');
+            }
+
+            /*
+            if ($(window).width() < 768) {
+                $('.sidebar').removeClass('active');
+                $('.sidebar-overlay').removeClass('active');
+            } else {
+                $('.sidebar').addClass('active');
+                $('.sidebar-overlay').addClass('active');
+            }*/
+        });
+    }
+
+    highlightActiveNav();
+    function redirectToPageOnSidebar() {
+
+
+        $('.nav-link, .bottom-nav-item').click(function (e) {
+            e.preventDefault();
+
+            // Remove active class from all nav items
+            $('.nav-link').removeClass('active');
+            $('.bottom-nav-item').removeClass('active');
+
+            // Add active class to clicked nav item
+            $(this).addClass('active');
+
+            // Get section to show
+            const section = $(this).data('section');
+
+            // Hide all sections
+            $('.section').removeClass('active');
+
+            // Show selected section
+            $(`#${section}`).addClass('active');
+
+            // Close sidebar on mobile after selection
+            if ($(window).width() < 768) {
+                $('.sidebar').removeClass('active');
+                $('.sidebar-overlay').removeClass('active');
+            }
+        });
+    }
 
     // Theme switching
     $('.theme-btn').click(function () {

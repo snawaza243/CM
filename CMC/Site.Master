@@ -125,13 +125,13 @@
         <div class="sidebar glass">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" data-section="home">
+                    <a href="/" class="nav-link active" data-section="home">
                         <i class="fas fa-home"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" data-section="services">
+                    <a href="/Pages/Services.aspx" class="nav-link" data-section="services">
                         <i class="fas fa-tools"></i>
                         <span>Services</span>
                     </a>
@@ -241,6 +241,7 @@
                                 <li><a href="/Pages/About.aspx">About</a></li>
                                 <li><a href="/Pages/Contact.aspx">Contact</a></li>
                             </ul>
+                        </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -788,7 +789,7 @@
 
         <script src="/assets/js/account.js?v=20251021_16"></script>
         <script src="/assets/js/helper-function.js?v=202510251_5"></script>
-        <script src="/assets/js/theme.js?v=20251025_1"></script>
+        <script src="/assets/js/theme.js?v=20251025_8"></script>
         <%--<script src="/assets/js/client-project.js?v=2025102_1"></script>--%>
 
         <%-- Load DDL data --%>
