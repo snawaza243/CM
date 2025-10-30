@@ -254,6 +254,8 @@
     </main>
 
     <style>
+
+
         .hide {
             display: none !important;
         }
