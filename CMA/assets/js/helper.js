@@ -139,7 +139,7 @@ function psmJs_DynamicTableGenerateTable(data, targetTable, options = {}) {
         // Make columns adjustable if enabled
         if (adjustableColumns) {
             var newName = targetTable;
-            psmJs_DynamicTableMakeResizable(targetTable);
+            //psmJs_DynamicTableMakeResizable(targetTable);
         }
         psmJs_DynamicTableStyle(targetTable);
         psmJs_DynamicTableColVisible(targetTable, options);
@@ -197,7 +197,7 @@ function psmJs_DynamicTableGenerateTable(data, targetTable, options = {}) {
                             }
 
                             th {
-                                background-color: #B78939 !important;
+                                background-color: var(--primary-color) !important;
                                 color: #fff !important;
                                 position: sticky;
                                 top: 0;

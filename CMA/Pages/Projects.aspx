@@ -8,7 +8,7 @@
             <div>
                 <button class="btn btn-warning me-2" id="viewNewProjectsBtn">
                     <i class="fas fa-clock me-1"></i>New Project Requests
-                                <span class="badge bg-danger ms-1" id="newProjectsBadge">3</span>
+                    <span class="badge bg-danger ms-1" id="newProjectsBadge">1</span>
                 </button>
                 <button class="btn btn-primary" id="addProjectBtn">
                     <i class="fas fa-plus me-2"></i>Add New Project
@@ -18,7 +18,7 @@
 
         <!-- New Project Requests Section -->
         <div class="card glass mb-4" id="newProjectsSection" style="display: none;">
-            <div class="card-header bg-warning text-dark">
+            <div class="card-header">
                 <h5 class="mb-0">
                     <i class="fas fa-hourglass-half me-2"></i>New Project Requests - Pending Review
                 </h5>
@@ -135,8 +135,7 @@
                                         <th>Deadline</th>
                                         <th>Progress</th>
                                         <th>Status</th>
-                                        <th class="d-flex"
-                                            >Actions</th>
+                                        <th class="d-flex">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -155,7 +154,7 @@
                                         </td>
                                         <td><span class="status-badge status-completed">Completed</span>
                                         </td>
-                                        <td >
+                                        <td>
                                             <button class="action-btn view-project-btn" title="View Details"
                                                 data-project-id="101">
                                                 <i class="fas fa-eye"></i>
@@ -228,7 +227,7 @@
         </div>
     </section>
 
- <%-- MODELS --%>
+    <%-- MODELS --%>
     <!-- Project Management Modal -->
     <div class="modal fade" id="projectManagementModal" tabindex="-1" aria-labelledby="projectManagementModalLabel"
         aria-hidden="true">
@@ -534,7 +533,7 @@
                             <h4 id="detailProjectName">Hilltop Residence</h4>
                             <p class="text-muted" id="detailProjectDescription">
                                 A contemporary 4-bedroom home with
-                                sustainable features and panoramic views.
+sustainable features and panoramic views.
                             </p>
                         </div>
                         <div class="col-md-4 text-end">
@@ -664,10 +663,7 @@
                 let currentProjectData = null;
 
                 // View New Projects Button
-                $('#viewNewProjectsBtn').click(function () {
-                    $('#newProjectsSection').slideToggle();
-                    // loadNewProjects();
-                });
+               
 
                 // Add Project Button
                 $('#addProjectBtn').click(function () {
@@ -1000,20 +996,20 @@
                 function addMilestoneField(milestone = { name: '', due: '' }) {
                     const milestoneId = Date.now();
                     const milestoneHtml = `
-            <div class="milestone-field row mb-2" data-id="${milestoneId}">
-                <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Milestone description" value="${milestone.name || ''}">
-                </div>
-                <div class="col-md-4">
-                    <input type="date" class="form-control" value="${milestone.due || ''}">
-                </div>
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-sm btn-outline-danger remove-milestone">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-        `;
+<div class="milestone-field row mb-2" data-id="${milestoneId}">
+<div class="col-md-6">
+<input type="text" class="form-control" placeholder="Milestone description" value="${milestone.name || ''}">
+</div>
+<div class="col-md-4">
+<input type="date" class="form-control" value="${milestone.due || ''}">
+</div>
+<div class="col-md-2">
+<button type="button" class="btn btn-sm btn-outline-danger remove-milestone">
+<i class="fas fa-times"></i>
+</button>
+</div>
+</div>
+`;
                     $('#milestonesContainer').append(milestoneHtml);
                 }
 
@@ -1106,11 +1102,11 @@
                     }[type] || 'alert-info';
 
                     const alertHtml = `
-            <div class="alert ${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" style="z-index: 1060;">
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        `;
+<div class="alert ${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" style="z-index: 1060;">
+${message}
+<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+`;
 
                     $('body').append(alertHtml);
 
@@ -1118,6 +1114,8 @@
                         $('.alert').alert('close');
                     }, 5000);
                 }
+
+
             });
         </script>
 
@@ -1214,6 +1212,73 @@
         </style>
     </div>
 
+
+    <script>
+        $(document).ready(function () {
+            $('#viewNewProjectsBtn').click(function () {
+                $('#newProjectsSection').slideToggle();
+                // loadNewProjects();
+                loadProjects("CM_PROJECT_LIST", "Admin", "123", "Manager", "4567");
+
+
+            });
+
+            loadProjects("CM_PROJECT_LIST", "Admin", "123", "Manager", "4567");
+
+
+
+        });
+
+
+        function loadProjects(forType, by, x, role, logId) {
+            $.ajax({
+                type: "POST",
+                url: "/Pages/Projects.aspx/GetTempProjectList",
+                data: JSON.stringify({
+                    forType: forType,
+                    by: by,
+                    x: x,
+                    role: role,
+                    logId: logId
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    const tableBody = $("#projectListTable");
+                    tableBody.empty();
+
+                    const data = response.d || response;
+
+                    if (data.success && data.data && data.data.length > 0) {
+                        const options = {
+                            countElement: "#newProjectsBadge",                  // Optional: element ID to show row count
+                            defaultColumnWidth: "150px",                    // Default width for columns
+                            adjustableColumns: true,                        // Allow resizing of columns
+                            tableClass: "table table-striped table-hover",   // Add custom Bootstrap table classes
+                            displayNoneToTheseColumns: "1,3"  // Hide these columns (comma-separated)
+                        };
+
+                        psmJs_DynamicTableGenerateTable(data, tableBody, options);
+
+                        psmJs_DynamicTableMakeResizable("projectListTable");
+                    } else {
+                        tableBody.append(
+                            '<tr><td colspan="100%" class="text-center">No projects found for this client.</td></tr>'
+                        );
+                        showAlert(data.message, 'error');
+
+                    }
+                },
+                error: function (err) {
+                    console.error(err);
+                    alert("Error fetching projects.");
+                }
+            });
+        }
+ 
+
+
+    </script>
 
 
 </asp:Content>

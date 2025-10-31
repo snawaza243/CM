@@ -21,7 +21,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <link href="/assets/css/admin-theme0.css?v=251030_6" rel="stylesheet">
+    <link href="/assets/css/admin-theme0.css?v=251030_13" rel="stylesheet">
+    <style>
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
 </head>
 <body data-theme="default">
     <form runat="server">
@@ -130,20 +135,175 @@
                     <h1 class="page-title">Dashboard</h1>
                 </div>
                 <div class="header-right">
-                    <div class="theme-controls">
+                    <div class="theme-controls d-none">
                         <div class="theme-btn theme-default" data-theme="default"></div>
                         <div class="theme-btn theme-dark" data-theme="dark"></div>
                         <div class="theme-btn theme-blue" data-theme="blue"></div>
                         <div class="theme-btn theme-green" data-theme="green"></div>
                         <div class="theme-btn theme-purple" data-theme="purple"></div>
                     </div>
+                    <!-- Font Awesome -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+                    <style>
+                        .theme-controls {
+                            position: relative;
+                            display: inline-block;
+                        }
+
+                        .theme-label {
+                            margin-right: 8px;
+                            font-size: 20px;
+                            cursor: pointer;
+                            color: #666;
+                        }
+
+                        .custom-select {
+                            position: relative;
+                            width: 60px;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                            padding: 8px 10px;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+
+                            .custom-select:hover {
+                                background: #e9ecef;
+                            }
+
+                        .custom-options {
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            width: 100%;
+                            background: #fff;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                            display: none;
+                            z-index: 10;
+                        }
+
+                            .custom-select:hover + .custom-options,
+                            .custom-options:hover {
+                                display: block;
+                            }
+
+                        .custom-option {
+                            padding: 8px 10px;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            cursor: pointer;
+                            transition: background 0.2s;
+                        }
+
+                            .custom-option:hover {
+                                background: #f1f1f1;
+                            }
+
+                            .custom-option.active {
+                                background: #e0e0e0;
+                                font-weight: bold;
+                            }
+
+                            .ctm-theme-color-d{
+                                color: var(--primary-color);
+                            }
+                    </style>
+
+                    <div class="theme-controls ">
+                      <%--  <label for="themeDropdown" class="theme-label" title="Change theme">
+                            <i class="fa-solid fa-palette"></i>
+                        </label>--%>
+
+                        <div class="custom-select" id="selectedTheme">
+                            <i class="fa-solid fa-palette ctm-theme-color-d" style="color: #888;" title="Default"></i>
+                            h
+        <%--<i class="fa-solid fa-caret-down"></i>--%>
+                        </div>
+
+                        <div class="custom-options">
+                            <div class="custom-option" data-theme="default">
+                                <i class="fa-solid fa-palette " style="color: #f8b500;" title="Default"></i>
+                            </div>
+                            <div class="custom-option" data-theme="dark">
+                                <i class="fa-solid fa-palette ctm-theme-color" style="color: #222;" title="Dark"></i>
+                            </div>
+                            <div class="custom-option" data-theme="blue">
+                                <i class="fa-solid fa-palette ctm-theme-color" style="color: #007bff;" title="Blue"></i>
+                            </div>
+                            <div class="custom-option" data-theme="green">
+                                <i class="fa-solid fa-palette ctm-theme-color" style="color: #28a745;" title="Green"></i>
+                            </div>
+                            <div class="custom-option" data-theme="purple">
+                                <i class="fa-solid fa-palette ctm-theme-color" style="color: #6f42c1;" title="Purple"></i>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            const savedTheme = localStorage.getItem('admin-theme') || 'default';
+                            $('body').attr('data-theme', savedTheme);
+
+                            const activeOption = $(`.custom-option[data-theme='${savedTheme}']`);
+                            $('#selectedTheme').html(activeOption.html() + '<i class="fa-solid fa-caret-down"></i>');
+                            activeOption.addClass('active');
+
+                            $('.custom-option').click(function () {
+                                const theme = $(this).data('theme');
+
+                                // Apply theme
+                                $('body').attr('data-theme', theme);
+                                localStorage.setItem('admin-theme', theme);
+
+                                // Update dropdown text
+                                $('.custom-option').removeClass('active');
+                                $(this).addClass('active');
+                                $('#selectedTheme').html($(this).html() + '<i class="fa-solid fa-caret-down"></i>');
+
+                                // Close dropdown
+                                $('.custom-options').hide();
+
+                                // Refresh charts if needed
+                                createCharts();
+                            });
+
+                            // Close dropdown when clicking outside
+                            $(document).click(function (e) {
+                                if (!$(e.target).closest('.theme-controls').length) {
+                                    $('.custom-options').hide();
+                                }
+                            });
+
+                            // Show dropdown on hover
+                            $('.custom-select').hover(function () {
+                                $('.custom-options').show();
+                            }, function () {
+                                setTimeout(() => {
+                                    if (!$('.custom-options:hover').length) $('.custom-options').hide();
+                                }, 200);
+                            });
+
+
+                        });
+                    </script>
+
+
+
                     <div class="notification-icon">
                         <i class="fas fa-bell"></i>
                         <span class="notification-badge">5</span>
                     </div>
 
                     <button class="btn btn-warning btn-sm client-requests-btn">
-                        <i class="fas fa-users me-1"></i>Client Requests
+                        <i class="fas fa-users me-1"></i>
                         <span class="badge bg-danger ms-1">2</span>
                     </button>
                     <!-- User Profile Section -->
@@ -201,9 +361,9 @@
 
 
 
-        <script src="/assets/js/helper.js?v=251030_1"></script>
-        <script src="/assets/js/projects.js?v=251030_1"></script>
-        <script src="/assets/js/theme.js?v=251030_1"></script>
+        <script src="/assets/js/helper.js?v=251030_11"></script>
+        <%--<script src="/assets/js/projects.js?v=251030_1"></script>--%>
+        <script src="/assets/js/theme.js?v=251030_5"></script>
 
 
 

@@ -345,14 +345,26 @@ $(document).ready(function () {
         $('body').attr('data-theme', theme);
         localStorage.setItem('admin-theme', theme);
 
+
         // Update charts when theme changes
-        createCharts();
+        //createCharts();
     });
 
-    const savedTheme = localStorage.getItem('admin-theme') || 'default';
-    $('body').attr('data-theme', savedTheme);
+    $('#themeDropdown').change(function () {
+        const theme = $(this).val();
+        $('body').attr('data-theme', theme);
+        localStorage.setItem('admin-theme', theme);
 
-    createCharts();
+        // Update charts when theme changes
+        //createCharts();
+    });
+
+
+    const savedTheme = localStorage.getItem('admin-theme') || 'default';
+   // $('body').attr('data-theme', savedTheme);
+    //$('#themeDropdown').val(savedTheme);
+
+    //createCharts();
     handleSidebar();
     menuAnimation();
     // Handle resize
