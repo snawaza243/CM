@@ -21,7 +21,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <link href="/assets/css/admin-theme0.css?v=251030_13" rel="stylesheet">
+    <link href="/assets/css/admin-theme0.css?v=251030_15" rel="stylesheet">
     <style>
         body {
             transition: background-color 0.3s ease, color 0.3s ease;

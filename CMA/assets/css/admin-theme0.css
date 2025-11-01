@@ -643,15 +643,43 @@ body {
 }
 
 
-
-
-.btn-primary:hover {
-    /*background: var(--accent-color);*/
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.btn-primary {
     background: var(--primary-color);
-    color: var(--light-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
 }
+
+
+    .btn-primary:hover {
+        /*background: var(--accent-color);*/
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background: var(--primary-color);
+        color: var(--light-color);
+    }
+
+
+
+.btn-secondary {
+    background: var(--secondary-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+
+    .btn-secondary:hover {
+        /*background: var(--accent-color);*/
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background: var(--secondary-color);
+        color: var(--light-color);
+    }
 
 
 

@@ -3,15 +3,82 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Projects Section -->
     <section id="projects" class="section d-block">
+        <div class="row mb-4">
+            <!-- Total Projects -->
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card glass stats-card">
+                    <div class="card-body">
+                        <div class="stats-icon bg-primary text-white">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <div class="stats-value">18</div>
+                        <div class="stats-label">Total Projects</div>
+                        <div class="stats-change change-up">
+                            <i class="fas fa-arrow-up"></i>+3 new this month
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Projects -->
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card glass stats-card">
+                    <div class="card-body">
+                        <div class="stats-icon bg-success text-white">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stats-value">10</div>
+                        <div class="stats-label">Completed Projects</div>
+                        <div class="stats-change change-up">
+                            <i class="fas fa-arrow-up"></i>+2 since last week
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ongoing Projects -->
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card glass stats-card">
+                    <div class="card-body">
+                        <div class="stats-icon bg-warning text-dark">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <div class="stats-value">6</div>
+                        <div class="stats-label">Ongoing Projects</div>
+                        <div class="stats-change change-down">
+                            <i class="fas fa-arrow-down"></i>-1 this month
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overdue Tasks -->
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card glass stats-card">
+                    <div class="card-body">
+                        <div class="stats-icon bg-danger text-white">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stats-value">4</div>
+                        <div class="stats-label">Overdue Tasks</div>
+                        <div class="stats-change change-up">
+                            <i class="fas fa-arrow-up"></i>+1 since last week
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Project Management</h2>
-            <div>
-                <button class="btn btn-warning me-2" id="viewNewProjectsBtn">
-                    <i class="fas fa-clock me-1"></i>New Project Requests
-                    <span class="badge bg-danger ms-1" id="newProjectsBadge">1</span>
-                </button>
+            <div class="btn-group">
                 <button class="btn btn-primary" id="addProjectBtn">
-                    <i class="fas fa-plus me-2"></i>Add New Project
+                    <i class="fas fa-plus me-2"></i>Add New
+                </button>
+                <button class="btn btn-secondary me-2" id="viewNewProjectsBtn">
+                    <i class="fas fa-clock me-1"></i>New Requests
+                    <span class="badge bg-danger ms-1" id="newProjectsBadge">1</span>
                 </button>
             </div>
         </div>
@@ -124,7 +191,7 @@
                 <div class="card glass">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="data-table">
+                            <table class="data-table" id="prj_apv_projects">
                                 <thead>
                                     <tr>
                                         <th>Project Name</th>
@@ -661,9 +728,6 @@ sustainable features and panoramic views.
             // Project Management System
             $(document).ready(function () {
                 let currentProjectData = null;
-
-                // View New Projects Button
-               
 
                 // Add Project Button
                 $('#addProjectBtn').click(function () {
@@ -1218,19 +1282,21 @@ ${message}
             $('#viewNewProjectsBtn').click(function () {
                 $('#newProjectsSection').slideToggle();
                 // loadNewProjects();
-                loadProjects("CM_PROJECT_LIST", "Admin", "123", "Manager", "4567");
+                loadProjects("CM_PROJECT_LIST_1", "Admin", "123", "Manager", "4567", "projectListTable");
 
 
             });
 
-            loadProjects("CM_PROJECT_LIST", "Admin", "123", "Manager", "4567");
+            loadProjects("CM_PROJECT_LIST_1", "Admin", "123", "Manager", "4567", "projectListTable");
+            loadProjects("CM_PROJECT_LIST_2", "Admin", "123", "Manager", "4567", "prj_apv_projects");
+
 
 
 
         });
 
 
-        function loadProjects(forType, by, x, role, logId) {
+        function loadProjects(forType, by, x, role, logId, table) {
             $.ajax({
                 type: "POST",
                 url: "/Pages/Projects.aspx/GetTempProjectList",
@@ -1244,7 +1310,7 @@ ${message}
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    const tableBody = $("#projectListTable");
+                    const tableBody = $("#" + table);
                     tableBody.empty();
 
                     const data = response.d || response;
@@ -1260,7 +1326,9 @@ ${message}
 
                         psmJs_DynamicTableGenerateTable(data, tableBody, options);
 
-                        psmJs_DynamicTableMakeResizable("projectListTable");
+                        //psmJs_DynamicTableMakeResizable("projectListTable");
+                        psmJs_DynamicTableMakeResizable(table);
+
                     } else {
                         tableBody.append(
                             '<tr><td colspan="100%" class="text-center">No projects found for this client.</td></tr>'
@@ -1275,7 +1343,7 @@ ${message}
                 }
             });
         }
- 
+
 
 
     </script>
