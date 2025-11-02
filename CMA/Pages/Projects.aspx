@@ -3,6 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Projects Section -->
     <section id="projects" class="section d-block">
+        <%-- ANALYSIS VIEW --%>
         <div class="row mb-4">
             <!-- Total Projects -->
             <div class="col-md-3 col-sm-6 mb-3">
@@ -69,7 +70,7 @@
             </div>
         </div>
 
-
+        <%-- HERO BUTTONS --%>
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Project Management</h2>
             <div class="btn-group">
@@ -78,16 +79,17 @@
                 </button>
                 <button class="btn btn-secondary me-2" id="viewNewProjectsBtn">
                     <i class="fas fa-clock me-1"></i>New Requests
-                    <span class="badge bg-danger ms-1" id="newProjectsBadge">1</span>
+                    <span class="badge bg-danger ms-1" id="newProjectsBadge">0</span>
                 </button>
             </div>
         </div>
 
-        <!-- New Project Requests Section -->
+
+        <!-- NEW/PENDING SUBMITTED PROJECTS LIST-->
         <div class="card glass mb-4" id="newProjectsSection" style="display: none;">
             <div class="card-header">
                 <h5 class="mb-0">
-                    <i class="fas fa-hourglass-half me-2"></i>New Project Requests - Pending Review
+                    <i class="fas fa-hourglass-half me-2"></i>Pending Review - New Project Requests
                 </h5>
             </div>
             <div class="card-body">
@@ -185,10 +187,15 @@
             </div>
         </div>
 
-        <!-- Active Projects Section -->
+        <!-- APPROVED PROJECTS LIST -->
         <div class="row">
             <div class="col-12">
                 <div class="card glass">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-check me-2"></i>Approved - Ongoing Projects
+                        </h5>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="data-table" id="prj_apv_projects">
@@ -233,58 +240,7 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Downtown Plaza</td>
-                                        <td>Commercial</td>
-                                        <td>Thompson Properties</td>
-                                        <td>$1,200,000</td>
-                                        <td>01 May 2023</td>
-                                        <td>30 Dec 2023</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-primary" style="width: 75%">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-badge status-active">Active</span></td>
-                                        <td>
-                                            <button class="action-btn view-project-btn" title="View Details"
-                                                data-project-id="102">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="action-btn manage-project-btn"
-                                                title="Manage Project" data-project-id="102"
-                                                data-action-type="update">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Old Town Theater</td>
-                                        <td>Renovation</td>
-                                        <td>Historic Society</td>
-                                        <td>$600,000</td>
-                                        <td>01 Aug 2023</td>
-                                        <td>01 Feb 2024</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 40%">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-badge status-pending">Planning</span></td>
-                                        <td>
-                                            <button class="action-btn view-project-btn" title="View Details"
-                                                data-project-id="104">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="action-btn manage-project-btn"
-                                                title="Manage Project" data-project-id="104"
-                                                data-action-type="update">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                  
                                 </tbody>
                             </table>
                         </div>
@@ -294,7 +250,7 @@
         </div>
     </section>
 
-    <%-- MODELS --%>
+    <%-- MODELS --%> 
     <!-- Project Management Modal -->
     <div class="modal fade" id="projectManagementModal" tabindex="-1" aria-labelledby="projectManagementModalLabel"
         aria-hidden="true">
@@ -731,7 +687,10 @@ sustainable features and panoramic views.
 
                 // Add Project Button
                 $('#addProjectBtn').click(function () {
-                    openProjectManagement('add', null);
+                    //openProjectManagement('add', null);
+
+                    $('#projectDetailsModal').modal('show');
+                    // projectDetailsModal projectManagementModal
                 });
 
                 // Manage Project Button (Review/Update)
@@ -802,6 +761,8 @@ sustainable features and panoramic views.
                     setupManagementModal(actionType);
                     loadProjectData(projectId, actionType);
                     $('#projectManagementModal').modal('show');
+                    // projectDetailsModal projectManagementModal
+
                 }
 
                 // Open Project Details Modal
@@ -1317,7 +1278,7 @@ ${message}
 
                     if (data.success && data.data && data.data.length > 0) {
                         const options = {
-                            countElement: "#newProjectsBadge",                  // Optional: element ID to show row count
+                            countElement: table === "projectListTable" ? "#newProjectsBadge" : null,                  // Optional: element ID to show row count
                             defaultColumnWidth: "150px",                    // Default width for columns
                             adjustableColumns: true,                        // Allow resizing of columns
                             tableClass: "table table-striped table-hover",   // Add custom Bootstrap table classes
