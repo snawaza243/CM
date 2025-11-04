@@ -308,7 +308,7 @@ namespace CMA.Pages
             try
             {
                 if (string.IsNullOrEmpty(identifier))
-                    return (false, "Identifier is required.", null);
+                    return (false, "Email or Client ID is required.", null);
 
                 if (string.IsNullOrEmpty(passwordHash))
                     return (false, "Password data is missing.", null);

@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|c:\\users\\snawa\\onedrive\\documents\\github\\cm\\cma\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|c:\\users\\snawa\\onedrive\\documents\\github\\cm\\cma\\pages\\client.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\client.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|c:\\users\\snawa\\onedrive\\documents\\github\\cm\\cma\\pages\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|c:\\users\\snawa\\onedrive\\documents\\github\\cm\\cma\\pages\\projects.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\projects.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|c:\\users\\snawa\\onedrive\\documents\\github\\cm\\cma\\pages\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\pages\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,10 +30,6 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:323948898:0:{81164725-9a96-4ece-a4cb-440d8fd285e5}"
             },
             {
@@ -37,12 +37,8 @@
               "Name": "ST:2090367263:0:{81164725-9a96-4ece-a4cb-440d8fd285e5}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Site.Master",
               "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Site.Master",
               "RelativeDocumentMoniker": "Site.Master",
@@ -51,19 +47,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-11-02T16:09:41.182Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Account.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Account.aspx.cs",
-              "RelativeDocumentMoniker": "Pages\\Account.aspx.cs",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Account.aspx.cs",
-              "RelativeToolTip": "Pages\\Account.aspx.cs",
-              "ViewState": "AgIAAOwAAAAAAAAAAAAiwPsAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T16:18:30.237Z",
               "EditorCaption": ""
             },
             {
@@ -77,6 +60,32 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-11-02T16:33:39.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Client.aspx",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Client.aspx",
+              "RelativeDocumentMoniker": "Pages\\Client.aspx",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Client.aspx",
+              "RelativeToolTip": "Pages\\Client.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-11-04T06:53:41.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Projects.aspx",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Projects.aspx",
+              "RelativeDocumentMoniker": "Pages\\Projects.aspx",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Projects.aspx",
+              "RelativeToolTip": "Pages\\Projects.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-11-04T06:54:28.752Z",
               "EditorCaption": ""
             }
           ]

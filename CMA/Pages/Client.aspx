@@ -8,20 +8,22 @@
     <section id="clients" class="section d-block">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Client Management</h2>
-            <div>
-                <button class="btn btn-warning me-2" id="viewNewClientsBtn">
-                    <i class="fas fa-user-clock me-1"></i>New Client Requests
-                                <span class="badge bg-danger ms-1" id="newClientsBadge">2</span>
-                </button>
+            <div class="btn-group">
                 <button class="btn btn-primary" id="addNewClientBtn">
                     <i class="fas fa-user-plus me-1"></i>Add New Client
+                </button>
+                <button class="btn btn-secondary me-2" id="viewNewClientsBtn">
+                    <i class="fas fa-user-clock me-1"></i>New Client Requests
+                                <span class="badge bg-danger ms-1" id="newClientsBadge">2</span>
                 </button>
             </div>
         </div>
 
+
+
         <!-- New Client Requests Section -->
         <div class="card glass mb-4" id="newClientsSection">
-            <div class="card-header bg-warning text-dark">
+            <div class="card-header text-dark">
                 <h5 class="mb-0">
                     <i class="fas fa-clock me-2"></i>New Client Requests - Pending Verification
                 </h5>
