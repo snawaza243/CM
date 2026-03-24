@@ -1,0 +1,13 @@
+CREATE TABLE CM_LIST_SERVICES (
+    SERVICE_CODE        VARCHAR2(20 BYTE) PRIMARY KEY,    -- e.g., SRV_001
+    SERVICE_NAME        VARCHAR2(100 BYTE) NOT NULL,      -- e.g., "Architectural Design"
+    SERVICE_DESC        CLOB,                             -- detailed description
+    SERVICE_ICON        VARCHAR2(100 BYTE),               -- e.g., "fa-home" or "building"
+    SERVICE_TYPE        VARCHAR2(100 BYTE),               -- e.g., "Design & Planning"
+    SERVICE_TYPE_CODE   VARCHAR2(20 BYTE),                -- e.g., SRVT_001
+    CREATED_BY          VARCHAR2(100 BYTE),
+    CREATED_ON          DATE DEFAULT SYSDATE,
+    MODIFIED_BY         VARCHAR2(100 BYTE),
+    MODIFIED_ON         DATE,
+    ACTIVE              CHAR(1 BYTE) DEFAULT 'Y'          -- 'Y' = active, 'N' = inactive
+);

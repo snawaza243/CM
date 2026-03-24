@@ -1,0 +1,132 @@
+create or replace NONEDITIONABLE PROCEDURE PROC_CM_TPM_SAVE
+(
+-- SAVE UPDATE RECORD IN CM_TEMP_PROJECT_MASTER
+
+    P_PROJECT_ID          IN OUT NUMBER,
+    P_CLIENT_CODE         IN VARCHAR2,
+    P_CLIENT_NAME         IN VARCHAR2,
+    P_EMAIL               IN VARCHAR2,
+    P_PHONE               IN VARCHAR2,
+    P_OTHER_CONTACTS      IN VARCHAR2,
+    P_PROJECT_TYPE        IN VARCHAR2,
+    P_PROJECT_ADDRESS     IN VARCHAR2,
+    P_PROJECT_DESCRIPTION IN VARCHAR2,
+    P_ESTIMATED_BUDGET    IN NUMBER,
+    P_TIMELINE            IN VARCHAR2,
+    P_EXPECTED_START_DATE IN DATE,
+    P_EXPECTED_DEADLINE   IN DATE,
+    P_APPROVED_STATUS     IN VARCHAR2,
+    P_APPROVED_BY         IN VARCHAR2,
+    P_CURRENT_STATUS      IN VARCHAR2,
+    P_CREATED_BY          IN VARCHAR2,
+    P_UPDATED_BY          IN VARCHAR2,
+    P_PROJECT_NAME        IN VARCHAR2,
+    P_REFERENCE_NAME      IN VARCHAR2,    
+    P_SUCCESS             OUT NUMBER,   -- 1 = success, 0 = failure
+    P_MESSAGE             OUT VARCHAR2
+)
+AS
+    v_count NUMBER := 0;
+    v_new_id NUMBER;
+BEGIN
+    -- Check if the project already exists
+    IF P_PROJECT_ID IS NOT NULL THEN
+        SELECT COUNT(*) INTO v_count 
+        FROM CM_TEMP_PROJECT_MASTER 
+        WHERE PROJECT_ID = P_PROJECT_ID;
+    END IF;
+
+    IF v_count = 0 THEN
+        -- Generate next PROJECT_ID manually
+        SELECT NVL(MAX(PROJECT_ID), 0) + 1 INTO v_new_id
+        FROM CM_TEMP_PROJECT_MASTER;
+
+        -- INSERT operation
+        INSERT INTO CM_TEMP_PROJECT_MASTER
+        (
+            PROJECT_ID,
+            PROJECT_CODE,
+            CLIENT_CODE,
+            CLIENT_NAME,
+            EMAIL,
+            PHONE,
+            OTHER_CONTACTS,
+            PROJECT_TYPE,
+            PROJECT_ADDRESS,
+            PROJECT_DESCRIPTION,
+            ESTIMATED_BUDGET,
+            TIMELINE,
+            EXPECTED_START_DATE,
+            EXPECTED_DEADLINE,
+            APPROVED_STATUS,
+            --APPROVED_BY,
+            CURRENT_STATUS,
+            CREATED_AT,
+            CREATED_BY,
+            PROJECT_NAME,
+            REFERENCE_NAME
+        )
+        VALUES
+        (
+            v_new_id,
+            'TP_' || TO_CHAR(v_new_id),
+            P_CLIENT_CODE,
+            P_CLIENT_NAME,
+            P_EMAIL,
+            P_PHONE,
+            P_OTHER_CONTACTS,
+            P_PROJECT_TYPE,
+            P_PROJECT_ADDRESS,
+            P_PROJECT_DESCRIPTION,
+            P_ESTIMATED_BUDGET,
+            P_TIMELINE,
+            P_EXPECTED_START_DATE,
+            P_EXPECTED_DEADLINE,
+            'PENDING',--P_APPROVED_STATUS,
+            --P_APPROVED_BY,
+            'INITIATED',--P_CURRENT_STATUS,
+            SYSDATE,
+            P_CLIENT_CODE, --P_CREATED_BY
+            P_PROJECT_NAME,
+            P_REFERENCE_NAME
+        );
+
+        P_PROJECT_ID := v_new_id;
+        P_SUCCESS := 1;
+        P_MESSAGE := 'Project inserted successfully.';
+
+    ELSE
+        -- UPDATE operation
+        UPDATE CM_TEMP_PROJECT_MASTER
+        SET
+            CLIENT_CODE          = P_CLIENT_CODE,
+            CLIENT_NAME          = P_CLIENT_NAME,
+            EMAIL                = P_EMAIL,
+            PHONE                = P_PHONE,
+            OTHER_CONTACTS       = P_OTHER_CONTACTS,
+            PROJECT_TYPE         = P_PROJECT_TYPE,
+            PROJECT_ADDRESS      = P_PROJECT_ADDRESS,
+            PROJECT_DESCRIPTION  = P_PROJECT_DESCRIPTION,
+            ESTIMATED_BUDGET     = P_ESTIMATED_BUDGET,
+            TIMELINE             = P_TIMELINE,
+            EXPECTED_START_DATE  = P_EXPECTED_START_DATE,
+            EXPECTED_DEADLINE    = P_EXPECTED_DEADLINE,
+            --APPROVED_STATUS      = P_APPROVED_STATUS,
+            --APPROVED_BY          = P_APPROVED_BY,
+            --CURRENT_STATUS       = P_CURRENT_STATUS,
+            UPDATED_AT           = SYSDATE,
+            UPDATED_BY           = P_UPDATED_BY
+        WHERE PROJECT_ID = P_PROJECT_ID;
+
+        P_SUCCESS := 1;
+        P_MESSAGE := 'Project updated successfully.';
+    END IF;
+
+    COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        P_SUCCESS := 0;
+        P_MESSAGE := 'Error: ' || SQLERRM;
+END;

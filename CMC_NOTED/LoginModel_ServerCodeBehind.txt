@@ -1,0 +1,30 @@
+    protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text;
+
+            // Example: authentication logic
+            if (IsValidUser(email, password))
+            {
+                // Store user in session
+                Session["UserEmail"] = email;
+
+                // Close modal via script
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "closeModal", "$('#loginModal').modal('hide');", true);
+
+                // Optionally redirect after login
+                Response.Redirect("~/Pages/Account.aspx?action=view");
+            }
+            else
+            {
+                // Show error without clearing inputs
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showError", "alert('Invalid email or password');", true);
+            }
+        }
+
+
+        // Dummy authentication
+        private bool IsValidUser(string email, string password)
+        {
+            return email == "client@buildright.com" && password == "password123";
+        }

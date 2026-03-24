@@ -1,0 +1,31 @@
+CREATE TABLE CM_TEMP_PROJECT_MASTER
+(
+    PROJECT_ID           NUMBER,                          -- Primary Key (auto-increment)
+    PROJECT_CODE         VARCHAR2(50),                    -- Auto: 'TP_' || PROJECT_ID
+    CLIENT_CODE          VARCHAR2(50),                    -- Client Code (e.g., CL_001)
+    CLIENT_NAME          VARCHAR2(100),                   -- Full Name (if new client)
+    EMAIL                VARCHAR2(100),
+    PHONE                VARCHAR2(20),
+    OTHER_CONTACTS       VARCHAR2(200),
+
+    PROJECT_TYPE         VARCHAR2(50),
+    PROJECT_ADDRESS      VARCHAR2(500),
+    PROJECT_DESCRIPTION  VARCHAR2(1000),
+
+    ESTIMATED_BUDGET     NUMBER(12,2),
+    TIMELINE             VARCHAR2(50),
+
+    EXPECTED_START_DATE  DATE,
+    EXPECTED_DEADLINE    DATE,
+
+    APPROVED_STATUS      VARCHAR2(50),
+    APPROVED_BY          VARCHAR2(50),
+    CURRENT_STATUS       VARCHAR2(50),
+
+    CREATED_AT           DATE DEFAULT SYSDATE,
+    CREATED_BY           VARCHAR2(20),
+    UPDATED_AT           DATE,
+    UPDATED_BY           VARCHAR2(20),
+
+    CONSTRAINT PK_CM_TEMP_PROJECT_MASTER PRIMARY KEY (PROJECT_ID)
+);

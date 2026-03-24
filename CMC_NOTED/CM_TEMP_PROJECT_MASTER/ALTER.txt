@@ -1,0 +1,6 @@
+
+ALTER TABLE CM_TEMP_PROJECT_MASTER
+ADD (
+    PROJECT_NAME    VARCHAR2(200),  -- Auto-generated or user-defined project name
+    REFERENCE_NAME  VARCHAR2(200)   -- Optional reference name
+);

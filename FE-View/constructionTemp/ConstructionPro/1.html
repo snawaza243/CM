@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConstructPro - Construction Management</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --sidebar-width: 260px;
+            --header-height: 70px;
+            --transition-speed: 0.3s;
+        }
+
+        .theme-default {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        .theme-dark {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --success: #0f5132;
+            --warning: #664d03;
+            --danger: #58151c;
+            --light: #212529;
+            --dark: #121212;
+        }
+
+        .theme-blue {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --light: #dbeafe;
+            --dark: #1e3a8a;
+        }
+
+        .theme-green {
+            --primary: #064e3b;
+            --secondary: #059669;
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --light: #dcfce7;
+            --dark: #064e3b;
+        }
+
+        .theme-purple {
+            --primary: #581c87;
+            --secondary: #7e22ce;
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --light: #f3e8ff;
+            --dark: #581c87;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header .menu-toggle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .header .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            flex-grow: 1;
+        }
+
+        .header .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header .theme-selector {
+            position: relative;
+        }
+
+        .header .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 150px;
+            z-index: 1001;
+        }
+
+        .header .theme-option {
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .theme-option:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .header .theme-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .header .theme-default .theme-color {
+            background-color: #2c3e50;
+        }
+
+        .header .theme-dark .theme-color {
+            background-color: #1a1a2e;
+        }
+
+        .header .theme-blue .theme-color {
+            background-color: #1e3a8a;
+        }
+
+        .header .theme-green .theme-color {
+            background-color: #064e3b;
+        }
+
+        .header .theme-purple .theme-color {
+            background-color: #581c87;
+        }
+
+        .header .btn {
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header .btn-login {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+        }
+
+        .header .btn-logout {
+            background-color: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            display: none;
+        }
+
+        .header .mode-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: var(--sidebar-width);
+            height: calc(100vh - var(--header-height));
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed);
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar .menu-item {
+            margin-bottom: 5px;
+        }
+
+        .sidebar .menu-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 0 20px 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .menu-link:hover, .sidebar .menu-link.active {
+            background-color: rgba(var(--secondary-rgb), 0.1);
+            color: var(--secondary);
+        }
+
+        .sidebar .menu-link i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar .menu-section {
+            padding: 15px 20px 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar .menu-collapse {
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+
+        .sidebar .submenu {
+            list-style: none;
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .sidebar .submenu.active {
+            max-height: 500px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: var(--header-height);
+            padding: 20px;
+            transition: margin-left var(--transition-speed);
+        }
+
+        .main-content.expanded {
+            margin-left: var(--sidebar-width);
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: rgba(var(--primary-rgb), 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Progress Bars */
+        .progress {
+            height: 8px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        .bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.8rem;
+        }
+
+        .bottom-nav .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .bottom-nav .nav-item.active {
+            color: var(--secondary);
+        }
+
+        /* Notification Panel */
+        .notification-panel {
+            position: fixed;
+            top: var(--header-height);
+            right: 0;
+            width: 350px;
+            height: calc(100vh - var(--header-height));
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform var(--transition-speed);
+            z-index: 998;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .notification-panel.active {
+            transform: translateX(0);
+        }
+
+        .notification-item {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.03);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .notification-item.warning {
+            border-left-color: var(--warning);
+        }
+
+        .notification-item.danger {
+            border-left-color: var(--danger);
+        }
+
+        .notification-item.success {
+            border-left-color: var(--success);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+            }
+            
+            .main-content.expanded {
+                margin-left: 0;
+            }
+            
+            .bottom-nav {
+                display: flex;
+            }
+            
+            .header .brand {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Utility Classes */
+        .bg-primary { background-color: var(--primary) !important; }
+        .bg-secondary { background-color: var(--secondary) !important; }
+        .bg-success { background-color: var(--success) !important; }
+        .bg-warning { background-color: var(--warning) !important; }
+        .bg-danger { background-color: var(--danger) !important; }
+        .bg-light { background-color: var(--light) !important; }
+        .bg-dark { background-color: var(--dark) !important; }
+
+        .text-primary { color: var(--primary) !important; }
+        .text-secondary { color: var(--secondary) !important; }
+        .text-success { color: var(--success) !important; }
+        .text-warning { color: var(--warning) !important; }
+        .text-danger { color: var(--danger) !important; }
+        .text-light { color: var(--light) !important; }
+        .text-dark { color: var(--dark) !important; }
+
+        .border-primary { border-color: var(--primary) !important; }
+        .border-secondary { border-color: var(--secondary) !important; }
+        .border-success { border-color: var(--success) !important; }
+        .border-warning { border-color: var(--warning) !important; }
+        .border-danger { border-color: var(--danger) !important; }
+        .border-light { border-color: var(--light) !important; }
+        .border-dark { border-color: var(--dark) !important; }
+    </style>
+</head>
+<body class="theme-default">
+    <!-- Header -->
+    <header class="header">
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="brand">
+            <i class="fas fa-hard-hat"></i> ConstructPro
+        </div>
+        <div class="header-controls">
+            <div class="theme-selector">
+                <button class="btn btn-sm btn-outline-secondary theme-toggle">
+                    <i class="fas fa-palette"></i> Theme
+                </button>
+                <div class="theme-dropdown">
+                    <div class="theme-option theme-default">
+                        <div class="theme-color"></div>
+                        <span>Default</span>
+                    </div>
+                    <div class="theme-option theme-dark">
+                        <div class="theme-color"></div>
+                        <span>Dark</span>
+                    </div>
+                    <div class="theme-option theme-blue">
+                        <div class="theme-color"></div>
+                        <span>Blue</span>
+                    </div>
+                    <div class="theme-option theme-green">
+                        <div class="theme-color"></div>
+                        <span>Green</span>
+                    </div>
+                    <div class="theme-option theme-purple">
+                        <div class="theme-color"></div>
+                        <span>Purple</span>
+                    </div>
+                </div>
+            </div>
+            <button class="mode-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="btn btn-login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button class="btn btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+            <button class="btn btn-notification position-relative">
+                <i class="fas fa-bell"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="menu-section">Main</li>
+            <li class="menu-item">
+                <a href="#" class="menu-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-hard-hat"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-users"></i>
+                    <span>Team</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-truck"></i>
+                    <span>Suppliers</span>
+                </a>
+            </li>
+            
+            <li class="menu-section">Management</li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Budget</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Schedule</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Inspections</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Safety</span>
+                </a>
+            </li>
+            
+            <li class="menu-section">Reports</li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Documents</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <h5 class="mb-4">Notifications</h5>
+        <div class="notification-item">
+            <div class="d-flex justify-content-between">
+                <h6>Site Inspection Scheduled</h6>
+                <small>2 hours ago</small>
+            </div>
+            <p>Safety inspection scheduled for tomorrow at 10 AM.</p>
+        </div>
+        <div class="notification-item warning">
+            <div class="d-flex justify-content-between">
+                <h6>Material Delivery Delayed</h6>
+                <small>5 hours ago</small>
+            </div>
+            <p>Concrete delivery delayed by 24 hours due to weather.</p>
+        </div>
+        <div class="notification-item danger">
+            <div class="d-flex justify-content-between">
+                <h6>Budget Overrun Alert</h6>
+                <small>1 day ago</small>
+            </div>
+            <p>Project "Riverfront Towers" is 15% over budget.</p>
+        </div>
+        <div class="notification-item success">
+            <div class="d-flex justify-content-between">
+                <h6>Project Milestone Completed</h6>
+                <small>2 days ago</small>
+            </div>
+            <p>Foundation work completed for "Parkview Apartments".</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <!-- Page Title -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="mb-0">Construction Dashboard</h2>
+                    <p class="text-muted">Overview of all active projects and key metrics</p>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card fade-in">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-muted">Active Projects</h5>
+                                    <h3 class="text-primary">12</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-hard-hat fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="card-text"><small class="text-success">+2 from last month</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card fade-in" style="animation-delay: 0.1s;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-muted">Team Members</h5>
+                                    <h3 class="text-success">84</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-users fa-2x text-success"></i>
+                                </div>
+                            </div>
+                            <p class="card-text"><small class="text-success">+5 from last week</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card fade-in" style="animation-delay: 0.2s;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-muted">Budget Status</h5>
+                                    <h3 class="text-warning">$4.2M</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-dollar-sign fa-2x text-warning"></i>
+                                </div>
+                            </div>
+                            <p class="card-text"><small class="text-danger">-3% over budget</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card fade-in" style="animation-delay: 0.3s;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-muted">Safety Score</h5>
+                                    <h3 class="text-info">94%</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-shield-alt fa-2x text-info"></i>
+                                </div>
+                            </div>
+                            <p class="card-text"><small class="text-success">+2% from last month</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts and Progress -->
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div class="card fade-in">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Project Progress</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="progressChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card fade-in">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Task Completion</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Foundation Work</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Structural Steel</span>
+                                    <span>72%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 72%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Electrical</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Plumbing</span>
+                                    <span>38%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 38%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project List -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card fade-in">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Active Projects</h5>
+                            <button class="btn btn-sm btn-primary">Add New Project</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Project Name</th>
+                                            <th>Location</th>
+                                            <th>Start Date</th>
+                                            <th>Deadline</th>
+                                            <th>Progress</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Riverfront Towers</td>
+                                            <td>Downtown</td>
+                                            <td>Jan 15, 2023</td>
+                                            <td>Dec 20, 2024</td>
+                                            <td>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-success" style="width: 65%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">On Track</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Parkview Apartments</td>
+                                            <td>Westside</td>
+                                            <td>Mar 10, 2023</td>
+                                            <td>Feb 15, 2025</td>
+                                            <td>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-info" style="width: 42%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-warning">Delayed</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Commerce Center</td>
+                                            <td>Business District</td>
+                                            <td>Jun 5, 2023</td>
+                                            <td>Aug 30, 2024</td>
+                                            <td>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-warning" style="width: 28%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-danger">Behind</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hillside Villas</td>
+                                            <td>North Hills</td>
+                                            <td>Aug 20, 2023</td>
+                                            <td>Jun 10, 2025</td>
+                                            <td>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-success" style="width: 15%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">On Track</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">View</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-hard-hat"></i>
+            <span>Projects</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-tasks"></i>
+            <span>Tasks</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Sidebar toggle
+            $('.menu-toggle').click(function() {
+                $('.sidebar').toggleClass('active');
+                $('.main-content').toggleClass('expanded');
+            });
+
+            // Theme selector toggle
+            $('.theme-toggle').click(function() {
+                $('.theme-dropdown').toggle();
+            });
+
+            // Theme selection
+            $('.theme-option').click(function() {
+                const theme = $(this).attr('class').split(' ')[1];
+                $('body').attr('class', theme);
+                localStorage.setItem('selectedTheme', theme);
+                $('.theme-dropdown').hide();
+            });
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('selectedTheme');
+            if (savedTheme) {
+                $('body').attr('class', savedTheme);
+            }
+
+            // Dark/Light mode toggle
+            $('.mode-toggle').click(function() {
+                const $icon = $(this).find('i');
+                if ($icon.hasClass('fa-moon')) {
+                    $icon.removeClass('fa-moon').addClass('fa-sun');
+                    $('body').addClass('theme-dark');
+                } else {
+                    $icon.removeClass('fa-sun').addClass('fa-moon');
+                    $('body').removeClass('theme-dark');
+                }
+            });
+
+            // Notification toggle
+            $('.btn-notification').click(function() {
+                $('.notification-panel').toggleClass('active');
+            });
+
+            // Login/Logout toggle (demo)
+            $('.btn-login').click(function() {
+                $(this).hide();
+                $('.btn-logout').show();
+            });
+
+            $('.btn-logout').click(function() {
+                $(this).hide();
+                $('.btn-login').show();
+            });
+
+            // Animate progress bars on scroll
+            function animateProgressBars() {
+                $('.progress-bar').each(function() {
+                    const width = $(this).attr('style').split('width:')[1].split('%')[0];
+                    $(this).css('width', '0%').animate({
+                        width: width + '%'
+                    }, 1000);
+                });
+            }
+
+            // Check if element is in viewport
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            // Animate on scroll
+            function checkAnimation() {
+                $('.fade-in').each(function() {
+                    if (isElementInViewport(this)) {
+                        $(this).addClass('animated');
+                    }
+                });
+            }
+
+            // Initialize animations
+            $(window).on('scroll', checkAnimation);
+            checkAnimation();
+
+            // Initialize charts
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            const progressChart = new Chart(progressCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Riverfront Towers', 'Parkview Apartments', 'Commerce Center', 'Hillside Villas', 'Business Plaza', 'Lakeview Condos'],
+                    datasets: [{
+                        label: 'Progress (%)',
+                        data: [65, 42, 28, 15, 80, 55],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(52, 152, 219, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(52, 152, 219, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Close dropdowns when clicking outside
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.theme-selector').length) {
+                    $('.theme-dropdown').hide();
+                }
+                if (!$(e.target).closest('.btn-notification').length && !$(e.target).closest('.notification-panel').length) {
+                    $('.notification-panel').removeClass('active');
+                }
+            });
+
+            // Initialize progress bar animations
+            setTimeout(animateProgressBars, 500);
+        });
+    </script>
+</body>
+</html>
