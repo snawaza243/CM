@@ -219,7 +219,7 @@
         <footer class="">
             <div class="container">
                 <div class="row g-4">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-3">
                         <div class="footer-about">
                             <h3>FSBuilds</h3>
                             <p>Building quality homes in <strong>Sultapur Khurd</strong> and surrounding areas since 2015. Family-owned and operated with pride in craftsmanship.</p>
@@ -230,7 +230,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-3">
                         <div class="footer-links">
                             <h3>Quick Links</h3>
                             <ul>
@@ -242,51 +242,51 @@
                                 <li><a href="/Pages/Contact.aspx">Contact</a></li>
                             </ul>
                         </div>
-                        </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-tools">
-                            <h3>Tools</h3>
-                            <ul>
-                                <li><a href="/Pages/Tool/Unit_Convertor.aspx">Unit Convertor</a></li>
-                                <li><a href="/Pages/Tool/Cost_Estimator.aspx">Cost Estimator</a></li>
-                                <li><a href="/Pages/Tool/Floor_Planner.aspx">Floor Plan Creator</a></li>
-                                <li><a href="/Pages/Tool/Roof_Calculator.aspx">Roofing Calculator</a></li>
-                                <li><a href="/Pages/Tool/Material_Calculator.aspx">Material Calculator</a></li>
+                <div class="col-lg-3 col-md-3">
+                    <div class="footer-tools">
+                        <h3>Tools</h3>
+                        <ul>
+                            <li><a href="/Pages/Tool/Unit_Convertor.aspx">Unit Convertor</a></li>
+                            <li><a href="/Pages/Tool/Cost_Estimator.aspx">Cost Estimator</a></li>
+                            <li><a href="/Pages/Tool/Floor_Planner.aspx">Floor Plan Creator</a></li>
+                            <li><a href="/Pages/Tool/Roof_Calculator.aspx">Roofing Calculator</a></li>
+                            <li><a href="/Pages/Tool/Material_Calculator.aspx">Material Calculator</a></li>
 
 
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-contact">
-                            <h3>Contact Us</h3>
-                            <p class="clickable-address">
-                                <i class="fas fa-map-marker-alt i-contact"></i>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Sultanpur+Khurd,+Goreakothi,+Siwan,+Bihar+841413"
-                                    target="_blank">Sultanpur Khurd, Goreakothi, Siwan, Bihar - 841413
-                                </a>
-                            </p>
-                            <p class="clickable-phone">
-                                <i class="fas fa-phone i-contact"></i>
-                                <a href="tel:+918969813910">+91 89698 13910
-                                </a>
-                            </p>
-
-                            <p class="clickable-email">
-                                <i class="fas fa-envelope i-contact"></i>
-                                <a href="mailto:helloFSBuilds@gmail.com?subject=Inquiry&body=Hello, I would like to get more information about your services.">helloFSBuilds@gmail.com</a>
-                            </p>
-
-                        </div>
+                        </ul>
                     </div>
                 </div>
-                <div class="footer-bottom py-3 text-center">
-                    <p class="mb-0">&copy; <%: DateTime.Now.Year %> - FSBuilds. All Rights Reserved</p>
+                <div class="col-lg-3 col-md-3">
+                    <div class="footer-contact">
+                        <h3>Contact Us</h3>
+                        <p class="clickable-address">
+                            <i class="fas fa-map-marker-alt i-contact"></i>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Sultanpur+Khurd,+Goreakothi,+Siwan,+Bihar+841413"
+                                target="_blank">Sultanpur Khurd, Goreakothi, Siwan, Bihar - 841413
+                            </a>
+                        </p>
+                        <p class="clickable-phone">
+                            <i class="fas fa-phone i-contact"></i>
+                            <a href="tel:+918969813910">+91 89698 13910
+                            </a>
+                        </p>
 
+                        <p class="clickable-email">
+                            <i class="fas fa-envelope i-contact"></i>
+                            <a href="mailto:helloFSBuilds@gmail.com?subject=Inquiry&body=Hello, I would like to get more information about your services.">helloFSBuilds@gmail.com</a>
+                        </p>
 
-                    <p>Designed with <i class="fas fa-heart text-danger"></i> for SultanpurKhurd</p>
+                    </div>
                 </div>
+                    </div>
+            </div>
+            <div class="footer-bottom py-3 text-center">
+                <p class="mb-0">&copy; <%: DateTime.Now.Year %> - FSBuilds. All Rights Reserved</p>
+
+
+                <p>Designed with <i class="fas fa-heart text-danger"></i> for SultanpurKhurd</p>
+
             </div>
         </footer>
 
