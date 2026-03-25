@@ -1,6 +1,0 @@
-CREATE SEQUENCE SEQ_TEMP_USER_MASTER
-    START WITH 1        -- first value
-    INCREMENT BY 1      -- increment step
-    NOMAXVALUE          -- no maximum
-    NOCYCLE             -- do not recycle
-    CACHE 20;           -- cache for performance

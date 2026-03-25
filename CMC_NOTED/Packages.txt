@@ -1,5 +1,0 @@
-
-
-BCrypt.Net-Next
-
-Oracle.ManagedDataAccess
