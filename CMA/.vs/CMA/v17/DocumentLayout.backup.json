@@ -1,33 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\",
+  "WorkspaceRootPath": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|c:\\users\\snawa\\onedrive\\documents\\github\\cm\\cma\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\helper\\oraclehelpter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:helper\\oraclehelpter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\pages\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|c:\\users\\snawa\\onedrive\\documents\\github\\dot-net-world\\cma\\pages\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\pages\\client.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\helper\\oraclehelpter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:helper\\oraclehelpter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\pages\\client.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\client.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\pages\\projects.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\pages\\projects.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\projects.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\pages\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\pages\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:pages\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "AbsoluteMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{1D79C49C-B1A3-40C9-A21E-E661A9A78508}|CMA.csproj|solutionrelative:site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     }
   ],
@@ -38,15 +38,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Site.Master",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Site.Master",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Site.Master",
               "RelativeDocumentMoniker": "Site.Master",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Site.Master",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Site.Master",
               "RelativeToolTip": "Site.Master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -56,9 +56,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "Account.aspx",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Account.aspx",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Account.aspx",
               "RelativeDocumentMoniker": "Pages\\Account.aspx",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Account.aspx",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Account.aspx",
               "RelativeToolTip": "Pages\\Account.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -68,9 +68,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Client.aspx",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Client.aspx",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Client.aspx",
               "RelativeDocumentMoniker": "Pages\\Client.aspx",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Client.aspx",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Client.aspx",
               "RelativeToolTip": "Pages\\Client.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -80,9 +80,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Projects.aspx",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Projects.aspx",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Projects.aspx",
               "RelativeDocumentMoniker": "Pages\\Projects.aspx",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Projects.aspx",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Projects.aspx",
               "RelativeToolTip": "Pages\\Projects.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -90,23 +90,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Account.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Account.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Account.aspx.cs",
               "RelativeDocumentMoniker": "Pages\\Account.aspx.cs",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Pages\\Account.aspx.cs*",
-              "RelativeToolTip": "Pages\\Account.aspx.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALoBAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Pages\\Account.aspx.cs",
+              "RelativeToolTip": "Pages\\Account.aspx.cs",
+              "ViewState": "AgIAAM0AAAAAAAAAAAAowPMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-20T12:40:42.457Z"
+              "WhenOpened": "2025-11-20T12:40:42.457Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "OracleHelpter.cs",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Helper\\OracleHelpter.cs",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Helper\\OracleHelpter.cs",
               "RelativeDocumentMoniker": "Helper\\OracleHelpter.cs",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Helper\\OracleHelpter.cs",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Helper\\OracleHelpter.cs",
               "RelativeToolTip": "Helper\\OracleHelpter.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -114,11 +115,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Web.config",
+              "DocumentMoniker": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
-              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\CM\\CMA\\Web.config",
+              "ToolTip": "C:\\Users\\snawa\\OneDrive\\Documents\\GitHub\\dot-net-world\\CMA\\Web.config",
               "RelativeToolTip": "Web.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",

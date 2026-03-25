@@ -1,0 +1,25 @@
+CREATE OR REPLACE PROCEDURE proc_tc_get_user(
+    p_ClientID    IN  NUMBER DEFAULT NULL,
+    p_Email       IN  VARCHAR2 DEFAULT NULL,
+    p_Phone       IN  VARCHAR2 DEFAULT NULL,
+    p_ClientCode  OUT VARCHAR2,
+    p_PasswordHash OUT VARCHAR2
+)
+AS
+BEGIN
+    SELECT ClientCode, PasswordHash
+    INTO p_ClientCode, p_PasswordHash
+    FROM (
+        SELECT ClientCode, PasswordHash
+        FROM temp_client_master
+        WHERE (p_ClientID IS NOT NULL AND ClientID = p_ClientID)
+           OR (p_Email IS NOT NULL AND lower(Email) = lower(p_Email))
+           OR (p_Phone IS NOT NULL AND Phone = p_Phone)
+        ORDER BY ClientID
+    )
+    WHERE ROWNUM = 1;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        p_ClientCode := NULL;
+        p_PasswordHash := NULL;
+END;

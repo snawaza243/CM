@@ -1,0 +1,102 @@
+﻿/* Project Modals Styling */
+.detail-item {
+    margin-bottom: 1rem;
+}
+
+.detail-item h6 {
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.detail-item p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -20px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--success-color);
+    border: 2px solid white;
+}
+
+.timeline-item.completed .timeline-marker {
+    background: var(--success-color);
+}
+
+.timeline-item.in-progress .timeline-marker {
+    background: var(--primary-color);
+}
+
+.timeline-item.pending .timeline-marker {
+    background: var(--warning-color);
+}
+
+.timeline-content {
+    padding-bottom: 0.5rem;
+}
+
+.update-item {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 15px;
+    margin-bottom: 1rem;
+}
+
+.update-date {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.update-content {
+    color: var(--dark-color);
+}
+
+.document-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+    .document-item i {
+        font-size: 1.2rem;
+    }
+
+/* Table styling */
+.table {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    .table th {
+        background: rgba(248, 181, 0, 0.1);
+        border-bottom: 1px solid var(--glass-border);
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    .table td {
+        border-bottom: 1px solid var(--glass-border);
+        vertical-align: middle;
+    }
+

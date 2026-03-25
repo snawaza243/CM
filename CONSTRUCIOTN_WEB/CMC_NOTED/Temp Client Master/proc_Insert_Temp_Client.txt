@@ -1,0 +1,55 @@
+CREATE OR REPLACE PROCEDURE proc_Insert_Temp_Client(
+    p_FirstName      IN  VARCHAR2,
+    p_LastName       IN  VARCHAR2,
+    p_Email          IN  VARCHAR2,
+    p_Phone          IN  VARCHAR2 DEFAULT NULL,
+    p_Address        IN  VARCHAR2 DEFAULT NULL,
+    p_PasswordHash   IN  VARCHAR2 DEFAULT NULL,
+    p_CreatedBy      IN  VARCHAR2 DEFAULT NULL,
+    p_ClientCode     OUT VARCHAR2,
+    p_Success        OUT NUMBER,
+    p_Message        OUT VARCHAR2
+)
+AS
+    v_savepoint_name VARCHAR2(30);
+BEGIN
+    -- Create savepoint for this operation
+    v_savepoint_name := 'sp_insert_save';
+    SAVEPOINT sp_insert_save;
+
+    BEGIN
+        INSERT INTO temp_client_master (
+            FirstName,
+            LastName,
+            Email,
+            Phone,
+            Address,
+            PasswordHash,
+            CreatedBy
+        ) VALUES (
+            p_FirstName,
+            p_LastName,
+            p_Email,
+            p_Phone,
+            p_Address,
+            p_PasswordHash,
+            p_CreatedBy
+        )
+        RETURNING ClientCode INTO p_ClientCode;
+
+        p_Success := 1;
+        p_Message := 'Client created successfully.';
+        COMMIT; -- Commit only if successful
+
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            ROLLBACK TO sp_insert_save;
+            p_Success := 0;
+            p_Message := 'Error: Email or ClientCode already exists.';
+        WHEN OTHERS THEN
+            ROLLBACK TO sp_insert_save;
+            p_Success := 0;
+            p_Message := 'Error: ' || SQLERRM;
+    END;
+END;
+/

@@ -1,0 +1,144 @@
+1. Project Structure
+
+YourProject/
+├── Default.aspx
+├── Web.config
+├── App_Code/
+│   ├── Models/
+│   ├── Data/
+│   └── Services/
+├── Admin/
+│   ├── Default.aspx
+│   └── [Admin Pages]
+└── Pages/
+    ├── Clients.aspx
+    ├── Projects.aspx
+    └── [Other Pages]
+
+
+2. Update Web.config for Oracle Connection
+<configuration>
+  <connectionStrings>
+    <add name="OracleConnection" 
+         connectionString="Data Source=localhost:1521/XE;User Id=your_username;Password=your_password;"
+         providerName="Oracle.DataAccess.Client" />
+  </connectionStrings>
+  
+  <system.web>
+    <compilation debug="true" targetFramework="4.8">
+      <assemblies>
+        <add assembly="Oracle.DataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89B483F429C47342"/>
+      </assemblies>
+    </compilation>
+    <httpRuntime targetFramework="4.8" />
+  </system.web>
+</configuration>
+
+
+Install-Package Oracle.ManagedDataAccess
+
+
+
+
+4. Create Data Access Layer
+Create App_Code/Data/OracleHelper.cs:
+
+using System;
+using System.Data;
+using Oracle.ManagedDataAccess.Client;
+using System.Configuration;
+
+namespace ConstructionBusinessHub.Data
+{
+    public class OracleHelper
+    {
+        private static string connectionString = ConfigurationManager.ConnectionStrings["OracleConnection"].ConnectionString;
+
+        public static OracleConnection GetConnection()
+        {
+            return new OracleConnection(connectionString);
+        }
+
+        // Execute Non-Query (INSERT, UPDATE, DELETE)
+        public static int ExecuteNonQuery(string query, params OracleParameter[] parameters)
+        {
+            using (OracleConnection conn = GetConnection())
+            {
+                conn.Open();
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    cmd.Parameters.AddRange(parameters);
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // Execute Scalar
+        public static object ExecuteScalar(string query, params OracleParameter[] parameters)
+        {
+            using (OracleConnection conn = GetConnection())
+            {
+                conn.Open();
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    cmd.Parameters.AddRange(parameters);
+                    return cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        // Get DataReader
+        public static OracleDataReader ExecuteReader(string query, params OracleParameter[] parameters)
+        {
+            OracleConnection conn = GetConnection();
+            conn.Open();
+            OracleCommand cmd = new OracleCommand(query, conn);
+            cmd.Parameters.AddRange(parameters);
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        // Get DataTable
+        public static DataTable GetDataTable(string query, params OracleParameter[] parameters)
+        {
+            DataTable dt = new DataTable();
+            using (OracleConnection conn = GetConnection())
+            {
+                conn.Open();
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    cmd.Parameters.AddRange(parameters);
+                    using (OracleDataAdapter da = new OracleDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            return dt;
+        }
+    }
+}
+
+
+5. Create Model Classes
+Create App_Code/Models/Client.cs:
+
+using System;
+
+namespace ConstructionBusinessHub.Models
+{
+    public class Client
+    {
+        public decimal ClientId { get; set; }
+        public string CompanyName { get; set; }
+        public string ContactFirstName { get; set; }
+        public string ContactLastName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string ZipCode { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public bool IsActive { get; set; }
+    }
+}

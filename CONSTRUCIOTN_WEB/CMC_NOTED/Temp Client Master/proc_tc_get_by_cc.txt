@@ -1,0 +1,19 @@
+CREATE OR REPLACE PROCEDURE proc_tc_get_by_cc(
+    p_ClientCode   IN  VARCHAR2,
+    p_Cursor       OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN p_Cursor FOR
+        SELECT *
+        FROM temp_client_master
+        WHERE ClientCode = p_ClientCode;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        -- Return empty cursor if no match
+        OPEN p_Cursor FOR SELECT * FROM temp_client_master WHERE 1=0;
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Error in proc_tc_get_by_cc: ' || SQLERRM);
+END;
+/

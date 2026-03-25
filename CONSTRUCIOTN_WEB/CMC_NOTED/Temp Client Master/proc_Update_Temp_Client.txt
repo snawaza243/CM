@@ -1,0 +1,49 @@
+CREATE OR REPLACE PROCEDURE proc_Update_Temp_Client(
+    p_ClientID       IN  NUMBER,
+    p_FirstName      IN  VARCHAR2 DEFAULT NULL,
+    p_LastName       IN  VARCHAR2 DEFAULT NULL,
+    p_Email          IN  VARCHAR2 DEFAULT NULL,
+    p_Phone          IN  VARCHAR2 DEFAULT NULL,
+    p_Address        IN  VARCHAR2 DEFAULT NULL,
+    p_PasswordHash   IN  VARCHAR2 DEFAULT NULL,  -- Only update if not NULL
+    p_ModifiedBy     IN  VARCHAR2 DEFAULT NULL,
+    p_Success        OUT NUMBER,
+    p_Message        OUT VARCHAR2
+)
+AS
+    v_savepoint_name VARCHAR2(30);
+BEGIN
+    v_savepoint_name := 'sp_update_save';
+    SAVEPOINT sp_update_save;
+
+    BEGIN
+        UPDATE temp_client_master
+        SET
+            FirstName = NVL(p_FirstName, FirstName),
+            LastName = NVL(p_LastName, LastName),
+            Email = NVL(p_Email, Email),
+            Phone = NVL(p_Phone, Phone),
+            Address = NVL(p_Address, Address),
+            PasswordHash = CASE WHEN p_PasswordHash IS NOT NULL THEN p_PasswordHash ELSE PasswordHash END,
+            ModifiedBy = p_ModifiedBy,
+            ModifiedDate = SYSDATE
+        WHERE ClientID = p_ClientID;
+
+        IF SQL%ROWCOUNT = 0 THEN
+            ROLLBACK TO sp_update_save;
+            p_Success := 0;
+            p_Message := 'No client found with the given ClientID.';
+        ELSE
+            COMMIT;
+            p_Success := 1;
+            p_Message := 'Client updated successfully.';
+        END IF;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK TO sp_update_save;
+            p_Success := 0;
+            p_Message := 'Error: ' || SQLERRM;
+    END;
+END;
+/
