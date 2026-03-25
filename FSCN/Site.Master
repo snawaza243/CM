@@ -1,0 +1,1396 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="FSCN.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap.min.css?v=1.0" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Translate -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <%-- Toastify --%>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+    <title><%: Page.Title %> - Father and Son Construction</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --white: #fff;
+            --bg-color: #fff;
+            --card-bg: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #ecf0f1;
+            --secondary-color: #e74c3c;
+            --accent-color: #f39c12;
+            --light-color: #2c3e50;
+            --dark-color: #1a2530;
+            --text-color: #ecf0f1;
+            --text-light: #bdc3c7;
+            --white: #2c3e50;
+            --bg-color: #1a2530;
+            --card-bg: #2c3e50;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: var(--transition);
+        }
+
+
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 12px 25px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+            .btn-primary:hover {
+                background-color: #c0392b;
+                border-color: #c0392b;
+            }
+
+        .btn {
+            transition: var(--transition);
+        }
+
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow);
+            }
+
+        .btn-outline {
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 12px 25px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+            .btn-outline:hover {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+                color: var(--white);
+            }
+
+        /* Header Styles */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+            .navbar.scrolled {
+                background-color: var(--white);
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+        .navbar-brand h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+            .navbar-brand h1 span {
+                color: var(--secondary-color);
+            }
+
+        .navbar-brand p {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-top: -5px;
+            margin-bottom: 0;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-color);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            margin: 0 10px;
+        }
+
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link.active {
+                color: var(--secondary-color);
+            }
+
+                .navbar-nav .nav-link.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 5px;
+                    left: 15px;
+                    width: calc(100% - 30px);
+                    height: 2px;
+                    background-color: var(--secondary-color);
+                }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 15px;
+            transition: var(--transition);
+        }
+
+            .theme-toggle:hover {
+                color: var(--secondary-color);
+            }
+
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-hero {
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            /*color: var(--white);*/
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        /* Hero Carousel */
+        .carousel-item {
+            height: 100vh;
+        }
+
+        .carousel-caption {
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: initial;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+            .carousel-caption h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+
+            .carousel-caption p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+
+        /* Quick Quote Section */
+        .quick-quote {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        #quoteResult {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        #estimateAmount {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        /* Services Preview */
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding: 30px 20px;
+            height: 100%;
+            border: none;
+        }
+
+            .service-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            }
+
+        .icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* custom gallery card*/
+        .custom-gallery-card-upper {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: none;
+        }
+
+            .custom-gallery-card-upper img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .custom-gallery-card-upper:hover img {
+                transform: scale(1.05);
+            }
+
+        .custom-gallery-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .custom-gallery-card-upper:hover .custom-gallery-card-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .custom-gallery-card-info {
+            padding: 15px;
+        }
+
+
+        custom-gallery-card-info a {
+        }
+        /* Projects Section */
+        .project-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: none;
+        }
+
+            .project-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .project-card img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                display: block;
+            }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-info {
+            transform: translateY(0);
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials */
+        .testimonial-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin: 0 15px;
+        }
+
+            .testimonial-item .quote {
+                font-size: 1.2rem;
+                font-style: italic;
+                margin-bottom: 30px;
+                position: relative;
+                color: var(--text-color);
+            }
+
+                .testimonial-item .quote::before,
+                .testimonial-item .quote::after {
+                    content: '"';
+                    font-size: 2rem;
+                    color: var(--accent-color);
+                    opacity: 0.5;
+                }
+
+            .testimonial-item .client {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+            }
+
+                .testimonial-item .client img {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 3px solid var(--accent-color);
+                }
+
+            .testimonial-item .client-info h4 {
+                color: var(--primary-color);
+                margin-bottom: 5px;
+            }
+
+
+        /* filter row button section */
+
+        .filter-row-button-section {
+            padding: 40px 0;
+            background-color: #f8f9fa;
+        }
+
+        .filter-btn {
+            margin: 5px;
+        }
+
+
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            color: var(--light-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+            .social-links a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                color: var(--white);
+                transition: var(--transition);
+            }
+
+                .social-links a:hover {
+                    background-color: var(--secondary-color);
+                    transform: translateY(-3px);
+                }
+
+        .footer-links h3,
+        .footer-tools h3,
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links ul,
+        .footer-tools ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-links li,
+        .footer-tools li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-tools a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+            .footer-links a:hover,
+            .footer-tools a:hover {
+                color: var(--accent-color);
+                padding-left: 5px;
+            }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light-color);
+        }
+
+        .footer-contact i {
+            color: var(--accent-color);
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-color);
+            font-size: 0.9rem;
+        }
+
+            .footer-bottom p:first-child {
+                margin-bottom: 10px;
+            }
+
+            .footer-bottom i {
+                color: var(--secondary-color);
+            }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+            .section-title::after {
+                content: '';
+                display: block;
+                width: 80px;
+                height: 4px;
+                background: var(--accent-color);
+                margin: 15px auto;
+            }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-caption h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+
+            .carousel-caption {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .carousel-caption h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <h1>FatherSon<span>Construction</span></h1>
+                    <p>Building dreams since 2015</p>
+                </a>
+                <%--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbarNav" aria-controls="topNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>--%>
+
+                <button class="navbar-toggler" type="button" id="customNavToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+
+
+
+                <div class="collapse navbar-collapse" id="topNavbarNav">
+                    <ul class="navbar-nav ms-auto ">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Portfolio">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Tools_And_Utilities">Tools</a>
+                        </li>
+
+                        <!-- Login Link (Visible only when user is NOT logged in) -->
+                        <li class="nav-item" id="liLogin" runat="server" visible="true">
+                            <a class="nav-link" href="/Login.aspx">
+                                <i class="fas fa-sign-in-alt me-1"></i>Login
+                            </a>
+                        </li>
+
+                        <!-- Profile Dropdown (Visible only when user IS logged in) -->
+                        <li class="nav-item dropdown" id="liProfile" runat="server" visible="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-1"></i>
+                                <asp:Label ID="lblUserName" runat="server" Text="User"></asp:Label>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <asp:UpdatePanel ID="UpdatePanelProfile" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <li>
+                                            <asp:LinkButton ID="lnkProfile" runat="server" CssClass="dropdown-item" OnClick="lnkProfile_Click">
+                <i class="fas fa-id-badge me-2"></i>My Profile
+                                            </asp:LinkButton>
+                                        </li>
+
+                                        <asp:HiddenField ID="hfShowProfileModal" runat="server" Value="0" />
+
+                                        <li>
+                                            <a class="dropdown-item" href="/Settings.aspx">
+                                                <i class="fas fa-cog me-2"></i>Settings
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+
+                                        <li>
+                                            <asp:LinkButton ID="btnLogout" runat="server" CssClass="dropdown-item text-danger" OnClick="btnLogout_Click">
+                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                            </asp:LinkButton>
+                                        </li>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+
+
+                            </ul>
+                        </li>
+
+                        <script>
+                            $(document).ready(function () {
+                                // Handle hover for dropdown
+                                $('#liProfile').hover(
+                                    function () {
+                                        $(this).addClass('show');
+                                        $(this).find('.dropdown-menu').addClass('show');
+                                    },
+                                    function () {
+                                        $(this).removeClass('show');
+                                        $(this).find('.dropdown-menu').removeClass('show');
+                                    }
+                                );
+
+                                // Optional: Prevent accidental click toggling (Bootstrap default)
+                                $('#liProfile > a').click(function (e) {
+                                    e.preventDefault();
+                                });
+
+                                let timer;
+                                $('#liProfile').hover(
+                                    function () {
+                                        clearTimeout(timer);
+                                        $(this).addClass('show').find('.dropdown-menu').addClass('show');
+                                    },
+                                    function () {
+                                        timer = setTimeout(() => {
+                                            $(this).removeClass('show').find('.dropdown-menu').removeClass('show');
+                                        }, 200); // delay in ms
+                                    }
+                                );
+
+                            });
+                        </script>
+
+
+
+
+                        <li class="nav-item">
+                            <button class="theme-toggle" id="themeToggle" style="width: 50px">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+
+                        <li class="nav-item d-none">
+                            <div id="google_translate_element"></div>
+                            <!-- Google Translate container & script -->
+                            <script type="text/javascript">
+                                function googleTranslateElementInit() {
+                                    new google.translate.TranslateElement({
+                                        pageLanguage: 'en',
+                                        includedLanguages: 'en,hi,ur',
+                                        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                                    }, 'google_translate_element');
+                                }
+                            </script>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class=" body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <hr />
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2 class="mb-4">Ready to Start Your Project?</h2>
+                    <p class="mb-4">Choose your preferred contact method</p>
+                    <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                        <a href="tel:+918969813910" class="btn btn-primary btn-lg"><i class="fas fa-phone me-2"></i>Call Now</a>
+                        <a href="https://wa.me/918969813910" target="_blank" class="btn btn-success btn-lg"><i class="fab fa-whatsapp me-2"></i>WhatsApp</a>
+                        <a href="mailto:hellofathersonconstruction@gmail.com" class="btn btn-outline-primary btn-lg"><i class="fas fa-envelope me-2"></i>Email Us</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="row g-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-about">
+                                <h3>FatherSonConstruction</h3>
+                                <p>Building quality homes in <strong>Sultapur Khurd</strong> and surrounding areas since 2015. Family-owned and operated with pride in craftsmanship.</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/profile.php?id=61581762056885" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://whatsapp.com/channel/0029Vb6pEhqI7BeHXGQlYs25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="https://www.instagram.com/fathersonconstruction" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-links">
+                                <h3>Quick Links</h3>
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/Services">Services</a></li>
+                                    <li><a href="/Portfolio">Portfolio</a></li>
+                                    <li><a href="/About">About Us</a></li>
+                                    <li><a href="/Contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-tools">
+                                <h3>Construction Tools</h3>
+                                <ul>
+                                    <li><a href="/Tools/Material_Calculator">Material Calculator</a></li>
+                                    <li><a href="/Tools/Roof_Calculator">Roofing Calculator</a></li>
+                                    <li><a href="/Tools/Floor_Planner">Floor Plan Creator</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-contact">
+                                <h3>Contact Us</h3>
+                                <p class="clickable-address">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Sultanpur+Khurd,+Goreakothi,+Siwan,+Bihar+841413"
+                                        target="_blank"
+                                        style="color: inherit; text-decoration: none;">Sultanpur Khurd, Goreakothi, Siwan, Bihar - 841413
+                                    </a>
+                                </p>
+                                <p class="clickable-phone">
+                                    <i class="fas fa-phone"></i>
+                                    <a href="tel:+918969813910" style="color: inherit; text-decoration: none;">+91 89698 13910
+                                    </a>
+                                </p>
+
+                                <p class="clickable-email">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:hellofathersonconstruction@gmail.com?subject=Inquiry&body=Hello, I would like to get more information about your services." style="color: inherit; text-decoration: none;">hellofathersonconstruction@gmail.com</a>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; <span id="copyright-year"></span>FatherSonConstruction. All Rights Reserved.</p>
+
+                        <p>Designed with <i class="fas fa-heart"></i>for SultanpurKhurd</p>
+                    </div>
+                </div>
+            </footer>
+
+
+            <!-- Mobile Bottom Navbar -->
+            <section>
+
+                <nav class="navbar navbar-light fixed-bottom d-lg-none border-top shadow-sm p-0 mobile-bottom-nav">
+                    <ul class="navbar-nav w-100 justify-content-around text-center m-0">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link py-2">
+                                <i class="fas fa-home fa-lg"></i>
+                                <br>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Services" class="nav-link py-2">
+                                <i class="fas fa-tools fa-lg"></i>
+                                <br>
+                                Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Portfolio" class="nav-link py-2">
+                                <i class="fas fa-briefcase fa-lg"></i>
+                                <br>
+                                Portfolio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Contact" class="nav-link py-2">
+                                <i class="fas fa-envelope fa-lg"></i>
+                                <br>
+                                Contact
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Login" class="nav-link py-2">
+                                <i class="fas fa-sign-in-alt fa-lg"></i>
+                                <br>
+                                Login
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+
+                <style>
+                    @media (max-width: 991.98px) {
+                        /* Force nav horizontal */
+                        .mobile-bottom-nav .navbar-nav {
+                            flex-direction: row !important;
+                        }
+
+                        .navbar-nav .nav-item {
+                            flex: 1;
+                            text-align: center;
+                        }
+
+                        /* Keep height compact */
+                        nav.mobile-bottom-nav {
+                            height: 65px;
+                            overflow: hidden;
+                            /* Force bottom attach */
+                            position: fixed !important;
+                            bottom: 0 !important;
+                            top: auto !important;
+                            left: 0;
+                            right: 0;
+                        }
+
+                            nav.mobile-bottom-nav .nav-link {
+                                font-size: 12px;
+                                line-height: 1.2;
+                            }
+                    }
+                </style>
+
+
+                <script>
+                    $(function () {
+                        var path = window.location.pathname;
+                        $('.navbar.fixed-bottom .nav-link').each(function () {
+                            if (this.getAttribute('href') === path) {
+                                $(this).addClass('active');
+                            }
+                        });
+                    });
+
+                </script>
+            </section>
+
+
+            <!-- Bootstrap JS with Popper -->
+
+
+
+            <script>
+
+                function initNavbarToggle(togglerSelector, navSelector) {
+                    const toggler = $(togglerSelector);
+                    const nav = $(navSelector);
+                    const icon = toggler.find('i');
+
+                    // Hide nav initially (in case show class is present)
+                    nav.hide();
+
+                    toggler.on('click', function () {
+                        nav.stop(true, true).slideToggle(300, function () {
+                            // Toggle icon after animation completes
+                            if (nav.is(':visible')) {
+                                icon.removeClass('fa-bars').addClass('fa-xmark');
+                                toggler.attr('aria-expanded', 'true');
+                            } else {
+                                icon.removeClass('fa-xmark').addClass('fa-bars');
+                                toggler.attr('aria-expanded', 'false');
+                            }
+                        });
+                    });
+
+                    // Auto close menu when clicking a nav link (mobile)
+                    $(navSelector + ' .nav-link').on('click', function () {
+                        if (nav.is(':visible')) {
+                            nav.stop(true, true).slideUp(300, function () {
+                                icon.removeClass('fa-xmark').addClass('fa-bars');
+                                toggler.attr('aria-expanded', 'false');
+                            });
+                        }
+                    });
+                }
+
+
+                function preventDefaultActions(preventClick = false, preventEnter = false) {
+                    if (preventClick) {
+                        // Prevent default click behavior on all buttons
+                        $(document).on('click.preventBtn', 'button, input[type="submit"]', function (e) {
+                            e.preventDefault();
+                            console.log('Button click prevented');
+                        });
+                    } else {
+                        // Remove click prevention if it was previously bound
+                        $(document).off('click.preventBtn');
+                    }
+
+                    if (preventEnter) {
+                        // Prevent Enter key from submitting the first button
+                        $(document).on('keydown.preventEnter', function (e) {
+                            if (e.key === "Enter" || e.keyCode === 13) {
+                                e.preventDefault();
+                                console.log('Enter key prevented');
+                                return false;
+                            }
+                        });
+                    } else {
+                        // Remove Enter key prevention
+                        $(document).off('keydown.preventEnter');
+                    }
+                }
+
+                function activeCurrentPageNav() {
+                    // Get current page URL
+                    var currentUrl = window.location.pathname;
+
+                    // Remove active class from all nav links
+                    $('.navbar-nav .nav-link').removeClass('active');
+
+                    // Add active class to current page link
+                    $('.navbar-nav .nav-link').each(function () {
+                        var linkUrl = $(this).attr('href');
+
+                        // Check if the link URL matches the current page URL
+                        if (currentUrl === linkUrl) {
+                            $(this).addClass('active');
+                        }
+
+                        // Handle home page specifically (often just '/' or '/index.html')
+                        if (currentUrl === '/' || currentUrl === '/index.html') {
+                            if (linkUrl === '/' || linkUrl === '/index.html') {
+                                $(this).addClass('active');
+                            }
+                        }
+                    });
+
+                    var toolsPages = [
+                        "/Floor_Planner",
+                        "/Material_Calculator",
+                        "/Roof_Calculator",
+                        "/Unit_Convertor",
+                        "/Cost_Estimator",
+                        "/Project_Timeline_Planner",
+                        "/Safety_Checklist",
+                        "/Design_Inspiration",
+                        "/Equipment_Rental_Guide"
+                    ];
+
+                    toolsPages.forEach(function (page) {
+                        if (currentUrl.indexOf(page) !== -1) {
+                            $('.navbar-nav .nav-link[href="/Tools_And_Utilities"]').addClass('active');
+                        }
+                    });
+                }
+
+                function redirectIfAspNet404() {
+                    // Redirect target
+                    var defaultRedirectUrl = '/';
+
+                    // Detect .NET 404 error by specific title and common body error phrases
+                    var title = document.title.trim().toLowerCase();
+                    var bodyText = $('body').text().trim().toLowerCase();
+                    var h1Text = $('h1').first().text().trim().toLowerCase();
+                    var h2Text = $('h2').first().text().trim().toLowerCase();
+
+                    alert(title);
+
+                    var aspNet404Indicators = [
+                        'the resource cannot be found.',        // Exact title/body value
+                        'server error in \'/\' application',   // H1 text for .NET errors
+                        'http 404',                            // Error description in .NET error pages
+                        'requested url'                        // Shows up in .NET 404s
+                    ];
+
+                    var errorDetected = false;
+
+                    // Title check (strict)
+                    if (title === 'the resource cannot be found.') {
+                        errorDetected = true;
+                    }
+
+                    // Body or header check (semi-strict: must find at least two major clues)
+                    var majorMatched = 0;
+                    aspNet404Indicators.forEach(function (indicator) {
+                        if (bodyText.includes(indicator) || h1Text.includes(indicator) || h2Text.includes(indicator)) {
+                            majorMatched++;
+                        }
+                    });
+
+                    if (majorMatched >= 2) {
+                        errorDetected = true;
+                    }
+
+                    if (errorDetected) {
+                        window.location.href = defaultRedirectUrl;
+                    }
+                }
+
+                function fun_cta_replace_title_dec() {
+                    // Get the current page name from URL
+                    var page = window.location.pathname.split("/").pop().toLowerCase();
+
+                    // Define page-wise CTA headings & subheadings
+                    var ctaContent = {
+                        "": {
+                            heading: "Ready to Start Your Project?",
+                            subheading: "Choose your preferred contact method"
+                        },
+                        "services": {
+                            heading: "Need Our Services?",
+                            subheading: "Let’s discuss your requirements today"
+                        },
+                        "portfolio": {
+                            heading: "Like Our Work?",
+                            subheading: "Your project could be the next success story"
+                        },
+                        "about": {
+                            heading: "Get to Know Us Better",
+                            subheading: "We’re here to build lasting partnerships"
+                        },
+                        "contact": {
+                            heading: "Have Questions?",
+                            subheading: "We’d love to hear from you"
+                        },
+                        "tools_and_utilities": {
+                            heading: "Try Our Tools",
+                            subheading: "Boost your productivity with our solutions"
+                        },
+                        "login": {
+                            heading: "Welcome Back!",
+                            subheading: "Sign in to continue your journey with us"
+                        }
+                    };
+
+                    // If current page matches, update CTA
+                    if (ctaContent[page]) {
+                        $(".cta-section h2").text(ctaContent[page].heading);
+                        $(".cta-section p").text(ctaContent[page].subheading);
+                    }
+
+                }
+
+                //#region Theme toggle, Header scroll, Initialize carousels, Copyright year
+                function initializeSiteFeatures(options = {}) {
+                    const defaults = {
+                        themeToggleSelector: '#themeToggle',
+                        navbarSelector: '.navbar',
+                        scrollThreshold: 100,
+                        heroCarouselSelector: '#heroCarousel',
+                        heroCarouselInterval: 5000,
+                        testimonialCarouselSelector: '#testimonialCarousel',
+                        testimonialCarouselInterval: 4000,
+                        smoothScrollOffset: 80,
+                        smoothScrollDuration: 600,
+                        mobileMenuSelector: '#navbarNav',
+                        copyrightYearSelector: '#copyright-year',
+                        copyrightText: null, // Custom text like '© {year} Company Name'
+                        useCurrentYear: true
+                    };
+
+                    const config = { ...defaults, ...options };
+
+                    // Initialize theme toggle
+                    function initializeThemeToggle() {
+                        const themeToggle = $(config.themeToggleSelector);
+                        const themeIcon = themeToggle.find('i');
+
+                        if (themeToggle.length === 0) return;
+
+                        // Check for saved theme preference or respect OS preference
+                        const savedTheme = localStorage.getItem('theme');
+                        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                            document.documentElement.setAttribute('data-theme', 'dark');
+                            themeIcon.removeClass('fa-moon').addClass('fa-sun');
+                        } else {
+                            document.documentElement.setAttribute('data-theme', 'light');
+                            themeIcon.removeClass('fa-sun').addClass('fa-moon');
+                        }
+
+                        // Toggle theme on button click
+                        themeToggle.click(function () {
+                            const currentTheme = document.documentElement.getAttribute('data-theme');
+                            if (currentTheme === 'light') {
+                                document.documentElement.setAttribute('data-theme', 'dark');
+                                themeIcon.removeClass('fa-moon').addClass('fa-sun');
+                                localStorage.setItem('theme', 'dark');
+                            } else {
+                                document.documentElement.setAttribute('data-theme', 'light');
+                                themeIcon.removeClass('fa-sun').addClass('fa-moon');
+                                localStorage.setItem('theme', 'light');
+                            }
+                        });
+                    }
+
+                    // Initialize header scroll effect
+                    function initializeHeaderScroll() {
+                        $(window).scroll(function () {
+                            if ($(this).scrollTop() > config.scrollThreshold) {
+                                $(config.navbarSelector).addClass('scrolled');
+                            } else {
+                                $(config.navbarSelector).removeClass('scrolled');
+                            }
+                        });
+                    }
+
+                    // Initialize smooth scrolling
+                    function initializeSmoothScrolling() {
+                        $('a[href^="#"]').click(function (e) {
+                            e.preventDefault();
+
+                            const targetId = $(this).attr('href');
+                            if (targetId === '#') return;
+
+                            const targetElement = $(targetId);
+                            if (targetElement.length) {
+                                $('html, body').animate({
+                                    scrollTop: targetElement.offset().top - config.smoothScrollOffset
+                                }, config.smoothScrollDuration);
+
+                                // Close mobile menu if open
+                                $(config.mobileMenuSelector).removeClass('show');
+                            }
+                        });
+                    }
+
+                    // Initialize carousels
+                    function initializeCarousels() {
+                        if ($(config.heroCarouselSelector).length) {
+                            $(config.heroCarouselSelector).carousel({
+                                interval: config.heroCarouselInterval,
+                                pause: false
+                            });
+                        }
+
+                        if ($(config.testimonialCarouselSelector).length) {
+                            $(config.testimonialCarouselSelector).carousel({
+                                interval: config.testimonialCarouselInterval
+                            });
+                        }
+                    }
+
+                    // Initialize copyright year
+                    function initializeCopyrightYear() {
+                        const copyrightElement = $(config.copyrightYearSelector);
+
+                        if (copyrightElement.length === 0) return;
+
+                        const currentYear = new Date().getFullYear();
+
+                        if (config.useCurrentYear) {
+                            if (config.copyrightText) {
+                                // Replace {year} placeholder or append year to custom text
+                                const finalText = config.copyrightText.includes('{year}')
+                                    ? config.copyrightText.replace('{year}', currentYear)
+                                    : `${config.copyrightText} ${currentYear}`;
+                                copyrightElement.text(finalText);
+                            } else {
+                                copyrightElement.text(currentYear);
+                            }
+                        }
+                        // If useCurrentYear is false but custom text is provided, use the custom text as-is
+                        else if (config.copyrightText) {
+                            copyrightElement.text('');
+                            copyrightElement.text(config.copyrightText);
+                        }
+                    }
+
+                    // Initialize all features
+                    initializeThemeToggle();
+                    initializeHeaderScroll();
+                    initializeSmoothScrolling();
+                    initializeCarousels();
+                    initializeCopyrightYear();
+
+                    // Return public methods if needed
+                    return {
+                        reinitializeTheme: initializeThemeToggle,
+                        reinitializeCarousels: initializeCarousels,
+                        updateCopyrightYear: initializeCopyrightYear,
+                        getConfig: () => ({ ...config })
+                    };
+
+                    // Usage examples:
+                    // Basic usage with default selectors
+                    // initializeSiteFeatures();
+
+                    // Customized usage with copyright options
+                    // initializeSiteFeatures({
+                    //     themeToggleSelector: '#customThemeToggle',
+                    //     navbarSelector: '.custom-navbar',
+                    //     scrollThreshold: 150,
+                    //     heroCarouselInterval: 7000,
+                    //     smoothScrollOffset: 100,
+                    //     copyrightYearSelector: '#footer-year',
+                    //     copyrightText: '© {year} My Company Name. All rights reserved.'
+                    // });
+
+                    // Alternative copyright usage:
+                    // initializeSiteFeatures({
+                    //     copyrightYearSelector: '.copyright',
+                    //     copyrightText: 'Copyright' // Will become "Copyright 2024"
+                    // });
+
+                    // initializeSiteFeatures({
+                    //     copyrightYearSelector: '#footer-copyright',
+                    //     useCurrentYear: false,
+                    //     copyrightText: '© 2020-2024 Company Name' // Static text
+                    // });
+                }
+
+
+
+                //#endregion Theme toggle, Header scroll, Initialize carousels, Copyright year
+                $(document).ready(function () {
+
+                    initNavbarToggle('#customNavToggler', '#topNavbarNav');
+                    fun_cta_replace_title_dec();
+
+                    preventDefaultActions(false, true);
+
+                    activeCurrentPageNav();
+
+
+                    //$('#copyright-year').text(new Date().getFullYear());
+
+                    initializeSiteFeatures({
+                        copyrightYearSelector: '#copyright-year',
+                        useCurrentYear: true,
+                        copyrightText: '' // Static text
+                    });
+
+
+                });
+            </script>
+        </div>
+        <!-- Profile Modal -->
+        <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-3 shadow">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="profileModalLabel">
+                            <i class="fas fa-user-circle me-2"></i>User Profile
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Name:</label>
+                                <asp:Label ID="lblProfileName" runat="server" CssClass="form-control-plaintext" Text="--"></asp:Label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Email:</label>
+                                <asp:Label ID="lblProfileEmail" runat="server" CssClass="form-control-plaintext" Text="--"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Role:</label>
+                                <asp:Label ID="lblProfileRole" runat="server" CssClass="form-control-plaintext" Text="--"></asp:Label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Joined On:</label>
+                                <asp:Label ID="lblProfileDate" runat="server" CssClass="form-control-plaintext" Text="--"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#lnkProfile').click(function () {
+                    // Call server-side method via AJAX or use values from Session
+                    // __doPostBack('ShowProfile', '');
+                });
+            });
+        </script>
+
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>

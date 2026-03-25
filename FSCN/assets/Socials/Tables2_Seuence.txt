@@ -1,0 +1,277 @@
+CREATE TABLE Clients (
+    ClientId NUMBER PRIMARY KEY,
+    CompanyName VARCHAR2(100) NOT NULL,
+    ContactFirstName VARCHAR2(50) NOT NULL,
+    ContactLastName VARCHAR2(50) NOT NULL,
+    Email VARCHAR2(255),
+    Phone VARCHAR2(20),
+    Address VARCHAR2(255),
+    City VARCHAR2(50),
+    State VARCHAR2(50),
+    ZipCode VARCHAR2(20),
+    CreatedDate DATE DEFAULT SYSDATE NOT NULL,
+    IsActive NUMBER(1) DEFAULT 1 NOT NULL
+);
+
+CREATE SEQUENCE seq_clients START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_clients_id
+BEFORE INSERT ON Clients
+FOR EACH ROW
+BEGIN
+    IF :NEW.ClientId IS NULL THEN
+        SELECT seq_clients.NEXTVAL INTO :NEW.ClientId FROM dual;
+    END IF;
+END;
+/
+
+
+
+
+CREATE TABLE Employees (
+    EmployeeId NUMBER PRIMARY KEY,
+    UserId VARCHAR2(450),
+    FirstName VARCHAR2(50) NOT NULL,
+    LastName VARCHAR2(50) NOT NULL,
+    Email VARCHAR2(255),
+    Phone VARCHAR2(20),
+    HireDate DATE NOT NULL,
+    Position VARCHAR2(50),
+    HourlyRate NUMBER(19,4),
+    Salary NUMBER(19,4),
+    IsActive NUMBER(1) DEFAULT 1 NOT NULL
+);
+
+CREATE SEQUENCE seq_employees START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_employees_id
+BEFORE INSERT ON Employees
+FOR EACH ROW
+BEGIN
+    IF :NEW.EmployeeId IS NULL THEN
+        SELECT seq_employees.NEXTVAL INTO :NEW.EmployeeId FROM dual;
+    END IF;
+END;
+/
+
+
+CREATE TABLE Projects (
+    ProjectId NUMBER PRIMARY KEY,
+    ClientId NUMBER NOT NULL REFERENCES Clients(ClientId),
+    ProjectName VARCHAR2(100) NOT NULL,
+    Description CLOB,
+    StartDate DATE,
+    EstimatedEndDate DATE,
+    ActualEndDate DATE,
+    ContractValue NUMBER(19,4) NOT NULL,
+    Status VARCHAR2(20) DEFAULT 'Pending' NOT NULL,
+    Address VARCHAR2(255),
+    CreatedDate DATE DEFAULT SYSDATE NOT NULL,
+    CreatedBy NUMBER NOT NULL REFERENCES Employees(EmployeeId)
+);
+
+CREATE SEQUENCE seq_projects START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_projects_id
+BEFORE INSERT ON Projects
+FOR EACH ROW
+BEGIN
+    IF :NEW.ProjectId IS NULL THEN
+        SELECT seq_projects.NEXTVAL INTO :NEW.ProjectId FROM dual;
+    END IF;
+END;
+/
+
+
+
+CREATE TABLE ProjectPhases (
+    PhaseId NUMBER PRIMARY KEY,
+    ProjectId NUMBER NOT NULL REFERENCES Projects(ProjectId) ON DELETE CASCADE,
+    PhaseName VARCHAR2(50) NOT NULL,
+    Description VARCHAR2(255),
+    EstimatedStartDate DATE,
+    EstimatedEndDate DATE,
+    ActualStartDate DATE,
+    ActualEndDate DATE,
+    Budget NUMBER(19,4),
+    SortOrder NUMBER
+);
+
+CREATE SEQUENCE seq_projectphases START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_projectphases_id
+BEFORE INSERT ON ProjectPhases
+FOR EACH ROW
+BEGIN
+    IF :NEW.PhaseId IS NULL THEN
+        SELECT seq_projectphases.NEXTVAL INTO :NEW.PhaseId FROM dual;
+    END IF;
+END;
+/
+
+
+CREATE TABLE Tasks (
+    TaskId NUMBER PRIMARY KEY,
+    PhaseId NUMBER NOT NULL REFERENCES ProjectPhases(PhaseId) ON DELETE CASCADE,
+    TaskName VARCHAR2(100) NOT NULL,
+    Description CLOB,
+    AssignedToEmployeeId NUMBER REFERENCES Employees(EmployeeId),
+    DueDate DATE,
+    Status VARCHAR2(20) DEFAULT 'NotStarted' NOT NULL,
+    Priority VARCHAR2(20) DEFAULT 'Medium' NOT NULL,
+    CreatedDate DATE DEFAULT SYSDATE NOT NULL
+);
+
+CREATE SEQUENCE seq_tasks START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_tasks_id
+BEFORE INSERT ON Tasks
+FOR EACH ROW
+BEGIN
+    IF :NEW.TaskId IS NULL THEN
+        SELECT seq_tasks.NEXTVAL INTO :NEW.TaskId FROM dual;
+    END IF;
+END;
+/
+
+
+CREATE TABLE Invoices (
+    InvoiceId NUMBER PRIMARY KEY,
+    ProjectId NUMBER NOT NULL REFERENCES Projects(ProjectId),
+    InvoiceNumber VARCHAR2(50) NOT NULL UNIQUE,
+    InvoiceDate DATE DEFAULT SYSDATE NOT NULL,
+    DueDate DATE NOT NULL,
+    Status VARCHAR2(20) DEFAULT 'Draft' NOT NULL,
+    TotalAmount NUMBER(19,4) NOT NULL,
+    TaxAmount NUMBER(19,4) DEFAULT 0,
+    Notes CLOB,
+    CreatedDate DATE DEFAULT SYSDATE NOT NULL
+);
+
+CREATE SEQUENCE seq_invoices START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_invoices_id
+BEFORE INSERT ON Invoices
+FOR EACH ROW
+BEGIN
+    IF :NEW.InvoiceId IS NULL THEN
+        SELECT seq_invoices.NEXTVAL INTO :NEW.InvoiceId FROM dual;
+    END IF;
+END;
+/
+
+
+
+CREATE TABLE InvoiceLineItems (
+    LineItemId NUMBER PRIMARY KEY,
+    InvoiceId NUMBER NOT NULL REFERENCES Invoices(InvoiceId) ON DELETE CASCADE,
+    Description VARCHAR2(255) NOT NULL,
+    Quantity NUMBER(19,4) DEFAULT 1 NOT NULL,
+    UnitPrice NUMBER(19,4) NOT NULL,
+    LineTotal NUMBER(19,4) GENERATED ALWAYS AS (Quantity * UnitPrice) VIRTUAL
+);
+
+CREATE SEQUENCE seq_invoicelineitems START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_invoicelineitems_id
+BEFORE INSERT ON InvoiceLineItems
+FOR EACH ROW
+BEGIN
+    IF :NEW.LineItemId IS NULL THEN
+        SELECT seq_invoicelineitems.NEXTVAL INTO :NEW.LineItemId FROM dual;
+    END IF;
+END;
+/
+
+
+CREATE TABLE Payments (
+    PaymentId NUMBER PRIMARY KEY,
+    InvoiceId NUMBER NOT NULL REFERENCES Invoices(InvoiceId),
+    Amount NUMBER(19,4) NOT NULL,
+    PaymentDate DATE DEFAULT SYSDATE NOT NULL,
+    PaymentMethod VARCHAR2(50) NOT NULL,
+    ReferenceNumber VARCHAR2(100),
+    Notes VARCHAR2(255),
+    RecordedBy NUMBER NOT NULL REFERENCES Employees(EmployeeId),
+    RecordedDate DATE DEFAULT SYSDATE NOT NULL
+);
+
+CREATE SEQUENCE seq_payments START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_payments_id
+BEFORE INSERT ON Payments
+FOR EACH ROW
+BEGIN
+    IF :NEW.PaymentId IS NULL THEN
+        SELECT seq_payments.NEXTVAL INTO :NEW.PaymentId FROM dual;
+    END IF;
+END;
+/
+
+
+CREATE TABLE Expenses (
+    ExpenseId NUMBER PRIMARY KEY,
+    ProjectId NUMBER NOT NULL REFERENCES Projects(ProjectId),
+    Category VARCHAR2(50) NOT NULL,
+    Description VARCHAR2(255) NOT NULL,
+    Amount NUMBER(19,4) NOT NULL,
+    ExpenseDate DATE NOT NULL,
+    Supplier VARCHAR2(100),
+    ReceiptImageUrl CLOB,
+    RecordedBy NUMBER NOT NULL REFERENCES Employees(EmployeeId),
+    RecordedDate DATE DEFAULT SYSDATE NOT NULL
+);
+
+CREATE SEQUENCE seq_expenses START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_expenses_id
+BEFORE INSERT ON Expenses
+FOR EACH ROW
+BEGIN
+    IF :NEW.ExpenseId IS NULL THEN
+        SELECT seq_expenses.NEXTVAL INTO :NEW.ExpenseId FROM dual;
+    END IF;
+END;
+/
+
+
+CREATE TABLE Expenses (
+    ExpenseId NUMBER PRIMARY KEY,
+    ProjectId NUMBER NOT NULL REFERENCES Projects(ProjectId),
+    Category VARCHAR2(50) NOT NULL,
+    Description VARCHAR2(255) NOT NULL,
+    Amount NUMBER(19,4) NOT NULL,
+    ExpenseDate DATE NOT NULL,
+    Supplier VARCHAR2(100),
+    ReceiptImageUrl CLOB,
+    RecordedBy NUMBER NOT NULL REFERENCES Employees(EmployeeId),
+    RecordedDate DATE DEFAULT SYSDATE NOT NULL
+);
+
+CREATE SEQUENCE seq_expenses START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_expenses_id
+BEFORE INSERT ON Expenses
+FOR EACH ROW
+BEGIN
+    IF :NEW.ExpenseId IS NULL THEN
+        SELECT seq_expenses.NEXTVAL INTO :NEW.ExpenseId FROM dual;
+    END IF;
+END;
+/
+
+
+CREATE TABLE TimeLogs (
+    TimeLogId NUMBER PRIMARY KEY,
+    EmployeeId NUMBER NOT NULL REFERENCES Employees(EmployeeId),
+    TaskId NUMBER NOT NULL REFERENCES Tasks(TaskId),
+    ProjectId NUMBER NOT NULL REFERENCES Projects(ProjectId),
+    LogDate DATE NOT NULL,
+    HoursWorked NUMBER(5,2) NOT NULL,
+    Description VARCHAR2(255),
+    IsApproved NUMBER(1) DEFAULT 0 NOT NULL,
+    ApprovedBy NUMBER REFERENCES Employees(EmployeeId),
+    ApprovedDate DATE
+);
+
+CREATE SEQUENCE seq_timelogs START WITH 1 INCREMENT BY 1;
+CREATE OR REPLACE TRIGGER trg_timelogs_id
+BEFORE INSERT ON TimeLogs
+FOR EACH ROW
+BEGIN
+    IF :NEW.TimeLogId IS NULL THEN
+        SELECT seq_timelogs.NEXTVAL INTO :NEW.TimeLogId FROM dual;
+    END IF;
+END;
+/
+

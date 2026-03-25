@@ -1,0 +1,92 @@
+CREATE OR REPLACE PROCEDURE PROC_ICON_SAVE (
+    p_icon_id        IN OUT NUMBER,
+    p_icon_name      IN VARCHAR2,
+    p_icon_code      IN VARCHAR2,
+    p_icon_library   IN VARCHAR2,
+    p_icon_category  IN VARCHAR2 DEFAULT NULL,
+    p_preview_html   IN VARCHAR2 DEFAULT NULL,
+    p_created_by     IN VARCHAR2 DEFAULT 'system',
+    p_active         IN CHAR DEFAULT 'Y',
+    p_status         OUT VARCHAR2,
+    p_message        OUT VARCHAR2
+)
+AS
+    v_count   NUMBER;
+BEGIN
+    SAVEPOINT sv_icon;
+
+    -- ✅ If ICON_ID provided, check if it exists
+    IF p_icon_id IS NOT NULL THEN
+        SELECT COUNT(*) INTO v_count
+        FROM ICON_MASTER
+        WHERE ICON_ID = p_icon_id;
+
+        IF v_count > 0 THEN
+            -- ✅ Update existing icon
+            UPDATE ICON_MASTER
+               SET ICON_NAME      = p_icon_name,
+                   ICON_CODE      = p_icon_code,
+                   ICON_LIBRARY   = p_icon_library,
+                   ICON_CATEGORY  = p_icon_category,
+                   PREVIEW_HTML   = p_preview_html,
+                   ACTIVE         = p_active,
+                   MODIFIED_BY    = p_created_by,
+                   MODIFIED_ON    = SYSDATE
+             WHERE ICON_ID = p_icon_id;
+
+            p_status := '1';
+            p_message := 'Icon updated successfully. ID: ' || p_icon_id;
+            DBMS_OUTPUT.PUT_LINE(p_message);
+            RETURN;
+        END IF;
+    END IF;
+
+    -- ✅ If same icon already exists (based on Name + Library), update it
+    SELECT COUNT(*) INTO v_count
+    FROM ICON_MASTER
+    WHERE UPPER(ICON_NAME) = UPPER(p_icon_name)
+      AND UPPER(ICON_LIBRARY) = UPPER(p_icon_library);
+
+    IF v_count > 0 THEN
+        UPDATE ICON_MASTER
+           SET ICON_CODE      = p_icon_code,
+               ICON_CATEGORY  = p_icon_category,
+               PREVIEW_HTML   = p_preview_html,
+               ACTIVE         = p_active,
+               MODIFIED_BY    = p_created_by,
+               MODIFIED_ON    = SYSDATE
+         WHERE UPPER(ICON_NAME) = UPPER(p_icon_name)
+           AND UPPER(ICON_LIBRARY) = UPPER(p_icon_library);
+
+        SELECT ICON_ID INTO p_icon_id
+          FROM ICON_MASTER
+         WHERE UPPER(ICON_NAME) = UPPER(p_icon_name)
+           AND UPPER(ICON_LIBRARY) = UPPER(p_icon_library);
+
+        p_status := '1';
+        p_message := 'Icon updated by name successfully. ID: ' || p_icon_id;
+        DBMS_OUTPUT.PUT_LINE(p_message);
+        RETURN;
+    END IF;
+
+    -- ✅ Otherwise, insert new icon
+    INSERT INTO ICON_MASTER (
+        ICON_NAME, ICON_CODE, ICON_LIBRARY, ICON_CATEGORY, PREVIEW_HTML,
+        ACTIVE, CREATED_BY, CREATED_ON
+    ) VALUES (
+        p_icon_name, p_icon_code, p_icon_library, p_icon_category, p_preview_html,
+        p_active, p_created_by, SYSDATE
+    ) RETURNING ICON_ID INTO p_icon_id;
+
+    p_status := '1';
+    p_message := 'Inserted new icon successfully. ID: ' || p_icon_id;
+    DBMS_OUTPUT.PUT_LINE(p_message);
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK TO sv_icon;
+        p_status := '0';
+        p_message := 'Error in saving icon: ' || SQLERRM;
+        DBMS_OUTPUT.PUT_LINE(p_message);
+END;
+/

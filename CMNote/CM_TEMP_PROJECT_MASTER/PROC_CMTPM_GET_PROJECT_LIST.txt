@@ -1,0 +1,61 @@
+create or replace NONEDITIONABLE PROCEDURE PROC_CMTPM_GET_PROJECT_LIST
+(
+    P_CLIENT_CODE IN VARCHAR2,
+    P_SUCCESS     OUT VARCHAR2,
+    P_MESSAGE     OUT VARCHAR2,
+    P_CURSOR      OUT SYS_REFCURSOR
+)
+AS
+    v_count NUMBER;
+BEGIN
+    -- Check if client has any projects
+    SELECT COUNT(*) INTO v_count
+    FROM CM_TEMP_PROJECT_MASTER
+    WHERE CLIENT_CODE = P_CLIENT_CODE;
+
+    IF v_count > 0 THEN
+        P_SUCCESS := '1';
+        P_MESSAGE := 'Client projects found!';
+
+        OPEN P_CURSOR FOR
+            SELECT 
+                M.PROJECT_ID,
+                M.PROJECT_CODE,
+                M.PROJECT_NAME,
+                M.REFERENCE_NAME,
+                M.CLIENT_CODE,
+                M.CLIENT_NAME,
+                M.EMAIL,
+                M.PHONE,
+                M.OTHER_CONTACTS,
+                srv.service_name AS PROJECT_TYPE,
+                M.PROJECT_ADDRESS,
+                M.PROJECT_DESCRIPTION,
+                M.ESTIMATED_BUDGET,
+                M.TIMELINE,
+                M.EXPECTED_START_DATE,
+                M.EXPECTED_DEADLINE,
+                M.APPROVED_STATUS,
+                M.APPROVED_BY,
+                M.CURRENT_STATUS,
+                M.CREATED_BY,
+                M.UPDATED_BY,
+                M.CREATED_AT,
+                M.UPDATED_AT
+            FROM CM_TEMP_PROJECT_MASTER M
+            LEFT JOIN cm_list_services SRV ON SRV.SERVICE_CODE = M.PROJECT_TYPE
+            WHERE M.CLIENT_CODE = P_CLIENT_CODE
+            ORDER BY M.UPDATED_AT DESC NULLS LAST, M.CREATED_AT DESC;
+
+    ELSE
+        P_SUCCESS := '0';
+        P_MESSAGE := 'Client projects not found!';
+        P_CURSOR := NULL;  -- no data to return
+    END IF;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        P_SUCCESS := '0';
+        P_MESSAGE := 'Error: ' || SQLERRM;
+        P_CURSOR := NULL;
+END;

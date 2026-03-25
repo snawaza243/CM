@@ -1,0 +1,134 @@
+📄 Project Status Master Table Documentation
+1. Overview
+
+The CM_PROJECT_STATUS table is a master reference table that contains all possible project statuses across client approval and execution stages. It allows tracking of projects from request submission to completion or cancellation.
+
+It is designed to be compatible with Oracle 11g and 19c and supports auto-increment IDs using sequence and trigger.
+
+2. Table Structure
+Column Name	Data Type	Constraints / Default	Description
+STATUS_ID	NUMBER	PRIMARY KEY	Unique identifier for the status
+STATUS_NAME	VARCHAR2(100)	NOT NULL	Name of the status (e.g., Pending, Accepted, Completed)
+STATUS_TYPE	VARCHAR2(50)		Type/category of the status (Client Approval, Execution, Issue, Final)
+STATUS_ICON	VARCHAR2(50)		Font Awesome icon for front-end display
+STATUS_BG_CLASS	VARCHAR2(50)		Bootstrap badge class for UI (e.g., bg-success)
+STATUS_DESC	VARCHAR2(4000)		Description of the status
+STATUS_ACTIVE	CHAR(1)	DEFAULT 'Y'	Y/N flag indicating active status
+CREATE_ON	DATE	DEFAULT SYSDATE	Record creation timestamp
+CREATED_BY	VARCHAR2(50)		User who created the record
+MODIFY_ON	DATE		Last modification timestamp
+MODIFY_BY	VARCHAR2(50)		User who last modified the record
+3. Auto-Increment Implementation
+3.1 Sequence
+CREATE SEQUENCE CM_PROJECT_STATUS_SEQ
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+3.2 Trigger
+CREATE OR REPLACE TRIGGER CM_PROJECT_STATUS_TRG
+BEFORE INSERT ON CM_PROJECT_STATUS
+FOR EACH ROW
+BEGIN
+    IF :NEW.STATUS_ID IS NULL THEN
+        SELECT CM_PROJECT_STATUS_SEQ.NEXTVAL INTO :NEW.STATUS_ID FROM dual;
+    END IF;
+END;
+/
+
+
+Notes:
+
+Automatically generates STATUS_ID if not provided during insert.
+
+No manual handling of IDs is required.
+
+4. Initial Status Data
+Status Name	Type	Icon	Bootstrap Badge	Description
+Pending	Client Approval	fa-hourglass-half	bg-secondary	Project request submitted, waiting client review
+Accepted	Client Approval	fa-check-circle	bg-success	Project approved by client
+Rejected	Client Approval	fa-times-circle	bg-danger	Project rejected by client
+In Progress	Execution	fa-tasks	bg-primary	Project currently in execution
+Delayed	Issue	fa-exclamation-triangle	bg-danger	Project facing delays
+Completed	Final	fa-flag-checkered	bg-dark text-light	Project fully completed
+Cancelled	Issue	fa-ban	bg-danger text-light	Project cancelled
+
+Notes:
+
+These statuses cover all stages from client approval to final delivery.
+
+STATUS_BG_CLASS and STATUS_ICON are for frontend display.
+
+5. Procedure: Insert / Update Status
+
+Procedure: SP_INSERT_UPDATE_PROJECT_STATUS
+
+Purpose: Insert new or update existing status records with output parameters for status and message.
+
+5.1 Parameters
+Parameter	Direction	Data Type	Description
+P_STATUS_ID	IN	NUMBER	Status ID (null for insert)
+P_STATUS_NAME	IN	VARCHAR2	Status name
+P_STATUS_TYPE	IN	VARCHAR2	Status type/category
+P_STATUS_ICON	IN	VARCHAR2	Font Awesome icon
+P_STATUS_BG_CLASS	IN	VARCHAR2	Bootstrap badge class
+P_STATUS_DESC	IN	VARCHAR2	Description
+P_STATUS_ACTIVE	IN	CHAR	Y/N flag
+P_CREATED_BY	IN	VARCHAR2	User performing the action
+OUT_STATUS	OUT	VARCHAR2	Output: SUCCESS / ERROR
+OUT_MESSAGE	OUT	VARCHAR2	Output: Description message
+5.2 Usage Example
+DECLARE
+    V_STATUS VARCHAR2(20);
+    V_MESSAGE VARCHAR2(200);
+BEGIN
+    SP_INSERT_UPDATE_PROJECT_STATUS(
+        P_STATUS_ID => NULL,
+        P_STATUS_NAME => 'Under Review',
+        P_STATUS_TYPE => 'Client Approval',
+        P_STATUS_ICON => 'fa-search',
+        P_STATUS_BG_CLASS => 'bg-info text-dark',
+        P_STATUS_DESC => 'Project under review by client',
+        P_STATUS_ACTIVE => 'Y',
+        P_CREATED_BY => 'SYSTEM',
+        OUT_STATUS => V_STATUS,
+        OUT_MESSAGE => V_MESSAGE
+    );
+
+    DBMS_OUTPUT.PUT_LINE('Status: ' || V_STATUS || ' | Message: ' || V_MESSAGE);
+END;
+/
+
+
+Notes:
+
+Pass NULL for P_STATUS_ID to insert a new status.
+
+Pass an existing STATUS_ID to update the record.
+
+Returns OUT_STATUS and OUT_MESSAGE for frontend handling.
+
+6. Front-End Integration
+
+Use STATUS_NAME and STATUS_BG_CLASS to render status badges in tables.
+
+Use STATUS_ICON for icons inside badge or buttons.
+
+Example HTML:
+
+<span class="badge bg-success">
+    <i class="fas fa-check-circle me-1"></i> Accepted
+</span>
+
+7. Notes / Best Practices
+
+Active Flag (STATUS_ACTIVE): Allows soft-deletion of statuses.
+
+Extensibility: Add new statuses without affecting existing workflow.
+
+Frontend Consistency: Always use STATUS_BG_CLASS and STATUS_ICON for UI.
+
+Procedure Usage: Enforces consistent insert/update logic.
+
+Compatibility: Works with Oracle 11g and 19c.

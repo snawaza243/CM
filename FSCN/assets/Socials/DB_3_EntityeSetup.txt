@@ -1,0 +1,187 @@
+1. Create ASP.NET Core Project with Oracle Packages
+# Create new ASP.NET Core MVC project
+dotnet new mvc -n ConstructionBusinessHub -f net8.0
+cd ConstructionBusinessHub
+
+# Add Oracle Entity Framework provider
+dotnet add package Oracle.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+
+
+2. Create DbContext
+
+using Microsoft.EntityFrameworkCore;
+using ConstructionBusinessHub.Models;
+
+namespace ConstructionBusinessHub.Data
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
+        // DbSets for each table - use exact Oracle table names
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectPhase> ProjectPhases { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoiceLineItem> InvoiceLineItems { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
+        public DbSet<TimeLog> TimeLogs { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Map to exact Oracle table names (uppercase by default)
+            modelBuilder.Entity<Client>().ToTable("CLIENTS");
+            modelBuilder.Entity<Employee>().ToTable("EMPLOYEES");
+            modelBuilder.Entity<Project>().ToTable("PROJECTS");
+            modelBuilder.Entity<ProjectPhase>().ToTable("PROJECTPHASES");
+            modelBuilder.Entity<Task>().ToTable("TASKS");
+            modelBuilder.Entity<Invoice>().ToTable("INVOICES");
+            modelBuilder.Entity<InvoiceLineItem>().ToTable("INVOICELINEITEMS");
+            modelBuilder.Entity<Payment>().ToTable("PAYMENTS");
+            modelBuilder.Entity<Expense>().ToTable("EXPENSES");
+            modelBuilder.Entity<TimeLog>().ToTable("TIMELOGS");
+
+            // Configure Oracle-specific properties
+            modelBuilder.Entity<Client>()
+                .Property(c => c.IsActive)
+                .HasConversion<int>(); // Convert bool to NUMBER(1)
+
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.IsActive)
+                .HasConversion<int>();
+
+            // Add other configurations as needed
+        }
+    }
+}
+
+
+3. Register Oracle DbContext in Program.cs
+
+using ConstructionBusinessHub.Data;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add Oracle DbContext
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline...
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+
+4. Add Oracle Connection String to appsettings.json{
+  "ConnectionStrings": {
+    "OracleConnection": "User Id=your_username;Password=your_password;Data Source=your_tns_entry;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+
+5. Create Models for Oracle Database
+
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ConstructionBusinessHub.Models
+{
+    [Table("CLIENTS")]
+    public class Client
+    {
+        [Key]
+        [Column("CLIENTID")]
+        public decimal ClientId { get; set; } // Use decimal for Oracle NUMBER
+
+        [Required]
+        [Column("COMPANYNAME")]
+        [StringLength(100)]
+        public string CompanyName { get; set; }
+
+        [Required]
+        [Column("CONTACTFIRSTNAME")]
+        [StringLength(50)]
+        public string ContactFirstName { get; set; }
+
+        [Required]
+        [Column("CONTACTLASTNAME")]
+        [StringLength(50)]
+        public string ContactLastName { get; set; }
+
+        [EmailAddress]
+        [Column("EMAIL")]
+        [StringLength(255)]
+        public string? Email { get; set; }
+
+        [Column("PHONE")]
+        [StringLength(20)]
+        public string? Phone { get; set; }
+
+        [Column("ADDRESS")]
+        [StringLength(255)]
+        public string? Address { get; set; }
+
+        [Column("CITY")]
+        [StringLength(50)]
+        public string? City { get; set; }
+
+        [Column("STATE")]
+        [StringLength(50)]
+        public string? State { get; set; }
+
+        [Column("ZIPCODE")]
+        [StringLength(20)]
+        public string? ZipCode { get; set; }
+
+        [Column("CREATEDDATE")]
+        public DateTime CreatedDate { get; set; }
+
+        [Column("ISACTIVE")]
+        public bool IsActive { get; set; } = true;
+
+        // Navigation property
+        public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+    }
+}
+
+6. Scaffold Models from Oracle Database (Alternative)
+
+
+# Install the tool first (if not already installed)
+dotnet tool install --global dotnet-ef
+
+# Scaffold from Oracle database
+dotnet ef dbcontext scaffold "User Id=username;Password=password;Data Source=localhost:1521/XE" Oracle.EntityFrameworkCore --output-dir Models --context-dir Data --context ApplicationDbContext --force

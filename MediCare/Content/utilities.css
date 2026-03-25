@@ -1,0 +1,56 @@
+/* Custom Utilities */
+.bg-medical-light {
+  background: var(--bg-secondary);
+}
+
+.border-medical {
+  border: 1px solid var(--border-color);
+}
+
+.text-medical-primary {
+  color: var(--text-primary);
+}
+
+.text-medical-secondary {
+  color: var(--text-secondary);
+}
+
+.shadow-medical {
+  box-shadow: var(--shadow-md);
+}
+
+/* Status Indicators */
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.status-active {
+  background: var(--medical-green);
+}
+
+.status-pending {
+  background: var(--medical-amber);
+}
+
+.status-inactive {
+  background: var(--medical-red);
+}
+
+/* Loading Spinner */
+.spinner-medical {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--medical-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,89 @@
+:root {
+  /* Primary Colors */
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  
+  /* Medical Theme Colors */
+  --medical-blue: #0ea5e9;
+  --medical-green: #10b981;
+  --medical-red: #ef4444;
+  --medical-amber: #f59e0b;
+  --medical-purple: #8b5cf6;
+  
+  /* Neutral Colors - Light Mode */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --sidebar-bg: #1e293b;
+  --sidebar-text: #f1f5f9;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --border-radius: 0.5rem;
+  --sidebar-width: 260px;
+  --header-height: 64px;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  --sidebar-bg: #020617;
+  --sidebar-text: #f1f5f9;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Theme Toggle Switch */
+.theme-toggle {
+  width: 50px;
+  height: 26px;
+  background: var(--bg-tertiary);
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle::before {
+  transform: translateX(24px);
+}

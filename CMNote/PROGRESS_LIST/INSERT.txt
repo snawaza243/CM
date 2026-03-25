@@ -1,0 +1,35 @@
+
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Not Started', 'Planning', 'fa-stopwatch', 'bg-secondary', 'Project has been approved but no work has begun', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Planning', 'Planning', 'fa-tasks', 'bg-info text-dark', 'Project planning, designs, and resource allocation in progress', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Foundation Work', 'Structural', 'fa-tools', 'bg-primary', 'Site preparation and foundation construction', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Structural Work', 'Structural', 'fa-building', 'bg-warning text-dark', 'Framing, walls, and structural work ongoing', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Electrical & Plumbing', 'Structural', 'fa-bolt', 'bg-warning', 'Internal systems installation (electric, plumbing, HVAC)', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Interior & Finishing', 'Finishing', 'fa-paint-roller', 'bg-purple', 'Painting, flooring, interiors, fixtures', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Landscaping & Exteriors', 'Finishing', 'fa-tree', 'bg-success', 'External finishing, landscaping, amenities', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Testing & Inspection', 'Quality', 'fa-clipboard-check', 'bg-info', 'Quality checks, safety inspections, final approvals', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Completed', 'Final', 'fa-flag-checkered', 'bg-dark text-light', 'Project fully completed and delivered', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Delayed', 'Issue', 'fa-exclamation-triangle', 'bg-danger', 'Project facing delays, needs attention', 'Y', 'SYSTEM');
+
+INSERT INTO CM_PROGRESS_STATUS (STATUS_NAME, STATUS_TYPE, STATUS_ICON, STATUS_BG_CLASS, STATUS_DESC, STATUS_ACTIVE, CREATED_BY)
+VALUES ('Cancelled', 'Issue', 'fa-ban', 'bg-danger text-light', 'Project cancelled or terminated', 'Y', 'SYSTEM');
+
